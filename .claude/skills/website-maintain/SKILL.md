@@ -9,8 +9,9 @@ description: >
   brand, or make any structural change to stromy-website — even if they don't say
   "website" explicitly. Trigger on phrases like "add a blog post", "new case study",
   "update the team", "refresh brand tokens", "add a region", "update the homepage",
-  "change the tagline", "add a nav item", "update SEO", or any request that implies
-  modifying the Stromy website.
+  "change the tagline", "add a nav item", "update SEO", "review the design", "audit the
+  layout", "check responsiveness", "use vision", "screenshot the pages", or any request
+  that implies modifying or visually reviewing the Stromy website.
 ---
 
 # Website Maintain
@@ -45,6 +46,42 @@ stromy-website/
 **Build command:** `npm run build` (runs token generation + Astro build)
 **Dev server:** `npm run dev` (localhost:4321)
 
+## Visual QA Defaults
+
+When the user asks for a design review, visual polish pass, layout audit, responsive
+check, screenshot-based verification, or explicitly asks to "use vision", do not stop
+at code inspection. Capture and inspect rendered pages.
+
+Use this default visual workflow:
+
+1. Start or verify the local server with `npm run dev`
+2. Inventory the real routes before reviewing them
+3. Capture desktop and mobile screenshots of each relevant page
+4. Wait for the page to settle before screenshotting, because Astro pages may use lazy
+   images, transitions, or scroll-reveal effects
+5. Inspect the screenshots directly and then trace issues back to layouts/components
+6. Run `npm run build` before finalizing findings or shipping visual changes
+
+Useful capture defaults:
+
+```bash
+npx --yes playwright@latest screenshot --browser=chromium --viewport-size=1440,1100 --wait-for-timeout=1800 http://127.0.0.1:4321/ /tmp/page-desktop.png
+npx --yes playwright@latest screenshot --browser=chromium --viewport-size=390,844 --wait-for-timeout=1800 http://127.0.0.1:4321/ /tmp/page-mobile.png
+npx --yes playwright@latest screenshot --browser=chromium --full-page --viewport-size=1440,1100 --wait-for-timeout=1800 http://127.0.0.1:4321/ /tmp/page-full.png
+```
+
+Important visual-audit caveats:
+
+- Do not trust the first screenshot if the page uses animation or lazy loading
+- Use at least one viewport screenshot and one full-page screenshot when reviewing page rhythm
+- If theme or localStorage state might pollute results, use a fresh browser profile or
+  otherwise force a known theme state before capturing
+- If interactive states matter, capture them explicitly instead of inferring from code
+- When possible, inspect both desktop and mobile for the same page types
+- Separate system-wide issues from page-specific issues
+- If assets or routes look broken in screenshots, verify the rendered `src`/`href` targets
+  instead of assuming the bug is only visual
+
 ---
 
 ## Task Router
@@ -63,6 +100,7 @@ Match the user's request to the appropriate workflow below.
 | "update navigation", "add a nav link" | [Update Navigation](#update-navigation) |
 | "update SEO", "meta tags", "OG image" | [Update SEO](#update-seo) |
 | "update the homepage", "change the tagline" | [Update Homepage](#update-homepage) |
+| "review the design", "visual audit", "check mobile", "use vision", "screenshot the site" | [Visual Audit & Layout Verification](#visual-audit--layout-verification) |
 | "deploy", "build the site" | [Build & Deploy](#build--deploy) |
 
 ---
@@ -518,6 +556,182 @@ Edit `src/data/stats.ts` (see [Update Stats](#update-stats)).
 ### Change hero image
 
 Edit `src/components/sections/Hero.astro` — change the image import at the top.
+
+---
+
+## Visual Audit & Layout Verification
+
+Use this workflow when the user asks for:
+
+- visual review
+- design critique
+- layout polish
+- responsive review
+- screenshot-based QA
+- contrast or branding review
+- "use vision" or "check it yourself"
+
+### 1. Audit the rendered site, not just the source
+
+Always inspect the running site locally. Code review is necessary, but it is not enough
+for visual work.
+
+Start with:
+
+```bash
+npm run dev
+```
+
+Then review the live pages through screenshots.
+
+### 2. Build a route list before reviewing
+
+Do not rely only on `src/pages/`. Include content-driven routes too.
+
+For Stromy, the practical route sources are:
+
+- `src/pages/`
+- `src/content/blog/`
+- `src/content/capabilities/`
+- `src/content/case-studies/`
+- rendered links discovered from the running homepage or section pages
+
+For large reviews, audit every live route individually.
+
+### 3. Capture screenshots intentionally
+
+Minimum capture set for a proper visual audit:
+
+- desktop viewport screenshot
+- mobile viewport screenshot
+- desktop full-page screenshot for long landing pages
+
+Preferred defaults:
+
+```bash
+npx --yes playwright@latest screenshot --browser=chromium --viewport-size=1440,1100 --wait-for-timeout=1800 http://127.0.0.1:4321/ /tmp/home-desktop.png
+npx --yes playwright@latest screenshot --browser=chromium --viewport-size=390,844 --wait-for-timeout=1800 http://127.0.0.1:4321/ /tmp/home-mobile.png
+npx --yes playwright@latest screenshot --browser=chromium --full-page --viewport-size=1440,1100 --wait-for-timeout=1800 http://127.0.0.1:4321/ /tmp/home-full.png
+```
+
+Tips:
+
+- Use `--wait-for-timeout=1500` to `2500` for pages with lazy images or reveal animations
+- Use viewport screenshots for legibility, alignment, and contrast
+- Use full-page screenshots for section rhythm, large blank areas, and footer handoff
+- If reviewing many pages, store screenshots in a temp directory and generate a contact sheet
+- If interactive states matter, capture them intentionally after opening menus, toggling filters,
+  or navigating to the relevant state
+
+### 4. Control theme and state before capturing
+
+Visual audits are easy to pollute with persisted state.
+
+Before trusting screenshots:
+
+- confirm whether dark mode is active
+- confirm whether region/localStorage state is active
+- confirm whether mobile menu or filters are in default state
+
+If needed:
+
+- use a fresh browser profile for screenshots
+- force a known color scheme
+- recapture after resetting local state
+
+Do not mix accidental dark-mode regressions with baseline layout findings.
+
+### 5. Check these visual categories on every page
+
+Review at least:
+
+- logo rendering and asset imports
+- text contrast on both light and dark surfaces
+- heading hierarchy and scanability
+- spacing rhythm and section transitions
+- card consistency and visual hierarchy
+- image quality, crop, and overlay treatment
+- navigation clarity and active-state visibility
+- footer legibility and route validity
+- mobile layout, tap-target spacing, and menu behavior
+- repeated template fatigue across adjacent pages
+- whether filters, toggles, and active states rely on color alone
+- whether the implementation still matches `src/brand/charter.json`
+
+### 6. Verify likely visual failures directly
+
+When screenshots suggest a broken asset or broken route:
+
+- inspect the rendered HTML
+- verify `href` and `src` targets
+- confirm route status codes
+- confirm Astro actually emits the referenced asset path
+
+Do not stop at "it looks broken"; identify whether the root cause is:
+
+- missing asset
+- wrong emitted path
+- wrong route target
+- CSS override
+- theme-state contamination
+- animation timing
+
+### 7. Distinguish systemic issues from page-specific issues
+
+Report findings in this order:
+
+1. shared-system issues first
+2. template-level issues next
+3. page-by-page issues last
+
+Typical systemic buckets:
+
+- token misuse
+- global CSS overrides
+- broken shared layout components
+- placeholder iconography
+- weak contrast rules
+- repeated underdesigned section patterns
+
+### 8. When editing visuals, re-capture after changes
+
+After visual fixes:
+
+- re-run `npm run build`
+- re-capture the changed pages at desktop and mobile widths
+- confirm the fix in screenshots, not just in code
+
+For larger visual work, compare before/after captures on the same route and viewport.
+
+### 9. Use these visual heuristics for Stromy specifically
+
+Stromy should feel:
+
+- premium
+- editorial
+- sparse but intentional
+- high-contrast where needed
+- brand-consistent across header, hero, content pages, and footer
+
+Common failure patterns to watch for in this repo:
+
+- dark green text on black or dark surfaces
+- orange used as low-contrast small text on cream
+- broken logo references
+- hardcoded homepage links drifting away from real routes
+- icon placeholders rendering raw names
+- sections repeating the same centered-heading-plus-card-grid pattern
+
+### 10. Suggested review output structure
+
+For visual reviews, prefer this structure:
+
+1. systemic issues
+2. page-by-page findings
+3. implementation plan or fix sequence
+
+If the user asks for a visual-improvement plan, write the systemic fixes first, then
+the per-page improvements, then the implementation order.
 
 ---
 
