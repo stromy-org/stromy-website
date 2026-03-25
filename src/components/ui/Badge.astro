@@ -8,12 +8,12 @@ interface Props {
 const { variant = 'primary', text, class: className = '' } = Astro.props;
 
 const variantClasses: Record<string, string> = {
-  primary: 'bg-[#E8F0EC] text-[#1B3D33]',
-  accent: 'bg-[#D4632A]/10 text-[#D4632A]',
-  muted: 'bg-[#C8C6BF]/30 text-[#5A5A56]',
+  primary: 'border border-[#1B3D33]/12 bg-[#E8F0EC] text-[#1B3D33]',
+  accent: 'border border-[#D4632A]/20 bg-[#D4632A]/12 text-[#A44B20]',
+  muted: 'border border-black/6 bg-black/4 text-[#5A5A56]',
 };
 
-const baseClasses = 'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium';
+const baseClasses = 'inline-flex items-center rounded-full px-3 py-1 font-mono text-[0.68rem] font-medium uppercase tracking-[0.18em]';
 const classes = [baseClasses, variantClasses[variant], className].join(' ');
 ---
 

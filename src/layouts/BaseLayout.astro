@@ -41,16 +41,6 @@ const ogImage = image
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-    <!-- Dark mode: apply class before paint to avoid flash -->
-    <script is:inline>
-      (function () {
-        const stored = localStorage.getItem("theme");
-        if (stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-          document.documentElement.classList.add("dark");
-        }
-      })();
-    </script>
-
     <ClientRouter />
   </head>
   <body class="min-h-screen bg-background text-text antialiased">
@@ -59,6 +49,7 @@ const ogImage = image
     <!-- Scroll reveal: Intersection Observer for .fade-up elements -->
     <script is:inline>
       function initFadeUp() {
+        document.documentElement.classList.add("motion-ready");
         var els = document.querySelectorAll('.fade-up:not(.in-view)');
         if (!els.length) return;
         var observer = new IntersectionObserver(function(entries) {

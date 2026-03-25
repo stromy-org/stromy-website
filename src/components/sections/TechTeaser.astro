@@ -1,64 +1,59 @@
 ---
-import ScoreLine from '../ui/ScoreLine.astro';
 import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
 
 const pillars = [
   {
+    icon: 'sparkles',
     name: 'Plugins & Skills',
-    description: 'Modular capabilities that encode domain expertise into repeatable, auditable workflows.',
+    description: 'Reusable capability layers that encode expert methodology into repeatable operating patterns.',
   },
   {
+    icon: 'database-zap',
     name: 'MCP Data Connectors',
-    description: 'Real-time connections to government databases, media feeds, and regulatory sources.',
+    description: 'Live access to government, media, and regulatory sources without manual stitching.',
   },
   {
+    icon: 'workflow',
     name: 'LangGraph Workflows',
-    description: 'Multi-step orchestration that chains research, analysis, and reporting into coherent pipelines.',
+    description: 'Multi-step flows that turn collection, analysis, and reporting into one reliable sequence.',
   },
   {
-    name: 'Intelligence Research Centre',
-    description: 'A centralised hub where insights are generated, stored, and surfaced on demand.',
+    icon: 'library-big',
+    name: 'Research Centre',
+    description: 'A durable intelligence layer where outputs can be revisited, compared, and operationalised.',
   },
 ];
 ---
 
-<section class="bg-background py-20 md:py-28">
+<section class="bg-secondary py-24 text-background md:py-30">
   <div class="mx-auto max-w-7xl px-6">
-    <!-- Score line divider -->
-    <div class="fade-up mx-auto mb-16 max-w-xs">
-      <ScoreLine variant="full" />
-    </div>
+    <div class="grid gap-12 lg:grid-cols-[0.82fr_1.18fr]">
+      <div class="fade-up">
+        <p class="section-kicker text-background/56 before:bg-background/24">Platform</p>
+        <h2 class="display-lg mt-6 text-background">Powered by orchestrated intelligence.</h2>
+        <p class="body-lg mt-6 max-w-xl text-background/72">
+          Stromy combines AI agents, live data connectors, and structured workflows into
+          one operating layer for teams that need speed, traceability, and better signal.
+        </p>
+        <div class="mt-10">
+          <Button variant="accent" href="/technology" size="lg">
+            Explore the platform
+          </Button>
+        </div>
+      </div>
 
-    <!-- Heading -->
-    <div class="fade-up mb-6 text-center">
-      <h2 class="display-lg text-primary">Powered by Orchestrated Intelligence</h2>
-    </div>
-
-    <!-- Description -->
-    <p class="fade-up body-lg mx-auto mb-16 max-w-2xl text-center text-text-light">
-      Our technology platform combines AI agents, data connectors, and structured workflows to transform
-      how organisations gather, analyse, and act on intelligence.
-    </p>
-
-    <!-- Pillars grid -->
-    <div class="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div class="grid gap-6 md:grid-cols-2">
       {pillars.map((pillar) => (
-        <div class="fade-up text-center">
-          <!-- Icon placeholder -->
-          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-background-alt">
-            <span class="text-2xl text-primary">&#9671;</span>
+        <div class="fade-up rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-7">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-[1.1rem] bg-background text-primary">
+            <Icon name={pillar.icon} size={22} />
           </div>
-          <h3 class="display-sm mb-2 text-primary">{pillar.name}</h3>
-          <p class="body-md text-text-light">{pillar.description}</p>
+          <h3 class="display-sm mb-3 text-background">{pillar.name}</h3>
+          <p class="body-md text-background/68">{pillar.description}</p>
         </div>
       ))}
-    </div>
-
-    <!-- CTA -->
-    <div class="fade-up text-center">
-      <Button variant="primary" href="/technology" size="md">
-        Explore our technology &rarr;
-      </Button>
+      </div>
     </div>
   </div>
 </section>

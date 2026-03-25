@@ -3,6 +3,7 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import Card from "../ui/Card.astro";
 import Badge from "../ui/Badge.astro";
+import Icon from "../ui/Icon.astro";
 
 interface Props {
   title: string;
@@ -22,18 +23,17 @@ const formattedDate = date.toLocaleDateString("en-AU", {
   day: "numeric",
 });
 
-const cardClasses = featured ? "col-span-full md:col-span-2" : "";
-const imageHeight = featured ? "h-64 md:h-80" : "h-48";
+const cardClasses = featured ? "col-span-full lg:col-span-2" : "";
+const imageHeight = featured ? "h-72 md:h-[25rem]" : "h-56";
 ---
 
 <Card href={`/blog/${slug}`} class={cardClasses}>
-  <div class="flex flex-col gap-4">
-    {/* Image with brutalist overlay */}
-    <div class:list={["brutalist-overlay overflow-hidden rounded-lg", imageHeight]}>
+  <div class="flex h-full flex-col gap-5">
+    <div class:list={["brutalist-overlay overflow-hidden rounded-[1.35rem]", imageHeight]}>
       <Image
         src={image}
         alt={title}
-        class="h-full w-full object-cover"
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         widths={featured ? [640, 960, 1280] : [400, 640]}
         sizes={featured
           ? "(max-width: 768px) 100vw, 66vw"
@@ -41,22 +41,24 @@ const imageHeight = featured ? "h-64 md:h-80" : "h-48";
       />
     </div>
 
-    {/* Meta row */}
-    <div class="flex items-center gap-3">
+    <div class="flex flex-wrap items-center gap-3">
       <time datetime={date.toISOString()} class="body-sm text-text-light">
         {formattedDate}
       </time>
       <Badge text={region} variant="muted" />
     </div>
 
-    {/* Title */}
-    <h3 class:list={[featured ? "display-md" : "display-sm", "text-primary"]}>
+    <h3 class:list={[featured ? "display-md" : "display-sm", "max-w-3xl text-primary"]}>
       {title}
     </h3>
 
-    {/* Description */}
-    <p class:list={[featured ? "body-lg" : "body-md", "text-text-light line-clamp-3"]}>
+    <p class:list={[featured ? "body-lg max-w-2xl" : "body-md", "text-text-light line-clamp-3"]}>
       {description}
     </p>
+
+    <div class="mt-auto flex items-center gap-2 font-mono text-[0.74rem] uppercase tracking-[0.18em] text-primary">
+      Read article
+      <Icon name="sparkles" size={16} class="text-accent" />
+    </div>
   </div>
 </Card>

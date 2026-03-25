@@ -1,4 +1,19 @@
 ---
+import {
+  CircleDashed,
+  DatabaseZap,
+  Landmark,
+  Leaf,
+  LibraryBig,
+  Megaphone,
+  Newspaper,
+  Search,
+  Share2,
+  ShieldAlert,
+  Sparkles,
+  Workflow,
+} from "lucide-preact";
+
 interface Props {
   name: string;
   size?: number;
@@ -6,13 +21,29 @@ interface Props {
 }
 
 const { name, size = 24, class: className = '' } = Astro.props;
+
+const icons = {
+  "circle-dashed": CircleDashed,
+  "database-zap": DatabaseZap,
+  landmark: Landmark,
+  leaf: Leaf,
+  "library-big": LibraryBig,
+  megaphone: Megaphone,
+  newspaper: Newspaper,
+  search: Search,
+  "share-2": Share2,
+  sparkles: Sparkles,
+  "shield-alert": ShieldAlert,
+  workflow: Workflow,
+} as const;
+
+const IconComponent = icons[name as keyof typeof icons] ?? CircleDashed;
 ---
 
-<span
-  class:list={['inline-flex items-center justify-center', className]}
-  style={`width: ${size}px; height: ${size}px; font-size: ${size * 0.6}px;`}
+<IconComponent
+  size={size}
+  strokeWidth={1.75}
+  class={className}
   aria-hidden="true"
   data-icon={name}
->
-  {name}
-</span>
+/>

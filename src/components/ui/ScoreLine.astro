@@ -7,12 +7,12 @@ interface Props {
 
 const { variant = 'full', animated = false, class: className = '' } = Astro.props;
 
-const lineWidth = variant === 'full' ? 'w-[60px]' : 'w-[30px]';
+const lineWidth = variant === 'full' ? 'w-[96px]' : 'w-[46px]';
 ---
 
 <div class:list={['flex items-center gap-1', animated && 'score-line-animated', className]}>
-  <div class:list={['h-px bg-[#1B3D33]', lineWidth, animated && 'score-line-track']} />
-  <div class:list={['size-1 rounded-full bg-[#1B3D33] shrink-0', animated && 'score-line-dot']} />
+  <div class:list={['h-px bg-[#1B3D33]/72', lineWidth, animated && 'score-line-track']} />
+  <div class:list={['size-1.5 rounded-full bg-[#D4632A] shrink-0', animated && 'score-line-dot']} />
 </div>
 
 <style>

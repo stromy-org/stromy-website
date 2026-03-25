@@ -10,18 +10,18 @@ interface Props {
 const { variant = 'primary', href, size = 'md', class: className = '', ...rest } = Astro.props;
 
 const sizeClasses: Record<string, string> = {
-  sm: 'px-4 py-1.5 text-sm',
-  md: 'px-6 py-2.5 text-base',
-  lg: 'px-8 py-3.5 text-lg',
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-6 py-3 text-base',
 };
 
 const variantClasses: Record<string, string> = {
-  primary: 'bg-[#1B3D33] text-[#F2F0EA] hover:shadow-lg',
-  accent: 'bg-[#D4632A] text-[#F2F0EA] hover:shadow-lg',
-  outline: 'bg-transparent border border-[#1B3D33] text-[#1B3D33] hover:shadow-md',
+  primary: 'bg-[#1B3D33] text-[#F2F0EA] border border-[#1B3D33] hover:bg-[#123128]',
+  accent: 'bg-[#D4632A] text-[#F2F0EA] border border-[#D4632A] hover:bg-[#bd5926]',
+  outline: 'bg-transparent border border-[#1B3D33]/16 text-[#1B3D33] hover:border-[#1B3D33] hover:bg-white/60',
 };
 
-const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 hover:-translate-y-0.5 cursor-pointer';
+const baseClasses = 'inline-flex items-center justify-center rounded-full font-medium tracking-[0.01em] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg cursor-pointer';
 const classes = [baseClasses, sizeClasses[size], variantClasses[variant], className].join(' ');
 
 const Tag = href ? 'a' : 'button';

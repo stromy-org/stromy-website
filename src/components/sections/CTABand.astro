@@ -1,22 +1,20 @@
 ---
-import ScoreLine from '../ui/ScoreLine.astro';
 import Button from '../ui/Button.astro';
 ---
 
-<section class="bg-primary py-20 md:py-24">
+<section class="bg-primary py-24 md:py-28">
   <div class="mx-auto max-w-7xl px-6">
-    <!-- Score line at top -->
-    <div class="fade-up mx-auto mb-12 max-w-xs">
-      <ScoreLine variant="full" class="[&_div]:bg-background [&_div:last-child]:bg-accent" />
-    </div>
-
-    <!-- Content -->
-    <div class="flex flex-col items-center text-center">
-      <h2 class="fade-up display-lg mb-8 text-background">
+    <div class="fade-up rounded-[2rem] border border-white/12 bg-[linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-8 py-12 text-center md:px-14 md:py-16">
+      <p class="section-kicker justify-center text-background/58 before:bg-background/24">Next move</p>
+      <h2 class="display-lg mx-auto mt-6 max-w-3xl text-background">
         Ready to orchestrate your intelligence?
       </h2>
-      <div class="fade-up">
-        <Button variant="accent" href="/contact" size="lg">
+      <p class="body-lg mx-auto mt-5 max-w-2xl text-background/72">
+        We help communications and stakeholder teams replace scattered monitoring with a
+        more deliberate intelligence system.
+      </p>
+      <div class="mt-10">
+        <Button variant="accent" href="/contact" size="lg" class="shadow-2xl shadow-black/15">
           Get in touch
         </Button>
       </div>

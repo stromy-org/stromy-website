@@ -1,35 +1,38 @@
 ---
 ---
 
-<section class="bg-secondary py-20 md:py-24">
-  <div class="mx-auto max-w-2xl px-6 text-center">
-    <!-- Heading -->
-    <h2 class="fade-up display-lg mb-4 text-background">Stay Informed</h2>
+<section class="bg-background py-24 md:py-28">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="dark-panel rounded-[2rem] px-8 py-10 md:px-12 md:py-12">
+      <div class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+        <div>
+          <p class="section-kicker text-background/54 before:bg-background/24">Newsletter</p>
+          <h2 class="fade-up display-lg mt-5 text-background">Stay informed without the noise.</h2>
+          <p class="fade-up body-lg mt-5 max-w-xl text-background/70">
+            Subscribe to Stromy updates on AI, government relations, crisis management,
+            and strategic communications.
+          </p>
+        </div>
 
-    <!-- Description -->
-    <p class="fade-up body-lg mb-10 text-ash">
-      Subscribe to our insights on AI, government relations, and strategic communications.
-    </p>
-
-    <!-- Placeholder form -->
-    <form class="fade-up mx-auto flex max-w-md flex-col gap-3 sm:flex-row" onsubmit="return false;">
+        <form class="fade-up flex flex-col gap-3 sm:flex-row" onsubmit="return false;">
       <input
         type="email"
         placeholder="you@example.com"
         required
-        class="flex-1 rounded-lg border border-graphite bg-graphite px-4 py-3 text-background placeholder:text-ash focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+        class="flex-1 rounded-full border border-white/14 bg-white/6 px-5 py-3 text-background placeholder:text-background/45 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
       />
       <button
         type="submit"
-        class="inline-flex items-center justify-center rounded-lg bg-accent px-6 py-3 font-medium text-background transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+        class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 font-medium text-background transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
       >
         Subscribe
       </button>
-    </form>
+        </form>
+      </div>
 
-    <!-- Powered by note -->
-    <p class="fade-up mt-6 text-xs text-text-light">
-      Powered by Buttondown
-    </p>
+      <p class="fade-up mt-6 text-xs text-background/48">
+        Powered by Buttondown
+      </p>
+    </div>
   </div>
 </section>

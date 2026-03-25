@@ -1,85 +1,53 @@
 ---
-import Badge from '../ui/Badge.astro';
-import caseImg1 from '../../brand/images/04_concrete_curves.jpg';
-import caseImg2 from '../../brand/images/08_arch_lines_shadow.jpg';
-import caseImg3 from '../../brand/images/09_symmetrical_concrete.jpg';
+import { getCollection } from 'astro:content';
+import CaseStudyCard from '../content/CaseStudyCard.astro';
+import Button from '../ui/Button.astro';
 
 interface Props {
-  region?: 'AU' | 'NL' | 'all';
+  region?: 'au' | 'nl' | 'all';
 }
 
 const { region = 'all' } = Astro.props;
 
-const caseStudies = [
-  {
-    slug: 'victorian-councils',
-    title: 'Monitoring 79 Victorian Councils in Real Time',
-    client: 'Victorian Local Government',
-    metric: '79 councils monitored continuously',
-    region: 'AU' as const,
-    image: caseImg1,
-  },
-  {
-    slug: 'asml-stakeholder-mapping',
-    title: 'Stakeholder Intelligence for Global Semiconductor Policy',
-    client: 'ASML',
-    metric: '3 jurisdictions mapped in < 4 hours',
-    region: 'NL' as const,
-    image: caseImg2,
-  },
-  {
-    slug: 'crisis-response-framework',
-    title: 'AI-Driven Crisis Response Framework',
-    client: 'Confidential Government Client',
-    metric: '60% faster response activation',
-    region: 'AU' as const,
-    image: caseImg3,
-  },
-];
+const caseStudies = await getCollection('case-studies');
 
 const filtered = region === 'all'
   ? caseStudies
-  : caseStudies.filter((cs) => cs.region === region);
+  : caseStudies.filter((cs) => cs.data.region === region);
 ---
 
-<section class="bg-background-alt py-20 md:py-28">
+<section class="bg-background-alt py-24 md:py-30">
   <div class="mx-auto max-w-7xl px-6">
-    <!-- Section heading -->
-    <div class="fade-up mb-16 text-center">
-      <h2 class="display-lg text-primary">Our Work</h2>
+    <div class="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <div class="fade-up max-w-2xl">
+        <p class="section-kicker">Case studies</p>
+        <h2 class="display-lg mt-6 text-primary">Real work, grounded in outcomes.</h2>
+        <p class="section-lead body-lg mt-6">
+          A sample of how Stromy turns fragmented public signals into usable strategic
+          intelligence for communications and stakeholder teams.
+        </p>
+      </div>
+      <div class="fade-up">
+        <Button variant="outline" href="/case-studies">
+          View all case studies
+        </Button>
+      </div>
     </div>
 
-    <!-- Case study cards -->
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
       {filtered.map((study) => (
-        <a href={`/work/${study.slug}`} class="fade-up group block overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-          <!-- Image with green overlay -->
-          <div class="brutalist-overlay relative aspect-[4/3] overflow-hidden">
-            <img
-              src={study.image.src}
-              alt={study.title}
-              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-          <!-- Content -->
-          <div class="bg-background p-6">
-            <div class="mb-3 flex items-center gap-2">
-              <Badge text={study.region} variant="primary" />
-              <span class="body-sm text-text-light">{study.client}</span>
-            </div>
-            <h3 class="display-sm mb-3 text-primary">{study.title}</h3>
-            <p class="mono text-sm font-medium text-accent">{study.metric}</p>
-          </div>
-        </a>
+        <div class="fade-up">
+          <CaseStudyCard
+            title={study.data.title}
+            capability={study.data.capability}
+            client={study.data.client}
+            slug={study.id}
+            image={study.data.image}
+            region={study.data.region}
+            metrics={study.data.metrics}
+          />
+        </div>
       ))}
-    </div>
-
-    <!-- View all link -->
-    <div class="fade-up mt-12 text-center">
-      <a href="/work" class="mono inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-accent">
-        View all case studies &rarr;
-      </a>
     </div>
   </div>
 </section>

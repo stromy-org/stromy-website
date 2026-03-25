@@ -4,18 +4,17 @@
 ---
 
 <div class="region-toggle" data-region-toggle>
-  <div class="flex items-center gap-1 font-mono text-xs text-ash">
+  <div class="flex items-center gap-2 rounded-full border border-white/10 bg-white/4 p-1 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-background/68">
     <button
       data-region="AU"
-      class="rounded px-2 py-1 transition-colors hover:bg-graphite hover:text-background region-btn region-active"
+      class="region-btn rounded-full px-3 py-1.5 transition-colors hover:text-background"
       aria-label="Switch to Australia region"
     >
       AU
     </button>
-    <span class="text-graphite" aria-hidden="true">|</span>
     <button
       data-region="NL"
-      class="rounded px-2 py-1 transition-colors hover:bg-graphite hover:text-background region-btn"
+      class="region-btn rounded-full px-3 py-1.5 transition-colors hover:text-background"
       aria-label="Switch to Netherlands region"
     >
       NL
@@ -25,7 +24,8 @@
 
 <style>
   .region-btn.region-active {
-    color: var(--color-accent);
+    background-color: var(--color-accent);
+    color: var(--color-background);
     font-weight: 600;
   }
 </style>

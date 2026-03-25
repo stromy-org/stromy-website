@@ -1,51 +1,68 @@
 ---
-import ScoreLine from '../ui/ScoreLine.astro';
 import Button from '../ui/Button.astro';
 import heroImg from '../../brand/images/02_brutalist_geometric.jpg';
 import logoWhite from '../../brand/logos/logo_white.svg';
 ---
 
-<section class="relative flex min-h-screen items-center justify-center overflow-hidden bg-secondary">
-  <!-- Background image with green overlay -->
+<section class="relative isolate overflow-hidden bg-secondary">
   <div class="absolute inset-0">
     <img
       src={heroImg.src}
       alt=""
-      class="h-full w-full object-cover opacity-30"
+      class="h-full w-full object-cover opacity-40"
       loading="eager"
     />
-    <div class="absolute inset-0 bg-primary/60 mix-blend-multiply" />
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(27,61,51,0.32),transparent_42%),linear-gradient(135deg,rgba(11,11,11,0.26),rgba(11,11,11,0.68))]" />
   </div>
+  <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-secondary/70 to-transparent"></div>
 
-  <!-- Content -->
-  <div class="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-6 text-center">
-    <!-- Logo -->
-    <div class="fade-up mb-12">
-      <img src={logoWhite.src} alt="Stromy" class="mx-auto h-16 w-auto md:h-20" />
+  <div class="relative z-10 mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl items-end gap-10 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
+    <div class="max-w-3xl pb-8 lg:pb-0">
+      <p class="section-kicker fade-up mb-6 text-background/70 before:bg-background/32">
+        Orchestrated Intelligence
+      </p>
+      <img src={logoWhite.src} alt="Stromy" class="fade-up mb-8 h-16 w-auto md:h-20" />
+
+      <h1 class="fade-up display-xl max-w-4xl text-background">
+        Intelligence,
+        <span class="block text-background/94">Orchestrated.</span>
+      </h1>
+
+      <p class="fade-up body-lg mt-6 max-w-2xl text-background/78">
+        AI-powered intelligence for government relations, crisis management, and strategic
+        communications. Built to help teams read the landscape faster and act with more certainty.
+      </p>
+
+      <div class="fade-up mt-10 flex flex-col items-start gap-4 sm:flex-row">
+        <Button variant="accent" href="/capabilities" size="lg">
+          Explore capabilities
+        </Button>
+        <Button variant="outline" href="/case-studies" size="lg" class="border-white/22 bg-white/6 text-background hover:border-white/40 hover:bg-white/10">
+          View case studies
+        </Button>
+      </div>
     </div>
 
-    <!-- Tagline -->
-    <h1 class="fade-up display-xl mb-6 text-background" style="animation-delay: 0.1s;">
-      Intelligence, Orchestrated.
-    </h1>
-
-    <!-- Subtitle -->
-    <p class="fade-up body-lg mx-auto mb-10 max-w-2xl text-ash" style="animation-delay: 0.2s;">
-      AI-powered intelligence for government relations, crisis management, and strategic communications.
-    </p>
-
-    <!-- CTA -->
-    <div class="fade-up" style="animation-delay: 0.3s;">
-      <Button variant="accent" href="/capabilities" size="lg">
-        Explore our work
-      </Button>
-    </div>
-  </div>
-
-  <!-- Score line at bottom -->
-  <div class="absolute inset-x-0 bottom-8 flex justify-center px-6">
-    <div class="w-full max-w-xs">
-      <ScoreLine variant="full" animated={true} class="[&_div]:bg-background [&_.score-line-dot]:bg-accent" />
+    <div class="fade-up hidden justify-end lg:flex">
+      <div class="dark-panel w-full max-w-md rounded-[2rem] p-8 text-background">
+        <p class="font-mono text-[0.74rem] uppercase tracking-[0.22em] text-background/54">
+          Why Stromy
+        </p>
+        <h2 class="display-sm mt-5 text-background">
+          A sharper operating system for public-facing decisions.
+        </h2>
+        <div class="mt-8 grid gap-5 text-sm text-background/72">
+          <div class="border-l border-accent/70 pl-4">
+            Monitor policy, media, and stakeholder movement in one coordinated flow.
+          </div>
+          <div class="border-l border-accent/70 pl-4">
+            Turn fragmented signals into structured briefings and response-ready intelligence.
+          </div>
+          <div class="border-l border-accent/70 pl-4">
+            Keep strategy grounded in evidence instead of intuition or lagging reports.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

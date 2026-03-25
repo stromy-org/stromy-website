@@ -10,10 +10,10 @@ const { value, label, suffix = '', class: className = '' } = Astro.props;
 ---
 
 <div class:list={['flex flex-col', className]}>
-  <span class="font-mono text-4xl font-semibold text-[#D4632A]">
-    {value}{suffix && <span class="text-2xl">{suffix}</span>}
+  <span class="font-mono text-4xl font-semibold tracking-[-0.03em] text-[#D4632A] md:text-5xl">
+    {value}{suffix && <span class="ml-1 text-xl md:text-2xl">{suffix}</span>}
   </span>
-  <span class="mt-1 text-sm text-[#5A5A56]">
+  <span class="mt-2 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-[#8C8B87]">
     {label}
   </span>
 </div>
