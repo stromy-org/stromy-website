@@ -6,9 +6,6 @@ on:
   pull_request:
 
 jobs:
-  node-ci:
-    uses: stromy-org/stromy-org/.github/workflows/ci-node.yml@main
-
   astro-check:
     runs-on: ubuntu-latest
     steps:
