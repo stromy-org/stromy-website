@@ -1,0 +1,137 @@
+{
+  "skill_name": "website-maintain",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Add a blog post about how AI is transforming crisis response in the Netherlands. It should cover how real-time data monitoring helps Dutch organizations respond faster to emerging crises. Make it authored by Corentin Merle, tagged with crisis and ai and netherlands, and mark it as featured.",
+      "expected_output": "A new MDX file in src/content/blog/ with correct frontmatter (region: nl, featured: true, valid image path, proper date) and substantive article content",
+      "assertions": [
+        {
+          "name": "file_created_in_correct_directory",
+          "description": "A new .mdx file exists in src/content/blog/",
+          "type": "file_exists",
+          "check": "glob src/content/blog/*crisis*netherlands*.mdx OR *ai*crisis*.mdx"
+        },
+        {
+          "name": "frontmatter_has_required_fields",
+          "description": "Frontmatter contains all required fields: title, description, date, author, region, tags, image, featured",
+          "type": "content_check"
+        },
+        {
+          "name": "region_is_nl",
+          "description": "Region field is set to 'nl' (Netherlands-specific content)",
+          "type": "content_check"
+        },
+        {
+          "name": "featured_is_true",
+          "description": "Featured field is set to true as requested",
+          "type": "content_check"
+        },
+        {
+          "name": "image_path_is_valid_relative",
+          "description": "Image path starts with ../../brand/images/ and references an existing file",
+          "type": "content_check"
+        },
+        {
+          "name": "author_is_corentin",
+          "description": "Author is 'Corentin Merle' as requested",
+          "type": "content_check"
+        },
+        {
+          "name": "body_has_substantive_content",
+          "description": "MDX body has at least 3 paragraphs of actual article content",
+          "type": "content_check"
+        },
+        {
+          "name": "build_succeeds",
+          "description": "npm run build completes without errors after adding the post",
+          "type": "command_check"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Add a case study for a Belgian municipality called Antwerp City Council. They needed media monitoring across Flemish and French-language sources. We covered 12 municipalities, processed 800K data points, and delivered insights within 6 hours. Link it to the media-relations capability.",
+      "expected_output": "A new MDX file in src/content/case-studies/ with correct frontmatter including metrics array, valid capability slug, and structured Challenge/Approach/Outcome sections",
+      "assertions": [
+        {
+          "name": "file_created_in_correct_directory",
+          "description": "A new .mdx file exists in src/content/case-studies/",
+          "type": "file_exists"
+        },
+        {
+          "name": "capability_slug_is_valid",
+          "description": "Capability field matches an existing capability slug (media-relations)",
+          "type": "content_check"
+        },
+        {
+          "name": "metrics_array_present",
+          "description": "Frontmatter has a metrics array with the 3 specified metrics (municipalities, data points, time to insight)",
+          "type": "content_check"
+        },
+        {
+          "name": "region_chosen_appropriately",
+          "description": "Region field is set (likely 'global' since Belgium isn't a configured region, or agent addresses the gap)",
+          "type": "content_check"
+        },
+        {
+          "name": "image_path_valid",
+          "description": "Image path uses correct relative path to brand images",
+          "type": "content_check"
+        },
+        {
+          "name": "structured_sections",
+          "description": "Body contains Challenge, Approach, and Outcome sections",
+          "type": "content_check"
+        },
+        {
+          "name": "build_succeeds",
+          "description": "npm run build completes without errors",
+          "type": "command_check"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We just brought on a new co-founder, Sophie van der Berg. She's a former diplomat with 15 years of experience in EU institutional relations and digital governance. Add her to the team. Also while you're at it, update the stats — we now cover 11 jurisdictions instead of 9, and we've processed 3.1M data points.",
+      "expected_output": "Updated src/data/team.ts with new team member and src/data/stats.ts with updated values",
+      "assertions": [
+        {
+          "name": "team_member_added",
+          "description": "team.ts contains a new entry for Sophie van der Berg with name, role, and bio",
+          "type": "content_check"
+        },
+        {
+          "name": "role_is_cofounder",
+          "description": "Sophie's role is 'Co-founder' (matching existing pattern)",
+          "type": "content_check"
+        },
+        {
+          "name": "bio_mentions_expertise",
+          "description": "Bio references diplomacy, EU institutional relations, or digital governance",
+          "type": "content_check"
+        },
+        {
+          "name": "stats_jurisdictions_updated",
+          "description": "Jurisdictions value changed from '9' to '11'",
+          "type": "content_check"
+        },
+        {
+          "name": "stats_datapoints_updated",
+          "description": "Data points value changed from '2.4' to '3.1'",
+          "type": "content_check"
+        },
+        {
+          "name": "existing_team_preserved",
+          "description": "William Masquelier and Corentin Merle entries are still present and unchanged",
+          "type": "content_check"
+        },
+        {
+          "name": "build_succeeds",
+          "description": "npm run build completes without errors",
+          "type": "command_check"
+        }
+      ]
+    }
+  ]
+}
