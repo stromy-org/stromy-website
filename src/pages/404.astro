@@ -1,0 +1,27 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<PageLayout
+  title="Page Not Found — Stromy"
+  description="The page you requested could not be found."
+>
+  <section class="bg-background py-24 md:py-30">
+    <div class="mx-auto max-w-4xl px-6 text-center">
+      <p class="section-kicker justify-center">404</p>
+      <h1 class="display-xl mt-6 text-primary">The page you are looking for is not here.</h1>
+      <p class="body-lg mx-auto mt-6 max-w-2xl text-text-light">
+        Try returning to the homepage or explore Stromy's capabilities and case studies.
+      </p>
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <Button variant="accent" href="/">
+          Back to home
+        </Button>
+        <Button variant="outline" href="/capabilities">
+          View capabilities
+        </Button>
+      </div>
+    </div>
+  </section>
+</PageLayout>

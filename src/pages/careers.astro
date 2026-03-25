@@ -1,0 +1,45 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+---
+
+<PageLayout
+  title="Careers — Stromy"
+  description="Careers at Stromy."
+>
+  <section class="bg-background py-24 md:py-30">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="fade-up">
+          <p class="section-kicker">Careers</p>
+          <h1 class="display-xl mt-6 text-primary">We build small teams around judgement, curiosity, and calm execution.</h1>
+          <p class="section-lead body-lg mt-6">
+            Stromy sits at the intersection of intelligence, communications, and AI systems.
+            If that overlap is where you do your best work, we would like to hear from you.
+          </p>
+          <div class="mt-10">
+            <Button variant="accent" href="mailto:hello@stromy.com.au">
+              Contact the team
+            </Button>
+          </div>
+        </div>
+
+        <Card class="fade-up">
+          <p class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-text-light">
+            Current status
+          </p>
+          <h2 class="display-md mt-6 text-primary">We are not publicly listing open roles yet.</h2>
+          <p class="body-md mt-5 text-text-light">
+            We are still interested in hearing from exceptional people working across public
+            affairs, strategic communications, intelligence analysis, and AI product delivery.
+          </p>
+          <p class="body-md mt-4 text-text-light">
+            Send a note with your background, where you create the most leverage, and the kind
+            of work you want to help build.
+          </p>
+        </Card>
+      </div>
+    </div>
+  </section>
+</PageLayout>

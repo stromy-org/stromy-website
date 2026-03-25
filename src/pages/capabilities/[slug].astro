@@ -4,6 +4,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import ArticleContent from '../../components/content/ArticleLayout.astro';
 import CaseStudyCard from '../../components/content/CaseStudyCard.astro';
 import ScoreLine from '../../components/ui/ScoreLine.astro';
+import Icon from '../../components/ui/Icon.astro';
 
 export async function getStaticPaths() {
   const capabilities = await getCollection('capabilities');
@@ -27,34 +28,54 @@ const relatedStudies = allCaseStudies.filter(
   title={`${entry.data.title} — Stromy`}
   description={entry.data.description}
 >
-  <section class="bg-background py-20 md:py-28">
-    <div class="mx-auto max-w-3xl px-6">
-      <!-- Header -->
-      <div class="fade-up mb-6">
-        <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-background-alt">
-          <span class="text-2xl">{entry.data.icon}</span>
+  <section class="bg-background py-24 md:py-30">
+    <div class="mx-auto max-w-7xl px-6">
+      <a
+        href="/capabilities"
+        class="font-mono text-[0.74rem] uppercase tracking-[0.2em] text-text-light transition-colors hover:text-primary"
+      >
+        Back to Capabilities
+      </a>
+
+      <div class="mt-8 grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="fade-up">
+          <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-[1.25rem] bg-background-alt text-primary">
+            <Icon name={entry.data.icon} size={26} />
+          </div>
+          <h1 class="display-xl text-primary">{entry.data.title}</h1>
+          <p class="body-lg mt-6 max-w-xl text-text-light">{entry.data.description}</p>
+          <div class="mt-8 max-w-md">
+            <ScoreLine variant="full" animated />
+          </div>
+
+          <div class="surface-panel mt-10 rounded-[1.75rem] p-6">
+            <p class="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-text-light">
+              What this unlocks
+            </p>
+            <div class="mt-5 grid gap-4 text-sm leading-7 text-text-light">
+              <div class="border-l border-accent/70 pl-4">Landscape monitoring with a sharper signal-to-noise ratio.</div>
+              <div class="border-l border-accent/70 pl-4">Structured synthesis for teams that need to brief fast.</div>
+              <div class="border-l border-accent/70 pl-4">Decision-ready outputs that support communications and stakeholder strategy.</div>
+            </div>
+          </div>
         </div>
-        <h1 class="display-xl text-primary">{entry.data.title}</h1>
-      </div>
-      <p class="fade-up body-lg mb-8 text-text-light">{entry.data.description}</p>
 
-      <!-- Score line divider -->
-      <div class="fade-up mb-12 max-w-xs">
-        <ScoreLine variant="full" animated />
+        <div class="fade-up rounded-[2rem] bg-background-alt px-6 py-8 md:px-8">
+          <ArticleContent>
+            <Content />
+          </ArticleContent>
+        </div>
       </div>
-
-      <!-- MDX content -->
-      <ArticleContent>
-        <Content />
-      </ArticleContent>
     </div>
   </section>
 
-  <!-- Related case studies -->
   {relatedStudies.length > 0 && (
-    <section class="bg-background-alt py-20 md:py-28">
+    <section class="bg-background-alt py-24 md:py-28">
       <div class="mx-auto max-w-7xl px-6">
-        <h2 class="fade-up display-lg mb-12 text-center text-primary">Related Case Studies</h2>
+        <div class="fade-up mb-12 max-w-2xl">
+          <p class="section-kicker">Proof</p>
+          <h2 class="display-lg mt-6 text-primary">Related case studies</h2>
+        </div>
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {relatedStudies.map((cs) => (
             <div class="fade-up">

@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import PageLayout from '../../layouts/PageLayout.astro';
 import Card from '../../components/ui/Card.astro';
 import ScoreLine from '../../components/ui/ScoreLine.astro';
+import Icon from '../../components/ui/Icon.astro';
 
 const capabilities = (await getCollection('capabilities')).sort(
   (a, b) => a.data.order - b.data.order,
@@ -13,34 +14,31 @@ const capabilities = (await getCollection('capabilities')).sort(
   title="Capabilities — Stromy"
   description="Explore Stromy's AI-powered capabilities across government relations, crisis management, media relations, and strategic communications."
 >
-  <section class="bg-background py-20 md:py-28">
+  <section class="bg-background py-24 md:py-30">
     <div class="mx-auto max-w-7xl px-6">
-      <!-- Page header -->
-      <div class="fade-up mb-6 text-center">
-        <h1 class="display-xl text-primary">Capabilities</h1>
+      <div class="fade-up max-w-3xl">
+        <p class="section-kicker">Capabilities</p>
+        <h1 class="display-xl mt-6 text-primary">A capability set designed for live information environments.</h1>
+        <p class="section-lead body-lg mt-6">
+          Stromy combines AI-assisted research, structured workflows, and expert judgement
+          across the core disciplines of strategic communication.
+        </p>
       </div>
-      <p class="fade-up body-lg mx-auto mb-8 max-w-2xl text-center text-text-light">
-        AI-orchestrated intelligence across every discipline of strategic communications.
-        Each capability is powered by specialised plugins, real-time data connectors, and
-        structured workflows.
-      </p>
 
-      <!-- Score line divider -->
-      <div class="fade-up mx-auto mb-16 max-w-xs">
+      <div class="fade-up mt-10 mb-12 max-w-xs">
         <ScoreLine variant="full" animated />
       </div>
 
-      <!-- Capability cards -->
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {capabilities.map((cap) => (
-          <Card href={`/capabilities/${cap.id}`} class="fade-up">
-            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-background-alt">
-              <span class="text-xl">{cap.data.icon}</span>
+          <Card href={`/capabilities/${cap.id}`} class="fade-up h-full">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-[1.15rem] bg-background-alt text-primary">
+              <Icon name={cap.data.icon} size={24} />
             </div>
             <h2 class="display-sm mb-3 text-primary">{cap.data.title}</h2>
-            <p class="body-md mb-4 text-text-light">{cap.data.description}</p>
-            <span class="mono inline-flex items-center text-sm font-medium text-accent">
-              Learn more &rarr;
+            <p class="body-md mb-5 text-text-light">{cap.data.description}</p>
+            <span class="mono mt-auto inline-flex items-center text-[0.74rem] uppercase tracking-[0.18em] text-accent">
+              Explore capability
             </span>
           </Card>
         ))}

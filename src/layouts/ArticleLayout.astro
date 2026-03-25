@@ -2,6 +2,7 @@
 import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
+import ScoreLine from "../components/ui/ScoreLine.astro";
 
 interface Props {
   title: string;
@@ -13,6 +14,14 @@ interface Props {
 }
 
 const { title, description, date, author, image, tags } = Astro.props;
+const pathname = Astro.url.pathname;
+const backLink = pathname.startsWith("/blog/")
+  ? { href: "/blog", label: "Back to Insights" }
+  : pathname.startsWith("/case-studies/")
+    ? { href: "/case-studies", label: "Back to Case Studies" }
+    : pathname.startsWith("/capabilities/")
+      ? { href: "/capabilities", label: "Back to Capabilities" }
+      : undefined;
 
 const formattedDate = date.toLocaleDateString("en-AU", {
   year: "numeric",
@@ -23,11 +32,19 @@ const formattedDate = date.toLocaleDateString("en-AU", {
 
 <BaseLayout title={title} description={description} image={image}>
   <Header />
-  <main class="py-16 md:py-24">
-    <article class="mx-auto max-w-3xl px-6">
-      <!-- Article header -->
-      <header class="mb-12">
-        <h1 class="display-lg text-primary mb-4">{title}</h1>
+  <main class="pb-24 pt-12 md:pb-30 md:pt-18">
+    <article class="mx-auto max-w-5xl px-6">
+      {backLink && (
+        <a
+          href={backLink.href}
+          class="font-mono text-[0.74rem] uppercase tracking-[0.2em] text-text-light transition-colors hover:text-primary"
+        >
+          {backLink.label}
+        </a>
+      )}
+
+      <header class="mb-12 mt-8">
+        <h1 class="display-lg max-w-4xl text-primary mb-5">{title}</h1>
 
         <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-text-light body-sm">
           <time datetime={date.toISOString()}>{formattedDate}</time>
@@ -40,20 +57,26 @@ const formattedDate = date.toLocaleDateString("en-AU", {
         </div>
 
         {tags && tags.length > 0 && (
-          <div class="mt-4 flex flex-wrap gap-2">
+          <div class="mt-5 flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <span class="inline-block rounded-full bg-background-alt px-3 py-1 font-mono text-xs text-text-light">
+              <span class="inline-block rounded-full border border-black/6 bg-background-alt px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-text-light">
                 {tag}
               </span>
             ))}
           </div>
         )}
 
-        <!-- Score line divider -->
-        <div class="score-line mt-8" aria-hidden="true"></div>
+        <div class="mt-8">
+          <ScoreLine variant="full" />
+        </div>
       </header>
 
-      <!-- Article content -->
+      {image && (
+        <div class="brutalist-overlay mb-12 overflow-hidden rounded-[2rem]">
+          <img src={image} alt="" class="h-[18rem] w-full object-cover md:h-[26rem]" />
+        </div>
+      )}
+
       <div class="prose prose-lg max-w-none">
         <slot />
       </div>

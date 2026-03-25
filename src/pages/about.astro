@@ -2,6 +2,8 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import Card from '../components/ui/Card.astro';
 import ScoreLine from '../components/ui/ScoreLine.astro';
+import Button from '../components/ui/Button.astro';
+import CTABand from '../components/sections/CTABand.astro';
 import { team } from '../data/team';
 
 const values = [
@@ -41,26 +43,49 @@ const sectors = [
   title="About — Stromy"
   description="Learn about Stromy's mission, team, values, and approach to orchestrated intelligence for strategic communications."
 >
-  <!-- Values section -->
-  <section class="bg-background py-20 md:py-28">
+  <section class="bg-background py-24 md:py-30">
     <div class="mx-auto max-w-7xl px-6">
-      <div class="fade-up mb-6 text-center">
-        <h1 class="display-xl text-primary">About Stromy</h1>
-      </div>
-      <p class="fade-up body-lg mx-auto mb-8 max-w-2xl text-center text-text-light">
-        We build AI-powered intelligence systems for organisations that need to navigate
-        complex stakeholder environments with precision and confidence.
-      </p>
+      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div class="fade-up">
+          <p class="section-kicker">About</p>
+          <h1 class="display-xl mt-6 max-w-3xl text-primary">Built for teams that need signal, not noise.</h1>
+          <p class="section-lead body-lg mt-6">
+            Stromy builds intelligence systems for organisations navigating complex
+            stakeholder environments, volatile media cycles, and public-sector scrutiny.
+          </p>
+          <div class="mt-10">
+            <Button variant="outline" href="/contact">
+              Talk to the team
+            </Button>
+          </div>
+        </div>
 
-      <!-- Score line divider -->
-      <div class="fade-up mx-auto mb-16 max-w-xs">
-        <ScoreLine variant="full" animated />
+        <div class="fade-up dark-panel rounded-[2rem] p-8 text-background">
+          <p class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-background/52">
+            Operating principles
+          </p>
+          <div class="mt-6 grid gap-5">
+            {values.slice(0, 3).map((value) => (
+              <div class="border-l border-accent/70 pl-4">
+                <h2 class="display-sm text-background">{value.name}</h2>
+                <p class="mt-2 text-sm leading-7 text-background/72">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <h2 class="fade-up display-lg mb-12 text-center text-primary">Our Values</h2>
+  <section class="bg-background py-10 md:py-14">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="fade-up mb-12 flex items-center gap-4">
+        <ScoreLine variant="short" />
+        <h2 class="display-md text-primary">Our values</h2>
+      </div>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {values.map((v) => (
-          <Card class="fade-up">
+          <Card class="fade-up h-full">
             <h3 class="display-sm mb-3 text-primary">{v.name}</h3>
             <p class="body-md text-text-light">{v.description}</p>
           </Card>
@@ -69,25 +94,22 @@ const sectors = [
     </div>
   </section>
 
-  <!-- Score line divider -->
-  <div class="mx-auto max-w-xs px-6">
-    <ScoreLine variant="full" />
-  </div>
-
-  <!-- Team section -->
-  <section class="bg-background py-20 md:py-28" id="team">
+  <section class="bg-background-alt py-24 md:py-28" id="team">
     <div class="mx-auto max-w-7xl px-6">
-      <h2 class="fade-up display-lg mb-12 text-center text-primary">Team</h2>
-      <div class="mx-auto grid max-w-3xl grid-cols-1 gap-8 md:grid-cols-2">
+      <div class="fade-up mb-12 max-w-2xl">
+        <p class="section-kicker">Team</p>
+        <h2 class="display-lg mt-6 text-primary">A small team with a high-judgement brief.</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
         {team.map((member) => (
-          <Card class="fade-up">
-            <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
-              <span class="text-xl font-semibold text-background">
+          <Card class="fade-up h-full">
+            <div class="mb-5 flex h-18 w-18 items-center justify-center rounded-[1.4rem] bg-primary">
+              <span class="text-2xl font-semibold text-background">
                 {member.name.split(' ').map((n) => n[0]).join('')}
               </span>
             </div>
-            <h3 class="display-sm mb-1 text-primary">{member.name}</h3>
-            <p class="mono mb-3 text-sm text-accent">{member.role}</p>
+            <h3 class="display-sm mb-2 text-primary">{member.name}</h3>
+            <p class="mono mb-4 text-[0.74rem] uppercase tracking-[0.18em] text-accent">{member.role}</p>
             <p class="body-md text-text-light">{member.bio}</p>
           </Card>
         ))}
@@ -95,43 +117,27 @@ const sectors = [
     </div>
   </section>
 
-  <!-- Score line divider -->
-  <div class="mx-auto max-w-xs px-6">
-    <ScoreLine variant="full" />
-  </div>
-
-  <!-- Partners section -->
-  <section class="bg-background-alt py-20 md:py-28">
+  <section class="bg-background py-24 md:py-28">
     <div class="mx-auto max-w-7xl px-6">
-      <h2 class="fade-up display-lg mb-12 text-center text-primary">Partners</h2>
-      <div class="fade-up mx-auto max-w-2xl text-center">
-        <Card class="mx-auto max-w-md">
-          <h3 class="display-sm mb-3 text-primary">AMARIS</h3>
-          <p class="body-md text-text-light">
+      <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <Card class="fade-up">
+          <p class="section-kicker">Partner network</p>
+          <h2 class="display-md mt-6 text-primary">AMARIS</h2>
+          <p class="body-md mt-4 text-text-light">
             Strategic partner for integrated communications and public affairs across
             Australia and the Netherlands.
           </p>
         </Card>
+        <div class="fade-up grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {sectors.map((sector) => (
+            <Card class="h-full">
+              <h3 class="display-sm text-primary">{sector}</h3>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Score line divider -->
-  <div class="mx-auto max-w-xs px-6">
-    <ScoreLine variant="full" />
-  </div>
-
-  <!-- Client sectors -->
-  <section class="bg-background py-20 md:py-28">
-    <div class="mx-auto max-w-7xl px-6">
-      <h2 class="fade-up display-lg mb-12 text-center text-primary">Client Sectors</h2>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {sectors.map((sector) => (
-          <Card class="fade-up">
-            <h3 class="display-sm text-primary">{sector}</h3>
-          </Card>
-        ))}
-      </div>
-    </div>
-  </section>
+  <CTABand />
 </PageLayout>

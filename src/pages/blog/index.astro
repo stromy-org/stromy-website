@@ -17,22 +17,21 @@ const remainingPosts = posts.filter((p) => p.id !== featuredPost?.id);
   title="Insights — Stromy"
   description="Analysis and perspectives on AI, government relations, crisis management, and strategic communications from the Stromy team."
 >
-  <section class="bg-background py-20 md:py-28">
+  <section class="bg-background py-24 md:py-30">
     <div class="mx-auto max-w-7xl px-6">
-      <!-- Page header -->
-      <div class="fade-up mb-6 text-center">
-        <h1 class="display-xl text-primary">Insights</h1>
+      <div class="fade-up max-w-3xl">
+        <p class="section-kicker">Insights</p>
+        <h1 class="display-xl mt-6 text-primary">Analysis and perspective for high-stakes communication environments.</h1>
+        <p class="section-lead body-lg mt-6">
+          Essays, case notes, and commentary on AI, government relations, crisis
+          management, and strategic communications.
+        </p>
       </div>
-      <p class="fade-up body-lg mx-auto mb-8 max-w-2xl text-center text-text-light">
-        Analysis and perspectives on AI, government relations, and strategic communications.
-      </p>
 
-      <!-- Score line divider -->
-      <div class="fade-up mx-auto mb-16 max-w-xs">
+      <div class="fade-up mt-10 mb-12 max-w-xs">
         <ScoreLine variant="full" animated />
       </div>
 
-      <!-- Featured post -->
       {featuredPost && (
         <div class="fade-up mb-16">
           <BlogCard
@@ -47,14 +46,13 @@ const remainingPosts = posts.filter((p) => p.id !== featuredPost?.id);
         </div>
       )}
 
-      <!-- Score line divider -->
-      <div class="fade-up mx-auto mb-16 max-w-xs">
-        <ScoreLine variant="full" />
-      </div>
-
-      <!-- Post grid -->
       {remainingPosts.length > 0 && (
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <>
+          <div class="fade-up mb-10 flex items-center gap-4">
+            <ScoreLine variant="short" />
+            <h2 class="display-md text-primary">More insights</h2>
+          </div>
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
           {remainingPosts.map((post) => (
             <div class="fade-up">
               <BlogCard
@@ -67,11 +65,11 @@ const remainingPosts = posts.filter((p) => p.id !== featuredPost?.id);
               />
             </div>
           ))}
-        </div>
+          </div>
+        </>
       )}
     </div>
   </section>
 
-  <!-- Newsletter -->
   <NewsletterSignup />
 </PageLayout>

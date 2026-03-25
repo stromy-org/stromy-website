@@ -22,34 +22,43 @@ const offices = [
   title="Contact — Stromy"
   description="Get in touch with Stromy. Offices in Melbourne and Amsterdam."
 >
-  <section class="bg-background py-20 md:py-28">
-    <div class="mx-auto max-w-4xl px-6">
-      <!-- Page header -->
-      <div class="fade-up mb-6 text-center">
-        <h1 class="display-xl text-primary">Get in Touch</h1>
-      </div>
-      <p class="fade-up body-lg mx-auto mb-8 max-w-2xl text-center text-text-light">
-        Ready to orchestrate your intelligence? Reach out to our team in Melbourne or Amsterdam.
-      </p>
+  <section class="bg-background py-24 md:py-30">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
+        <div class="fade-up">
+          <p class="section-kicker">Contact</p>
+          <h1 class="display-xl mt-6 max-w-3xl text-primary">Talk to Stromy about your intelligence environment.</h1>
+          <p class="section-lead body-lg mt-6">
+            Reach out to the team in Melbourne or Amsterdam. We work with organisations
+            navigating policy, media, and stakeholder complexity.
+          </p>
+          <div class="mt-10 max-w-xs">
+            <ScoreLine variant="full" animated />
+          </div>
+        </div>
 
-      <!-- Score line divider -->
-      <div class="fade-up mx-auto mb-16 max-w-xs">
-        <ScoreLine variant="full" animated />
+        <div class="fade-up dark-panel rounded-[2rem] p-8 text-background">
+          <p class="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-background/52">
+            What to expect
+          </p>
+          <div class="mt-6 grid gap-4 text-sm leading-7 text-background/70">
+            <div class="border-l border-accent/70 pl-4">A direct response from the core team.</div>
+            <div class="border-l border-accent/70 pl-4">Discussion focused on your information environment, not generic tooling.</div>
+            <div class="border-l border-accent/70 pl-4">Options for advisory, monitoring, and workflow design.</div>
+          </div>
+        </div>
       </div>
 
-      <!-- Office cards -->
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div class="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2">
         {offices.map((office) => (
           <Card class="fade-up text-center">
             <h2 class="display-md mb-2 text-primary">{office.region}</h2>
             <p class="body-lg mb-6 text-text-light">{office.city}</p>
 
-            <!-- Email CTA -->
             <Button variant="accent" href={`mailto:${office.email}`} size="lg">
               {office.email}
             </Button>
 
-            <!-- Copy to clipboard fallback -->
             <button
               class="copy-email mt-4 block w-full text-center"
               data-email={office.email}

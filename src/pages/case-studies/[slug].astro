@@ -5,6 +5,7 @@ import ArticleContent from '../../components/content/ArticleLayout.astro';
 import CaseStudyCard from '../../components/content/CaseStudyCard.astro';
 import StatBlock from '../../components/ui/StatBlock.astro';
 import ScoreLine from '../../components/ui/ScoreLine.astro';
+import Badge from '../../components/ui/Badge.astro';
 
 export async function getStaticPaths() {
   const caseStudies = await getCollection('case-studies');
@@ -30,9 +31,14 @@ const related = allCaseStudies
   date={new Date()}
   image={entry.data.image.src}
 >
-  <!-- Metrics ribbon -->
+  <div class="mb-8 flex flex-wrap items-center gap-3">
+    <Badge text={entry.data.capability} variant="primary" />
+    <Badge text={entry.data.region.toUpperCase()} variant="muted" />
+    <span class="body-sm text-text-light">{entry.data.client}</span>
+  </div>
+
   {entry.data.metrics && entry.data.metrics.length > 0 && (
-    <section class="mb-12 rounded-xl bg-secondary p-8">
+    <section class="dark-panel mb-12 rounded-[1.75rem] p-8">
       <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
         {entry.data.metrics.map((metric) => (
           <div class="text-center">
@@ -47,23 +53,20 @@ const related = allCaseStudies
     </section>
   )}
 
-  <!-- Score line -->
   <div class="mx-auto mb-12 max-w-xs">
     <ScoreLine variant="full" />
   </div>
 
-  <!-- MDX content -->
   <ArticleContent>
     <Content />
   </ArticleContent>
 
-  <!-- Related case studies -->
   {related.length > 0 && (
     <section class="mt-20">
-      <div class="mx-auto mb-12 max-w-xs">
-        <ScoreLine variant="full" />
+      <div class="mb-12 max-w-2xl">
+        <p class="section-kicker">More work</p>
+        <h2 class="display-lg mt-6 text-primary">Related case studies</h2>
       </div>
-      <h2 class="display-lg mb-8 text-center text-primary">Related Case Studies</h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {related.map((cs) => (
           <CaseStudyCard
