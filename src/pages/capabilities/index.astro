@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import Card from '../../components/ui/Card.astro';
+import ScoreLine from '../../components/ui/ScoreLine.astro';
+
+const capabilities = (await getCollection('capabilities')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<PageLayout
+  title="Capabilities — Stromy"
+  description="Explore Stromy's AI-powered capabilities across government relations, crisis management, media relations, and strategic communications."
+>
+  <section class="bg-background py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <!-- Page header -->
+      <div class="fade-up mb-6 text-center">
+        <h1 class="display-xl text-primary">Capabilities</h1>
+      </div>
+      <p class="fade-up body-lg mx-auto mb-8 max-w-2xl text-center text-text-light">
+        AI-orchestrated intelligence across every discipline of strategic communications.
+        Each capability is powered by specialised plugins, real-time data connectors, and
+        structured workflows.
+      </p>
+
+      <!-- Score line divider -->
+      <div class="fade-up mx-auto mb-16 max-w-xs">
+        <ScoreLine variant="full" animated />
+      </div>
+
+      <!-- Capability cards -->
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {capabilities.map((cap) => (
+          <Card href={`/capabilities/${cap.id}`} class="fade-up">
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-background-alt">
+              <span class="text-xl">{cap.data.icon}</span>
+            </div>
+            <h2 class="display-sm mb-3 text-primary">{cap.data.title}</h2>
+            <p class="body-md mb-4 text-text-light">{cap.data.description}</p>
+            <span class="mono inline-flex items-center text-sm font-medium text-accent">
+              Learn more &rarr;
+            </span>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

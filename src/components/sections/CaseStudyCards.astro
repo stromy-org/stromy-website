@@ -1,0 +1,85 @@
+---
+import Badge from '../ui/Badge.astro';
+import caseImg1 from '../../brand/images/04_concrete_curves.jpg';
+import caseImg2 from '../../brand/images/08_arch_lines_shadow.jpg';
+import caseImg3 from '../../brand/images/09_symmetrical_concrete.jpg';
+
+interface Props {
+  region?: 'AU' | 'NL' | 'all';
+}
+
+const { region = 'all' } = Astro.props;
+
+const caseStudies = [
+  {
+    slug: 'victorian-councils',
+    title: 'Monitoring 79 Victorian Councils in Real Time',
+    client: 'Victorian Local Government',
+    metric: '79 councils monitored continuously',
+    region: 'AU' as const,
+    image: caseImg1,
+  },
+  {
+    slug: 'asml-stakeholder-mapping',
+    title: 'Stakeholder Intelligence for Global Semiconductor Policy',
+    client: 'ASML',
+    metric: '3 jurisdictions mapped in < 4 hours',
+    region: 'NL' as const,
+    image: caseImg2,
+  },
+  {
+    slug: 'crisis-response-framework',
+    title: 'AI-Driven Crisis Response Framework',
+    client: 'Confidential Government Client',
+    metric: '60% faster response activation',
+    region: 'AU' as const,
+    image: caseImg3,
+  },
+];
+
+const filtered = region === 'all'
+  ? caseStudies
+  : caseStudies.filter((cs) => cs.region === region);
+---
+
+<section class="bg-background-alt py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-6">
+    <!-- Section heading -->
+    <div class="fade-up mb-16 text-center">
+      <h2 class="display-lg text-primary">Our Work</h2>
+    </div>
+
+    <!-- Case study cards -->
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {filtered.map((study) => (
+        <a href={`/work/${study.slug}`} class="fade-up group block overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <!-- Image with green overlay -->
+          <div class="brutalist-overlay relative aspect-[4/3] overflow-hidden">
+            <img
+              src={study.image.src}
+              alt={study.title}
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <!-- Content -->
+          <div class="bg-background p-6">
+            <div class="mb-3 flex items-center gap-2">
+              <Badge text={study.region} variant="primary" />
+              <span class="body-sm text-text-light">{study.client}</span>
+            </div>
+            <h3 class="display-sm mb-3 text-primary">{study.title}</h3>
+            <p class="mono text-sm font-medium text-accent">{study.metric}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- View all link -->
+    <div class="fade-up mt-12 text-center">
+      <a href="/work" class="mono inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-accent">
+        View all case studies &rarr;
+      </a>
+    </div>
+  </div>
+</section>

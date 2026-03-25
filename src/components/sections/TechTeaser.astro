@@ -1,0 +1,64 @@
+---
+import ScoreLine from '../ui/ScoreLine.astro';
+import Button from '../ui/Button.astro';
+
+const pillars = [
+  {
+    name: 'Plugins & Skills',
+    description: 'Modular capabilities that encode domain expertise into repeatable, auditable workflows.',
+  },
+  {
+    name: 'MCP Data Connectors',
+    description: 'Real-time connections to government databases, media feeds, and regulatory sources.',
+  },
+  {
+    name: 'LangGraph Workflows',
+    description: 'Multi-step orchestration that chains research, analysis, and reporting into coherent pipelines.',
+  },
+  {
+    name: 'Intelligence Research Centre',
+    description: 'A centralised hub where insights are generated, stored, and surfaced on demand.',
+  },
+];
+---
+
+<section class="bg-background py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-6">
+    <!-- Score line divider -->
+    <div class="fade-up mx-auto mb-16 max-w-xs">
+      <ScoreLine variant="full" />
+    </div>
+
+    <!-- Heading -->
+    <div class="fade-up mb-6 text-center">
+      <h2 class="display-lg text-primary">Powered by Orchestrated Intelligence</h2>
+    </div>
+
+    <!-- Description -->
+    <p class="fade-up body-lg mx-auto mb-16 max-w-2xl text-center text-text-light">
+      Our technology platform combines AI agents, data connectors, and structured workflows to transform
+      how organisations gather, analyse, and act on intelligence.
+    </p>
+
+    <!-- Pillars grid -->
+    <div class="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+      {pillars.map((pillar) => (
+        <div class="fade-up text-center">
+          <!-- Icon placeholder -->
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-background-alt">
+            <span class="text-2xl text-primary">&#9671;</span>
+          </div>
+          <h3 class="display-sm mb-2 text-primary">{pillar.name}</h3>
+          <p class="body-md text-text-light">{pillar.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="fade-up text-center">
+      <Button variant="primary" href="/technology" size="md">
+        Explore our technology &rarr;
+      </Button>
+    </div>
+  </div>
+</section>

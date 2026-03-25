@@ -1,0 +1,67 @@
+---
+import Card from '../ui/Card.astro';
+
+const capabilities = [
+  {
+    slug: 'government-relations',
+    title: 'Government Relations',
+    description: 'Navigate complex regulatory landscapes with AI-driven stakeholder mapping, policy monitoring, and strategic engagement planning.',
+  },
+  {
+    slug: 'crisis-management',
+    title: 'Crisis Management',
+    description: 'Detect emerging risks early and respond decisively with real-time media monitoring, scenario modelling, and coordinated response workflows.',
+  },
+  {
+    slug: 'media-relations',
+    title: 'Media Relations',
+    description: 'Build and maintain media relationships with journalist profiling, pitch optimisation, and coverage tracking across print, broadcast, and digital.',
+  },
+  {
+    slug: 'public-relations',
+    title: 'Public Relations',
+    description: 'Shape public perception through data-informed campaigns, message testing, and sentiment analysis that drives measurable outcomes.',
+  },
+  {
+    slug: 'social-media-strategy',
+    title: 'Social Media Strategy',
+    description: 'Turn social channels into strategic assets with audience insights, content calendars, and performance analytics powered by orchestrated intelligence.',
+  },
+  {
+    slug: 'research-insights',
+    title: 'Research & Insights',
+    description: 'Transform raw data into actionable intelligence with automated research pipelines, trend analysis, and structured briefing generation.',
+  },
+  {
+    slug: 'esg-sustainability',
+    title: 'ESG & Sustainability',
+    description: 'Track and report on environmental, social, and governance metrics with automated data collection, benchmarking, and disclosure preparation.',
+  },
+];
+---
+
+<section class="bg-background py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-6">
+    <!-- Section heading -->
+    <div class="fade-up mb-16 text-center">
+      <h2 class="display-lg text-primary">What We Do</h2>
+    </div>
+
+    <!-- Capability cards grid -->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {capabilities.map((cap) => (
+        <Card href={`/capabilities/${cap.slug}`} class="fade-up">
+          <!-- Icon placeholder -->
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-background-alt">
+            <span class="text-xl text-primary">&#9670;</span>
+          </div>
+          <h3 class="display-sm mb-3 text-primary">{cap.title}</h3>
+          <p class="body-md mb-4 text-text-light">{cap.description}</p>
+          <span class="mono inline-flex items-center text-sm font-medium text-accent">
+            Learn more &rarr;
+          </span>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

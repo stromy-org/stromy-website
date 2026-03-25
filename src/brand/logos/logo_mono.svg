@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 52" width="260" height="52">
+  <text x="4" y="34" font-family="'Instrument Serif', Georgia, serif" font-size="36" fill="#F2F0EA" letter-spacing="0.04em">STROMY</text>
+  <line x1="4" y1="42" x2="206" y2="42" stroke="#F2F0EA" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="210" cy="42" r="2.5" fill="#F2F0EA" opacity="0.6"/>
+</svg>

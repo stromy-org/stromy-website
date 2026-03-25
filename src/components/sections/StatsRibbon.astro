@@ -1,0 +1,31 @@
+---
+import StatBlock from '../ui/StatBlock.astro';
+import ScoreLine from '../ui/ScoreLine.astro';
+import { stats } from '../../data/stats';
+---
+
+<section class="bg-secondary py-16 md:py-20">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-0">
+      {stats.map((stat, i) => (
+        <div class:list={[
+          'fade-up relative flex flex-col items-center text-center',
+          i < stats.length - 1 && 'md:border-r md:border-graphite',
+        ]}>
+          <StatBlock
+            value={stat.value}
+            label={stat.label}
+            suffix={stat.suffix}
+            class="[&>span:first-child]:text-accent [&>span:last-child]:text-ash"
+          />
+          {/* Score line divider between stats on desktop */}
+          {i < stats.length - 1 && (
+            <div class="absolute -right-px top-1/2 hidden -translate-y-1/2 md:block">
+              <ScoreLine variant="short" class="rotate-90 [&_div]:bg-graphite" />
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

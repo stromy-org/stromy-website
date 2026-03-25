@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import BlogCard from '../../components/content/BlogCard.astro';
+import ScoreLine from '../../components/ui/ScoreLine.astro';
+import NewsletterSignup from '../../components/sections/NewsletterSignup.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const featuredPost = posts.find((p) => p.data.featured) ?? posts[0];
+const remainingPosts = posts.filter((p) => p.id !== featuredPost?.id);
+---
+
+<PageLayout
+  title="Insights — Stromy"
+  description="Analysis and perspectives on AI, government relations, crisis management, and strategic communications from the Stromy team."
+>
+  <section class="bg-background py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <!-- Page header -->
+      <div class="fade-up mb-6 text-center">
+        <h1 class="display-xl text-primary">Insights</h1>
+      </div>
+      <p class="fade-up body-lg mx-auto mb-8 max-w-2xl text-center text-text-light">
+        Analysis and perspectives on AI, government relations, and strategic communications.
+      </p>
+
+      <!-- Score line divider -->
+      <div class="fade-up mx-auto mb-16 max-w-xs">
+        <ScoreLine variant="full" animated />
+      </div>
+
+      <!-- Featured post -->
+      {featuredPost && (
+        <div class="fade-up mb-16">
+          <BlogCard
+            title={featuredPost.data.title}
+            description={featuredPost.data.description}
+            date={featuredPost.data.date}
+            slug={featuredPost.id}
+            image={featuredPost.data.image}
+            region={featuredPost.data.region}
+            featured={true}
+          />
+        </div>
+      )}
+
+      <!-- Score line divider -->
+      <div class="fade-up mx-auto mb-16 max-w-xs">
+        <ScoreLine variant="full" />
+      </div>
+
+      <!-- Post grid -->
+      {remainingPosts.length > 0 && (
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {remainingPosts.map((post) => (
+            <div class="fade-up">
+              <BlogCard
+                title={post.data.title}
+                description={post.data.description}
+                date={post.data.date}
+                slug={post.id}
+                image={post.data.image}
+                region={post.data.region}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <NewsletterSignup />
+</PageLayout>

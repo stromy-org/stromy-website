@@ -1,0 +1,19 @@
+/* Auto-generated from charter.json — do not edit manually */
+:root {
+  --color-primary: #1B3D33;
+  --color-secondary: #0B0B0B;
+  --color-accent: #D4632A;
+  --color-background: #F2F0EA;
+  --color-background-alt: #E8F0EC;
+  --color-text: #0B0B0B;
+  --color-text-light: #5A5A56;
+  --color-success: #2A5E4C;
+  --color-warning: #D4632A;
+  --color-error: #B03030;
+  --font-heading: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-heading-weight: normal;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body-weight: normal;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', 'Fira Code', monospace;
+  --font-mono-weight: normal;
+}

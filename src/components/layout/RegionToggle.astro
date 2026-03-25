@@ -1,0 +1,57 @@
+---
+// Region toggle — renders a Preact island for interactive region switching.
+// Falls back to static AU | NL display without JS.
+---
+
+<div class="region-toggle" data-region-toggle>
+  <div class="flex items-center gap-1 font-mono text-xs text-ash">
+    <button
+      data-region="AU"
+      class="rounded px-2 py-1 transition-colors hover:bg-graphite hover:text-background region-btn region-active"
+      aria-label="Switch to Australia region"
+    >
+      AU
+    </button>
+    <span class="text-graphite" aria-hidden="true">|</span>
+    <button
+      data-region="NL"
+      class="rounded px-2 py-1 transition-colors hover:bg-graphite hover:text-background region-btn"
+      aria-label="Switch to Netherlands region"
+    >
+      NL
+    </button>
+  </div>
+</div>
+
+<style>
+  .region-btn.region-active {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+</style>
+
+<script is:inline>
+  function initRegionToggle() {
+    document.querySelectorAll("[data-region-toggle]").forEach(function (container) {
+      var buttons = container.querySelectorAll("[data-region]");
+      var stored = localStorage.getItem("region") || "AU";
+
+      buttons.forEach(function (btn) {
+        if (btn.getAttribute("data-region") === stored) {
+          btn.classList.add("region-active");
+        } else {
+          btn.classList.remove("region-active");
+        }
+
+        btn.addEventListener("click", function () {
+          var region = btn.getAttribute("data-region");
+          localStorage.setItem("region", region);
+          buttons.forEach(function (b) { b.classList.remove("region-active"); });
+          btn.classList.add("region-active");
+        });
+      });
+    });
+  }
+  initRegionToggle();
+  document.addEventListener("astro:after-swap", initRegionToggle);
+</script>

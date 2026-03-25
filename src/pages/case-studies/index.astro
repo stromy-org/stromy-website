@@ -1,0 +1,115 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import CaseStudyCard from '../../components/content/CaseStudyCard.astro';
+import ScoreLine from '../../components/ui/ScoreLine.astro';
+import Badge from '../../components/ui/Badge.astro';
+
+const caseStudies = await getCollection('case-studies');
+
+// Extract unique regions for filtering
+const regions = [...new Set(caseStudies.map((cs) => cs.data.region))].sort();
+---
+
+<PageLayout
+  title="Case Studies — Stromy"
+  description="Explore how Stromy's orchestrated intelligence platform delivers measurable outcomes across government relations, crisis management, and strategic communications."
+>
+  <section class="bg-background py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <!-- Page header -->
+      <div class="fade-up mb-6 text-center">
+        <h1 class="display-xl text-primary">Case Studies</h1>
+      </div>
+      <p class="fade-up body-lg mx-auto mb-8 max-w-2xl text-center text-text-light">
+        Real outcomes from orchestrated intelligence. See how our platform transforms
+        complex challenges into decisive action.
+      </p>
+
+      <!-- Score line divider -->
+      <div class="fade-up mx-auto mb-12 max-w-xs">
+        <ScoreLine variant="full" animated />
+      </div>
+
+      <!-- Region filter -->
+      <div class="fade-up mb-12 flex flex-wrap items-center justify-center gap-3">
+        <button
+          class="region-filter active"
+          data-region="all"
+        >
+          <Badge text="All" variant="primary" />
+        </button>
+        {regions.map((region) => (
+          <button
+            class="region-filter"
+            data-region={region}
+          >
+            <Badge text={region.toUpperCase()} variant="muted" />
+          </button>
+        ))}
+      </div>
+
+      <!-- Case study grid -->
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3" id="case-study-grid">
+        {caseStudies.map((cs) => (
+          <div class="fade-up case-study-item" data-region={cs.data.region}>
+            <CaseStudyCard
+              title={cs.data.title}
+              capability={cs.data.capability}
+              client={cs.data.client}
+              slug={cs.id}
+              image={cs.data.image}
+              region={cs.data.region}
+              metrics={cs.data.metrics}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const filters = document.querySelectorAll('.region-filter');
+    const items = document.querySelectorAll('.case-study-item');
+
+    filters.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const region = (btn as HTMLElement).dataset.region;
+
+        // Update active state
+        filters.forEach((f) => f.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter items
+        items.forEach((item) => {
+          const el = item as HTMLElement;
+          if (region === 'all' || el.dataset.region === region) {
+            el.style.display = '';
+          } else {
+            el.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .region-filter {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: opacity 0.2s;
+  }
+
+  .region-filter:not(.active) {
+    opacity: 0.5;
+  }
+
+  .region-filter:hover {
+    opacity: 1;
+  }
+</style>

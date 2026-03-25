@@ -1,0 +1,76 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import ArticleContent from '../../components/content/ArticleLayout.astro';
+import CaseStudyCard from '../../components/content/CaseStudyCard.astro';
+import ScoreLine from '../../components/ui/ScoreLine.astro';
+
+export async function getStaticPaths() {
+  const capabilities = await getCollection('capabilities');
+  return capabilities.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Find related case studies that match this capability
+const allCaseStudies = await getCollection('case-studies');
+const relatedStudies = allCaseStudies.filter(
+  (cs) => cs.data.capability === entry.id,
+);
+---
+
+<PageLayout
+  title={`${entry.data.title} — Stromy`}
+  description={entry.data.description}
+>
+  <section class="bg-background py-20 md:py-28">
+    <div class="mx-auto max-w-3xl px-6">
+      <!-- Header -->
+      <div class="fade-up mb-6">
+        <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-background-alt">
+          <span class="text-2xl">{entry.data.icon}</span>
+        </div>
+        <h1 class="display-xl text-primary">{entry.data.title}</h1>
+      </div>
+      <p class="fade-up body-lg mb-8 text-text-light">{entry.data.description}</p>
+
+      <!-- Score line divider -->
+      <div class="fade-up mb-12 max-w-xs">
+        <ScoreLine variant="full" animated />
+      </div>
+
+      <!-- MDX content -->
+      <ArticleContent>
+        <Content />
+      </ArticleContent>
+    </div>
+  </section>
+
+  <!-- Related case studies -->
+  {relatedStudies.length > 0 && (
+    <section class="bg-background-alt py-20 md:py-28">
+      <div class="mx-auto max-w-7xl px-6">
+        <h2 class="fade-up display-lg mb-12 text-center text-primary">Related Case Studies</h2>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {relatedStudies.map((cs) => (
+            <div class="fade-up">
+              <CaseStudyCard
+                title={cs.data.title}
+                capability={cs.data.capability}
+                client={cs.data.client}
+                slug={cs.id}
+                image={cs.data.image}
+                region={cs.data.region}
+                metrics={cs.data.metrics}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</PageLayout>

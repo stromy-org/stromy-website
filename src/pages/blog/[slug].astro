@@ -1,0 +1,65 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import ArticleContent from '../../components/content/ArticleLayout.astro';
+import BlogCard from '../../components/content/BlogCard.astro';
+import ScoreLine from '../../components/ui/ScoreLine.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Related posts: share at least one tag, exclude self, limit 3
+const allPosts = await getCollection('blog');
+const related = allPosts
+  .filter(
+    (p) =>
+      p.id !== entry.id &&
+      p.data.tags.some((tag) => entry.data.tags.includes(tag)),
+  )
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  date={entry.data.date}
+  author={entry.data.author}
+  image={entry.data.image.src}
+  tags={entry.data.tags}
+>
+  <!-- MDX content -->
+  <ArticleContent>
+    <Content />
+  </ArticleContent>
+
+  <!-- Related posts -->
+  {related.length > 0 && (
+    <section class="mt-20">
+      <div class="mx-auto mb-12 max-w-xs">
+        <ScoreLine variant="full" />
+      </div>
+      <h2 class="display-lg mb-8 text-center text-primary">Related Posts</h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {related.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            slug={post.id}
+            image={post.data.image}
+            region={post.data.region}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+</ArticleLayout>

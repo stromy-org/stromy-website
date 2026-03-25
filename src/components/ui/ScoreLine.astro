@@ -1,0 +1,48 @@
+---
+interface Props {
+  variant?: 'full' | 'short';
+  animated?: boolean;
+  class?: string;
+}
+
+const { variant = 'full', animated = false, class: className = '' } = Astro.props;
+
+const lineWidth = variant === 'full' ? 'w-[60px]' : 'w-[30px]';
+---
+
+<div class:list={['flex items-center gap-1', animated && 'score-line-animated', className]}>
+  <div class:list={['h-px bg-[#1B3D33]', lineWidth, animated && 'score-line-track']} />
+  <div class:list={['size-1 rounded-full bg-[#1B3D33] shrink-0', animated && 'score-line-dot']} />
+</div>
+
+<style>
+  .score-line-animated .score-line-track {
+    transform-origin: left center;
+    animation: score-draw 0.6s ease-out forwards;
+  }
+
+  .score-line-animated .score-line-dot {
+    opacity: 0;
+    animation: score-dot-appear 0.3s ease-out 0.5s forwards;
+  }
+
+  @keyframes score-draw {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes score-dot-appear {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>

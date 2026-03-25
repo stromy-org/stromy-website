@@ -1,0 +1,106 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import ScoreLine from '../components/ui/ScoreLine.astro';
+
+const offices = [
+  {
+    region: 'Australia',
+    city: 'Melbourne',
+    email: 'hello@stromy.com.au',
+  },
+  {
+    region: 'Netherlands',
+    city: 'Amsterdam',
+    email: 'hello@stromy.nl',
+  },
+];
+---
+
+<PageLayout
+  title="Contact — Stromy"
+  description="Get in touch with Stromy. Offices in Melbourne and Amsterdam."
+>
+  <section class="bg-background py-20 md:py-28">
+    <div class="mx-auto max-w-4xl px-6">
+      <!-- Page header -->
+      <div class="fade-up mb-6 text-center">
+        <h1 class="display-xl text-primary">Get in Touch</h1>
+      </div>
+      <p class="fade-up body-lg mx-auto mb-8 max-w-2xl text-center text-text-light">
+        Ready to orchestrate your intelligence? Reach out to our team in Melbourne or Amsterdam.
+      </p>
+
+      <!-- Score line divider -->
+      <div class="fade-up mx-auto mb-16 max-w-xs">
+        <ScoreLine variant="full" animated />
+      </div>
+
+      <!-- Office cards -->
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        {offices.map((office) => (
+          <Card class="fade-up text-center">
+            <h2 class="display-md mb-2 text-primary">{office.region}</h2>
+            <p class="body-lg mb-6 text-text-light">{office.city}</p>
+
+            <!-- Email CTA -->
+            <Button variant="accent" href={`mailto:${office.email}`} size="lg">
+              {office.email}
+            </Button>
+
+            <!-- Copy to clipboard fallback -->
+            <button
+              class="copy-email mt-4 block w-full text-center"
+              data-email={office.email}
+            >
+              <span class="mono text-sm text-text-light underline decoration-dotted underline-offset-4 hover:text-accent">
+                Copy email address
+              </span>
+            </button>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('.copy-email').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const email = (btn as HTMLElement).dataset.email;
+        if (!email) return;
+
+        try {
+          await navigator.clipboard.writeText(email);
+          const span = btn.querySelector('span');
+          if (span) {
+            const original = span.textContent;
+            span.textContent = 'Copied!';
+            setTimeout(() => {
+              span.textContent = original;
+            }, 2000);
+          }
+        } catch {
+          // Fallback: select text from a temporary input
+          const input = document.createElement('input');
+          input.value = email;
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');
+          document.body.removeChild(input);
+
+          const span = btn.querySelector('span');
+          if (span) {
+            const original = span.textContent;
+            span.textContent = 'Copied!';
+            setTimeout(() => {
+              span.textContent = original;
+            }, 2000);
+          }
+        }
+      });
+    });
+  });
+</script>

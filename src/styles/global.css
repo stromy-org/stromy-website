@@ -1,0 +1,261 @@
+/* ─── Google Fonts (must precede other rules) ─── */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+/* ─── Tailwind v4 ─── */
+@import "tailwindcss";
+@import "./brand-tokens.css";
+
+/* ─── Theme (Tailwind v4) ─── */
+@theme {
+  /* Brand colors */
+  --color-primary: #1B3D33;
+  --color-secondary: #0B0B0B;
+  --color-accent: #D4632A;
+  --color-background: #F2F0EA;
+  --color-background-alt: #E8F0EC;
+  --color-text: #0B0B0B;
+  --color-text-light: #5A5A56;
+  --color-success: #2A5E4C;
+
+  /* Extended palette */
+  --color-graphite: #2C2C2A;
+  --color-ash: #C8C6BF;
+  --color-verdant: #3A7D65;
+
+  /* Fonts */
+  --font-heading: "Instrument Serif", serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+/* ─── Base ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  line-height: 1.1;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* ─── Typography Hierarchy ─── */
+.display-xl {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.display-lg {
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.display-md {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.display-sm {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.2;
+}
+
+.body-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.body-md {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.body-sm {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* ─── Score Line ─── */
+.score-line {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+}
+
+.score-line::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  transform: translateX(50%);
+}
+
+.score-line-short {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 64px;
+  height: 2px;
+  background-color: var(--color-primary);
+}
+
+.score-line-short::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  transform: translateX(50%);
+}
+
+/* Score line draw animation */
+.score-line-animated {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+}
+
+.score-line-animated::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--color-primary);
+  animation: score-draw 1s ease-out forwards;
+}
+
+.score-line-animated::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  transform: translateX(50%);
+  opacity: 0;
+  animation: score-dot 0.3s ease-out 0.9s forwards;
+}
+
+@keyframes score-draw {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes score-dot {
+  from { opacity: 0; transform: translateX(50%) scale(0); }
+  to { opacity: 1; transform: translateX(50%) scale(1); }
+}
+
+/* ─── Fade Up (Scroll Reveal) ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Brutalist Overlay ─── */
+.brutalist-overlay {
+  position: relative;
+}
+
+.brutalist-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-primary);
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* ─── Dark Mode ─── */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --color-background: #0B0B0B;
+    --color-background-alt: #1a1a18;
+    --color-text: #F2F0EA;
+    --color-text-light: #C8C6BF;
+  }
+
+  :root:not(.light) body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+
+  :root:not(.light) h1,
+  :root:not(.light) h2,
+  :root:not(.light) h3,
+  :root:not(.light) h4,
+  :root:not(.light) h5,
+  :root:not(.light) h6 {
+    color: var(--color-background-alt);
+  }
+}
+
+.dark {
+  --color-background: #0B0B0B;
+  --color-background-alt: #1a1a18;
+  --color-text: #F2F0EA;
+  --color-text-light: #C8C6BF;
+}
+
+.dark body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: var(--color-background-alt);
+}

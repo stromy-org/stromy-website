@@ -1,0 +1,137 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Card from '../components/ui/Card.astro';
+import ScoreLine from '../components/ui/ScoreLine.astro';
+import { team } from '../data/team';
+
+const values = [
+  {
+    name: 'Precise',
+    description: 'Every insight is grounded in verifiable data. We prioritise accuracy over speed, substance over noise.',
+  },
+  {
+    name: 'Authoritative',
+    description: 'We speak with the confidence that comes from deep domain expertise and rigorous methodology.',
+  },
+  {
+    name: 'Resourceful',
+    description: 'We find the signal in complexity. Our platform connects disparate data sources into coherent intelligence.',
+  },
+  {
+    name: 'Unflinching',
+    description: 'We deliver the full picture, not just the comfortable parts. Honest counsel drives better decisions.',
+  },
+  {
+    name: 'Grounded',
+    description: 'Technology serves strategy, not the other way around. Every capability exists to solve a real problem.',
+  },
+];
+
+const sectors = [
+  'Government & Public Sector',
+  'Energy & Resources',
+  'Infrastructure & Transport',
+  'Technology & Telecommunications',
+  'Financial Services',
+  'Health & Life Sciences',
+];
+---
+
+<PageLayout
+  title="About — Stromy"
+  description="Learn about Stromy's mission, team, values, and approach to orchestrated intelligence for strategic communications."
+>
+  <!-- Values section -->
+  <section class="bg-background py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="fade-up mb-6 text-center">
+        <h1 class="display-xl text-primary">About Stromy</h1>
+      </div>
+      <p class="fade-up body-lg mx-auto mb-8 max-w-2xl text-center text-text-light">
+        We build AI-powered intelligence systems for organisations that need to navigate
+        complex stakeholder environments with precision and confidence.
+      </p>
+
+      <!-- Score line divider -->
+      <div class="fade-up mx-auto mb-16 max-w-xs">
+        <ScoreLine variant="full" animated />
+      </div>
+
+      <h2 class="fade-up display-lg mb-12 text-center text-primary">Our Values</h2>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {values.map((v) => (
+          <Card class="fade-up">
+            <h3 class="display-sm mb-3 text-primary">{v.name}</h3>
+            <p class="body-md text-text-light">{v.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Score line divider -->
+  <div class="mx-auto max-w-xs px-6">
+    <ScoreLine variant="full" />
+  </div>
+
+  <!-- Team section -->
+  <section class="bg-background py-20 md:py-28" id="team">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="fade-up display-lg mb-12 text-center text-primary">Team</h2>
+      <div class="mx-auto grid max-w-3xl grid-cols-1 gap-8 md:grid-cols-2">
+        {team.map((member) => (
+          <Card class="fade-up">
+            <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
+              <span class="text-xl font-semibold text-background">
+                {member.name.split(' ').map((n) => n[0]).join('')}
+              </span>
+            </div>
+            <h3 class="display-sm mb-1 text-primary">{member.name}</h3>
+            <p class="mono mb-3 text-sm text-accent">{member.role}</p>
+            <p class="body-md text-text-light">{member.bio}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Score line divider -->
+  <div class="mx-auto max-w-xs px-6">
+    <ScoreLine variant="full" />
+  </div>
+
+  <!-- Partners section -->
+  <section class="bg-background-alt py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="fade-up display-lg mb-12 text-center text-primary">Partners</h2>
+      <div class="fade-up mx-auto max-w-2xl text-center">
+        <Card class="mx-auto max-w-md">
+          <h3 class="display-sm mb-3 text-primary">AMARIS</h3>
+          <p class="body-md text-text-light">
+            Strategic partner for integrated communications and public affairs across
+            Australia and the Netherlands.
+          </p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Score line divider -->
+  <div class="mx-auto max-w-xs px-6">
+    <ScoreLine variant="full" />
+  </div>
+
+  <!-- Client sectors -->
+  <section class="bg-background py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <h2 class="fade-up display-lg mb-12 text-center text-primary">Client Sectors</h2>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {sectors.map((sector) => (
+          <Card class="fade-up">
+            <h3 class="display-sm text-primary">{sector}</h3>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

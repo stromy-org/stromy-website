@@ -1,0 +1,40 @@
+{
+  "name": "stromy-website",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run tokens && astro build",
+    "preview": "astro preview",
+    "tokens": "npx tsx scripts/generate-tokens.ts",
+    "check": "astro check",
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stromy-org/stromy-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stromy-org/stromy-website/issues"
+  },
+  "homepage": "https://github.com/stromy-org/stromy-website#readme",
+  "description": "",
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.2",
+    "@astrojs/preact": "^5.0.2",
+    "@astrojs/sitemap": "^3.7.1",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.0.8",
+    "lucide-preact": "^1.6.0",
+    "preact": "^10.29.0",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.1"
+  }
+}

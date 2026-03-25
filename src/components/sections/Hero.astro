@@ -1,0 +1,51 @@
+---
+import ScoreLine from '../ui/ScoreLine.astro';
+import Button from '../ui/Button.astro';
+import heroImg from '../../brand/images/02_brutalist_geometric.jpg';
+import logoWhite from '../../brand/logos/logo_white.svg';
+---
+
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden bg-secondary">
+  <!-- Background image with green overlay -->
+  <div class="absolute inset-0">
+    <img
+      src={heroImg.src}
+      alt=""
+      class="h-full w-full object-cover opacity-30"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-primary/60 mix-blend-multiply" />
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-6 text-center">
+    <!-- Logo -->
+    <div class="fade-up mb-12">
+      <img src={logoWhite.src} alt="Stromy" class="mx-auto h-16 w-auto md:h-20" />
+    </div>
+
+    <!-- Tagline -->
+    <h1 class="fade-up display-xl mb-6 text-background" style="animation-delay: 0.1s;">
+      Intelligence, Orchestrated.
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="fade-up body-lg mx-auto mb-10 max-w-2xl text-ash" style="animation-delay: 0.2s;">
+      AI-powered intelligence for government relations, crisis management, and strategic communications.
+    </p>
+
+    <!-- CTA -->
+    <div class="fade-up" style="animation-delay: 0.3s;">
+      <Button variant="accent" href="/capabilities" size="lg">
+        Explore our work
+      </Button>
+    </div>
+  </div>
+
+  <!-- Score line at bottom -->
+  <div class="absolute inset-x-0 bottom-8 flex justify-center px-6">
+    <div class="w-full max-w-xs">
+      <ScoreLine variant="full" animated={true} class="[&_div]:bg-background [&_.score-line-dot]:bg-accent" />
+    </div>
+  </div>
+</section>

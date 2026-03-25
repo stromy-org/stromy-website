@@ -1,0 +1,25 @@
+---
+import ScoreLine from '../ui/ScoreLine.astro';
+import Button from '../ui/Button.astro';
+---
+
+<section class="bg-primary py-20 md:py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <!-- Score line at top -->
+    <div class="fade-up mx-auto mb-12 max-w-xs">
+      <ScoreLine variant="full" class="[&_div]:bg-background [&_div:last-child]:bg-accent" />
+    </div>
+
+    <!-- Content -->
+    <div class="flex flex-col items-center text-center">
+      <h2 class="fade-up display-lg mb-8 text-background">
+        Ready to orchestrate your intelligence?
+      </h2>
+      <div class="fade-up">
+        <Button variant="accent" href="/contact" size="lg">
+          Get in touch
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

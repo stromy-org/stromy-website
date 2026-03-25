@@ -1,0 +1,211 @@
+---
+// ArticleLayout — prose wrapper for MDX content
+// Applies brand typography and spacing to rendered article content.
+// For the full page layout (with header/footer), see src/layouts/ArticleLayout.astro.
+---
+
+<div class="article-content">
+  <slot />
+</div>
+
+<style>
+  .article-content {
+    max-width: 72ch;
+    margin-inline: auto;
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--color-text);
+  }
+
+  /* ─── Headings ─── */
+  .article-content :global(h1) {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--color-primary);
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .article-content :global(h2) {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--color-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .article-content :global(h3) {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    line-height: 1.2;
+    color: var(--color-primary);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .article-content :global(h4) {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: var(--color-primary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ─── Paragraphs & Lists ─── */
+  .article-content :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .article-content :global(ul),
+  .article-content :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .article-content :global(ul) {
+    list-style-type: disc;
+  }
+
+  .article-content :global(ol) {
+    list-style-type: decimal;
+  }
+
+  .article-content :global(li) {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .article-content :global(li > ul),
+  .article-content :global(li > ol) {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  /* ─── Blockquotes ─── */
+  .article-content :global(blockquote) {
+    border-left: 3px solid var(--color-primary);
+    padding-left: 1.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    color: var(--color-text-light);
+  }
+
+  .article-content :global(blockquote p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* ─── Code ─── */
+  .article-content :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background-color: var(--color-background-alt);
+    padding: 0.15em 0.4em;
+    border-radius: 0.25rem;
+  }
+
+  .article-content :global(pre) {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+  }
+
+  .article-content :global(pre code) {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+
+  /* ─── Links ─── */
+  .article-content :global(a) {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .article-content :global(a:hover) {
+    color: var(--color-accent);
+  }
+
+  /* ─── Horizontal Rule / Score Line ─── */
+  .article-content :global(hr) {
+    border: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .article-content :global(hr)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    transform: translateX(50%);
+  }
+
+  /* ─── Images ─── */
+  .article-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ─── Tables ─── */
+  .article-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .article-content :global(th) {
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .article-content :global(td) {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-ash);
+  }
+
+  /* ─── Score Line Component (use within MDX as <hr/>) ─── */
+  .article-content :global(.score-line) {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ─── First child spacing reset ─── */
+  .article-content :global(:first-child) {
+    margin-top: 0;
+  }
+</style>

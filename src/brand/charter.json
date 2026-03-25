@@ -1,0 +1,157 @@
+{
+  "colors": {
+    "primary": "#1B3D33",
+    "secondary": "#0B0B0B",
+    "accent": "#D4632A",
+    "background": "#F2F0EA",
+    "backgroundAlt": "#E8F0EC",
+    "text": "#0B0B0B",
+    "textLight": "#5A5A56",
+    "success": "#2A5E4C",
+    "warning": "#D4632A",
+    "error": "#B03030"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Instrument Serif",
+      "fallback": "Georgia, 'Times New Roman', serif",
+      "weight": "normal"
+    },
+    "body": {
+      "family": "DM Sans",
+      "fallback": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      "weight": "normal"
+    },
+    "mono": {
+      "family": "IBM Plex Mono",
+      "fallback": "'SF Mono', 'Fira Code', monospace",
+      "weight": "normal"
+    }
+  },
+  "logo": {
+    "primary": "logo.svg",
+    "white": "logo_white.svg",
+    "maxWidth": "180pt",
+    "maxHeight": "50pt",
+    "sizing": "contain"
+  },
+  "images": {
+    "catalog": [
+      {
+        "file": "images/01_brutalist_concrete.jpg",
+        "description": "Brutalist parking spiral — raw concrete layers, industrial geometry",
+        "roles": ["divider"]
+      },
+      {
+        "file": "images/02_brutalist_geometric.jpg",
+        "description": "Monumental concrete cantilever — bold, authoritative brutalist form",
+        "roles": ["cover", "divider"]
+      },
+      {
+        "file": "images/03_dark_concrete_wall.jpg",
+        "description": "Raw concrete surface close-up — exposed aggregate texture",
+        "roles": ["background"]
+      },
+      {
+        "file": "images/04_concrete_curves.jpg",
+        "description": "Industrial curved pipes — sculptural concrete forms in B&W",
+        "roles": ["divider"]
+      },
+      {
+        "file": "images/05_woven_texture.jpg",
+        "description": "Dark woven fabric texture — subtle material pattern",
+        "roles": ["background"]
+      },
+      {
+        "file": "images/06_metal_surface.jpg",
+        "description": "Brushed metal surface — scratched industrial steel texture",
+        "roles": ["background"]
+      },
+      {
+        "file": "images/07_geometric_bw.jpg",
+        "description": "Geometric B&W architecture — stark light and shadow on tiled facade",
+        "roles": ["cover", "divider"]
+      },
+      {
+        "file": "images/08_arch_lines_shadow.jpg",
+        "description": "Architectural lines with rhythmic shadows — chevron geometry",
+        "roles": ["divider", "closing"]
+      },
+      {
+        "file": "images/09_symmetrical_concrete.jpg",
+        "description": "Symmetrical concrete kaleidoscope — geometric mandala on black",
+        "roles": ["cover", "closing"]
+      },
+      {
+        "file": "images/10_concrete_surface.jpg",
+        "description": "Dark asphalt surface — raw ground-level material texture",
+        "roles": ["background"]
+      }
+    ],
+    "overlay": {
+      "color": "primary",
+      "opacity": 0.65
+    },
+    "logoVariantOnImage": "white"
+  },
+  "document": {
+    "margins": { "top": "1in", "bottom": "1in", "left": "1in", "right": "1in" },
+    "header": { "content": "Stromy", "logo": true },
+    "footer": { "content": "Confidential", "pageNumbers": true },
+    "headingColor": "primary",
+    "tableHeaderColor": "primary"
+  },
+  "presentation": {
+    "slideMargin": "40pt",
+    "titleMargin": "30pt",
+    "contentMargin": "20pt",
+    "aspectRatio": "16:9"
+  },
+  "video": {
+    "resolution": "1920x1080",
+    "fps": 30
+  },
+  "formatting": {
+    "headingThreshold": 24,
+    "accentCycleColors": ["primary", "accent", "success"],
+    "autoContrastText": true
+  },
+  "plotly": {
+    "categoricalPalette": ["#1B3D33", "#D4632A", "#2A5E4C", "#3A7D65", "#A04A1E", "#5A5A56"],
+    "defaultHeight": 500,
+    "titleFontSize": 18,
+    "axisFontSize": 12,
+    "legendFontSize": 11,
+    "margins": { "top": 80, "bottom": 70, "left": 60, "right": 50 },
+    "baseTemplate": "plotly_white",
+    "gridColor": "#DDDBD4",
+    "secondaryTextColor": "#8C8B87",
+    "bar": {
+      "markerColor": "#1B3D33",
+      "markerLineColor": "#0E2A22",
+      "markerLineWidth": 1
+    },
+    "line": {
+      "color": "#1B3D33",
+      "width": 2.5,
+      "markerColor": "#D4632A",
+      "markerSize": 7
+    },
+    "scatter": {
+      "markerColor": "#1B3D33",
+      "markerSize": 8,
+      "markerLineWidth": 0
+    },
+    "pie": {
+      "hole": 0.4,
+      "textfontSize": 13,
+      "markerLineColor": "#F2F0EA",
+      "markerLineWidth": 2
+    },
+    "sentiment": {
+      "positiveColor": "#2A5E4C",
+      "neutralColor": "#8C8B87",
+      "negativeColor": "#B03030"
+    }
+  }
+}

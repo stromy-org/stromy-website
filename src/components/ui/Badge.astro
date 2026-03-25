@@ -1,0 +1,22 @@
+---
+interface Props {
+  variant?: 'primary' | 'accent' | 'muted';
+  text: string;
+  class?: string;
+}
+
+const { variant = 'primary', text, class: className = '' } = Astro.props;
+
+const variantClasses: Record<string, string> = {
+  primary: 'bg-[#E8F0EC] text-[#1B3D33]',
+  accent: 'bg-[#D4632A]/10 text-[#D4632A]',
+  muted: 'bg-[#C8C6BF]/30 text-[#5A5A56]',
+};
+
+const baseClasses = 'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium';
+const classes = [baseClasses, variantClasses[variant], className].join(' ');
+---
+
+<span class={classes}>
+  {text}
+</span>

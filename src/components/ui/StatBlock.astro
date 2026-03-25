@@ -1,0 +1,19 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  suffix?: string;
+  class?: string;
+}
+
+const { value, label, suffix = '', class: className = '' } = Astro.props;
+---
+
+<div class:list={['flex flex-col', className]}>
+  <span class="font-mono text-4xl font-semibold text-[#D4632A]">
+    {value}{suffix && <span class="text-2xl">{suffix}</span>}
+  </span>
+  <span class="mt-1 text-sm text-[#5A5A56]">
+    {label}
+  </span>
+</div>

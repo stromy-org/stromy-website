@@ -1,0 +1,32 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import CapabilityGrid from '../components/sections/CapabilityGrid.astro';
+import StatsRibbon from '../components/sections/StatsRibbon.astro';
+import CaseStudyCards from '../components/sections/CaseStudyCards.astro';
+import TechTeaser from '../components/sections/TechTeaser.astro';
+import CTABand from '../components/sections/CTABand.astro';
+---
+
+<PageLayout
+  title="Stromy — Intelligence, Orchestrated"
+  description="AI-powered intelligence for government relations, crisis management, and strategic communications."
+>
+  <!-- Claim: who we are -->
+  <Hero />
+
+  <!-- Evidence: what we do -->
+  <CapabilityGrid />
+
+  <!-- Proof: the numbers -->
+  <StatsRibbon />
+
+  <!-- Stories: real work -->
+  <CaseStudyCards />
+
+  <!-- Technology: how it works -->
+  <TechTeaser />
+
+  <!-- CTA: next step -->
+  <CTABand />
+</PageLayout>

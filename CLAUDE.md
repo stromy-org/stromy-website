@@ -1,0 +1,83 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code when working with this repository.
+
+## Project Overview
+
+stromy-website is the **Stromy corporate website** — a static site built with Astro, MDX, and Tailwind CSS. It communicates Stromy's capabilities in AI-powered intelligence for government relations, crisis management, and strategic communications.
+
+## Repository Structure
+
+```
+stromy-website/
+├── src/
+│   ├── brand/                    ← Synced from brand-tokens (charter.json + logos + images)
+│   ├── styles/
+│   │   ├── brand-tokens.css      ← Generated from charter.json (do not edit)
+│   │   └── global.css            ← Base styles, score lines, utilities
+│   ├── lib/
+│   │   ├── tokens.ts             ← Generated TS module (do not edit)
+│   │   └── region.ts             ← Region store (AU/NL)
+│   ├── components/
+│   │   ├── layout/               ← Header, Footer, Nav, RegionToggle
+│   │   ├── ui/                   ← ScoreLine, Button, Card, StatBlock, Badge, Icon
+│   │   ├── sections/             ← Hero, CapabilityGrid, StatsRibbon, CTABand, etc.
+│   │   └── content/              ← BlogCard, CaseStudyCard, ArticleLayout
+│   ├── content/                  ← MDX content collections
+│   │   ├── blog/                 ← Blog posts (MDX with frontmatter)
+│   │   ├── case-studies/         ← Case studies (MDX with frontmatter)
+│   │   └── capabilities/        ← Capability pages (MDX, single source of truth)
+│   ├── content.config.ts         ← Content collection schemas (Zod)
+│   ├── pages/                    ← Astro file-based routing
+│   ├── layouts/                  ← BaseLayout, PageLayout, ArticleLayout
+│   └── data/                     ← site.ts, stats.ts, team.ts
+├── scripts/
+│   └── generate-tokens.ts        ← charter.json → brand-tokens.css + tokens.ts
+├── public/                       ← Static assets (favicon, fonts)
+└── dist/                         ← Build output (gitignored)
+```
+
+## Commands
+
+```bash
+npm run dev           # Astro dev server (localhost:4321)
+npm run build         # Generate tokens + production build → dist/
+npm run preview       # Preview production build locally
+npm run tokens        # Regenerate brand tokens from charter.json
+npm run check         # Astro check (TypeScript + template diagnostics)
+npm test              # Vitest
+```
+
+## Key Patterns
+
+### Content Collections (Astro 5+/6)
+
+- Collections use glob loaders defined in `src/content.config.ts`
+- Access: `import { getCollection, render } from 'astro:content'`
+- Render MDX: `const { Content } = await render(entry)` (NOT `entry.render()`)
+- Entry ID is the filename slug (e.g., `ai-parliamentary-analysis`)
+
+### Brand Token Pipeline
+
+1. Brand assets synced from `brand-tokens` via `sync-brand-data.sh`
+2. `npm run tokens` reads `src/brand/charter.json` → generates `brand-tokens.css` + `tokens.ts`
+3. **Never edit** `brand-tokens.css` or `tokens.ts` directly — they are generated files
+
+### Region System
+
+- Not i18n — a content filter. AU/NL toggle filters content by frontmatter `region` field
+- Region detected from domain (`stromy.com.au` → AU, `stromy.nl` → NL)
+- Manual override stored in localStorage
+
+### Adding Content
+
+- **Blog post**: Create MDX file in `src/content/blog/` with required frontmatter
+- **Case study**: Create MDX file in `src/content/case-studies/` with required frontmatter
+- **Capability**: Create MDX file in `src/content/capabilities/` — this is the single source of truth
+
+### Design System
+
+- Colors: Obsidian (#0B0B0B), Parchment (#F2F0EA), Stromy Green (#1B3D33), Signal Orange (#D4632A)
+- Fonts: Instrument Serif (headings), DM Sans (body), IBM Plex Mono (mono/metrics)
+- Score lines: thin line + dot dividers between sections
+- Images: brutalist photography with 15-20% green overlay

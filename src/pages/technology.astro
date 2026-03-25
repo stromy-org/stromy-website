@@ -1,0 +1,147 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ScoreLine from '../components/ui/ScoreLine.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import CTABand from '../components/sections/CTABand.astro';
+
+const pillars = [
+  {
+    name: 'Plugins & Skills',
+    description: 'Modular capabilities that encode domain expertise into repeatable, auditable workflows. Each skill captures best-practice methodology as executable intelligence.',
+  },
+  {
+    name: 'MCP Data Connectors',
+    description: 'Real-time connections to government databases, media feeds, regulatory sources, and parliamentary data. Structured access to the information that matters.',
+  },
+  {
+    name: 'LangGraph Workflows',
+    description: 'Multi-step orchestration that chains research, analysis, and reporting into coherent pipelines. Complex tasks broken into reliable, verifiable stages.',
+  },
+  {
+    name: 'Intelligence Research Centre',
+    description: 'A centralised hub where insights are generated, curated, and surfaced on demand. Persistent memory across engagements builds compounding intelligence.',
+  },
+];
+
+const deploymentModels = [
+  {
+    name: 'On-Premise',
+    description: 'Full deployment within your infrastructure. Data never leaves your network. Ideal for classified or highly sensitive environments.',
+  },
+  {
+    name: 'Hybrid',
+    description: 'Core intelligence on your infrastructure with cloud-based data connectors. Balances security with access to real-time external data sources.',
+  },
+  {
+    name: 'Cloud',
+    description: 'Fully managed deployment with enterprise-grade security. Fastest to deploy with automatic updates and scaling.',
+  },
+];
+---
+
+<PageLayout
+  title="Technology — Stromy"
+  description="Explore Stromy's orchestrated intelligence platform: plugins, MCP data connectors, LangGraph workflows, and the Intelligence Research Centre."
+>
+  <!-- Hero -->
+  <section class="bg-secondary py-20 md:py-28">
+    <div class="mx-auto max-w-4xl px-6 text-center">
+      <h1 class="fade-up display-xl mb-6 text-background">Our Technology Platform</h1>
+      <p class="fade-up body-lg mx-auto max-w-2xl text-ash">
+        A purpose-built intelligence platform that combines AI agents, real-time data connectors,
+        and structured workflows to transform how organisations gather, analyse, and act on information.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pipeline diagram -->
+  <section class="bg-background py-20 md:py-28">
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="fade-up mb-16 text-center">
+        <h2 class="display-lg text-primary">How It Works</h2>
+      </div>
+
+      <!-- Pipeline steps -->
+      <div class="fade-up grid grid-cols-1 gap-0 md:grid-cols-4">
+        {[
+          { step: '01', label: 'Data Ingestion', desc: 'Real-time feeds from government, media, and regulatory sources' },
+          { step: '02', label: 'AI Processing', desc: 'Classification, entity extraction, and relevance scoring' },
+          { step: '03', label: 'Intelligence Synthesis', desc: 'Cross-source analysis, trend detection, and insight generation' },
+          { step: '04', label: 'Actionable Insights', desc: 'Structured briefings, alerts, and strategic recommendations' },
+        ].map((item, i) => (
+          <div class="relative flex flex-col items-center text-center p-6">
+            {/* Connector arrow (hidden on first item) */}
+            {i > 0 && (
+              <div class="absolute -left-3 top-1/2 hidden -translate-y-1/2 text-accent md:block" aria-hidden="true">
+                &rarr;
+              </div>
+            )}
+            <span class="mono mb-3 text-sm font-medium text-accent">{item.step}</span>
+            <div class="mb-3 flex h-16 w-16 items-center justify-center rounded-xl bg-primary">
+              <span class="text-2xl text-background">&#9671;</span>
+            </div>
+            <h3 class="display-sm mb-2 text-primary">{item.label}</h3>
+            <p class="body-sm text-text-light">{item.desc}</p>
+            {/* Vertical connector for mobile */}
+            {i < 3 && (
+              <div class="mt-4 text-accent md:hidden" aria-hidden="true">&darr;</div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- Score line divider -->
+      <div class="fade-up mx-auto my-16 max-w-xs">
+        <ScoreLine variant="full" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Four pillars -->
+  <section class="bg-background-alt py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="fade-up mb-16 text-center">
+        <h2 class="display-lg text-primary">Platform Pillars</h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        {pillars.map((pillar) => (
+          <Card class="fade-up">
+            <h3 class="display-sm mb-3 text-primary">{pillar.name}</h3>
+            <p class="body-md text-text-light">{pillar.description}</p>
+          </Card>
+        ))}
+      </div>
+
+      <!-- Score line divider -->
+      <div class="fade-up mx-auto my-16 max-w-xs">
+        <ScoreLine variant="full" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Deployment models -->
+  <section class="bg-background py-20 md:py-28">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="fade-up mb-16 text-center">
+        <h2 class="display-lg text-primary">Deployment Models</h2>
+        <p class="body-lg mx-auto mt-4 max-w-2xl text-text-light">
+          Choose the deployment model that matches your security requirements and operational needs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {deploymentModels.map((model) => (
+          <Card class="fade-up">
+            <h3 class="display-sm mb-3 text-primary">{model.name}</h3>
+            <p class="body-md text-text-light">{model.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTABand />
+</PageLayout>

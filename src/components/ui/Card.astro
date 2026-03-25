@@ -1,0 +1,27 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+  href?: string;
+  class?: string;
+}
+
+const { variant = 'light', href, class: className = '' } = Astro.props;
+
+const variantClasses: Record<string, string> = {
+  light: 'bg-[#F2F0EA] border border-[#C8C6BF] text-[#0B0B0B]',
+  dark: 'bg-[#2C2C2A] border border-[#2C2C2A] text-[#F2F0EA]',
+};
+
+const baseClasses = 'rounded-xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg';
+const classes = [baseClasses, variantClasses[variant], className].join(' ');
+---
+
+{href ? (
+  <a href={href} class={`block ${classes}`}>
+    <slot />
+  </a>
+) : (
+  <div class={classes}>
+    <slot />
+  </div>
+)}
