@@ -42,6 +42,13 @@ Brand data comes from `src/brand/charter.json` (synced from brand-tokens repo).
 Running `npm run tokens` generates `src/styles/brand-tokens.css` and `src/lib/tokens.ts`.
 Never edit these generated files directly.
 
+### MCP Servers
+
+- **`astro-docs`** — Official Astro documentation MCP (remote, `https://mcp.docs.astro.build/mcp`)
+  - Tool: `search_astro_docs` — semantic search across current Astro docs
+  - Use when writing Astro-specific code where the API may have changed (content collections, config, integrations, rendering, middleware, routing). Especially useful during Astro version upgrades or when unsure about current APIs.
+  - Do not use for project-specific questions — those are answered by the codebase.
+
 ### Commit Standards
 
 All commits use Conventional Commits with gitmoji:

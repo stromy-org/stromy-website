@@ -75,6 +75,13 @@ npm test              # Vitest
 - **Case study**: Create MDX file in `src/content/case-studies/` with required frontmatter
 - **Capability**: Create MDX file in `src/content/capabilities/` — this is the single source of truth
 
+### MCP Servers
+
+- **`astro-docs`** — Official Astro documentation MCP (remote, `https://mcp.docs.astro.build/mcp`)
+  - Tool: `search_astro_docs` — semantic search across current Astro docs
+  - **When to use**: Before writing Astro-specific code where the API may have changed (content collections, config options, integrations, rendering patterns, middleware, routing). Especially useful when upgrading Astro versions, using newer APIs, or when unsure about current best practices.
+  - **When NOT to use**: For project-specific questions (file paths, brand tokens, content structure) — those are answered by this file and the codebase itself.
+
 ### Design System
 
 - Colors: Obsidian (#0B0B0B), Parchment (#F2F0EA), Stromy Green (#1B3D33), Signal Orange (#D4632A)
