@@ -4,16 +4,12 @@
   "skills_version": "2.2",
   "repo_profile": "unknown",
   "skills_generated": [
-    "conventional-commit",
     "quality-check",
-    "instruction-audit",
-    "skill-creator"
+    "instruction-audit"
   ],
   "skill_checksums": {
-    "conventional-commit": "sha256:97ecbda3e3bdcc1bc279212ebcb582c1fbfdea48d4d67dffa0f51eb212367dad",
     "quality-check": "sha256:61b94ae109c7a025f602c8d0f39e755c310a0a613c6b30aefa59ce0a4fb8c9a9",
-    "instruction-audit": "sha256:e31669ff8b9c13edbb5759a2e3d013cd87b9e328506f652814e7a1d8a06e9f13",
-    "skill-creator": "sha256:cd1118fc52174d283a963d6f53420ef893788a0152f8e5e67763cd7f43fcf20e"
+    "instruction-audit": "sha256:e31669ff8b9c13edbb5759a2e3d013cd87b9e328506f652814e7a1d8a06e9f13"
   },
   "custom_adaptations": {},
   "copied_files": [],
