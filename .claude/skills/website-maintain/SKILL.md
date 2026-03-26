@@ -759,6 +759,60 @@ Before pushing changes that will trigger deployment:
 4. Verify image paths resolve (build will catch broken paths)
 5. If brand was refreshed, confirm `npm run tokens` was run
 
+### GitHub Pages + Custom Domain Setup
+
+Use this process to deploy any static site to GitHub Pages with a custom domain.
+
+**Prerequisites:** a GitHub repo with a Pages-compatible build, a registered domain, and
+DNS management access (GoDaddy, Cloudflare, Namecheap, etc.).
+
+#### Step 1 — DNS records (at the registrar)
+
+For an **apex domain** (e.g. `stromy.com.au`), add 4 A records:
+
+| Type | Name | Value |
+|------|------|-------|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+
+For a **subdomain** (e.g. `www.example.com`), add a CNAME instead:
+
+| Type | Name | Value |
+|------|------|-------|
+| CNAME | www | `<org>.github.io` |
+
+Check if the records already exist before adding duplicates.
+
+#### Step 2 — GitHub Pages settings (in the repository)
+
+1. Go to **Settings → Pages** on the repository
+2. Set the custom domain to the target domain and save
+3. If the error **"domain is already taken"** appears:
+   - Go to your GitHub account (or org) **Settings → Pages → Add a domain**
+   - Enter the domain — GitHub provides a TXT record (hostname + value)
+   - Add that TXT record at the DNS registrar
+   - The registrar may require identity verification (e.g. SMS code) — complete it
+   - Return to GitHub and click **Verify**
+   - Retry setting the custom domain on the repo's Pages settings
+
+#### Step 3 — Confirm
+
+- Custom domain shows as saved in repo Settings → Pages
+- **Enforce HTTPS** is checked (GitHub provisions the SSL cert automatically — may
+  take a few minutes after DNS propagates)
+- DNS propagation can take up to 24h but usually works within minutes
+
+#### Notes
+
+- The `site` value in `astro.config.mjs` must match the custom domain
+  (e.g. `site: 'https://stromy.com.au'`)
+- Remove any `base` path config once a custom domain is active (base path is only
+  needed for `<org>.github.io/<repo>` URLs)
+- If using GitHub Actions for deployment, ensure the workflow has `pages: write`
+  and `id-token: write` permissions
+
 ---
 
 ## Common Patterns Reference
