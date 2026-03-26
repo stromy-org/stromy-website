@@ -5,8 +5,7 @@ import preact from '@astrojs/preact';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://stromy-org.github.io',
-  base: '/stromy-website',
+  site: 'https://stromy.com.au',
   integrations: [mdx(), sitemap(), preact()],
   vite: {
     plugins: [tailwindcss()],
