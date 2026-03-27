@@ -59,7 +59,7 @@ npm test              # Vitest
 
 ### Brand Token Pipeline
 
-1. Brand assets synced from `brand-tokens` via `sync-brand-data.sh`
+1. Brand assets live in `src/brand/` (charter.json, logos, images)
 2. `npm run tokens` reads `src/brand/charter.json` → generates `brand-tokens.css` + `tokens.ts`
 3. **Never edit** `brand-tokens.css` or `tokens.ts` directly — they are generated files
 
