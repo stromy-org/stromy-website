@@ -82,6 +82,10 @@ npm test              # Vitest
   - **When to use**: Before writing Astro-specific code where the API may have changed (content collections, config options, integrations, rendering patterns, middleware, routing). Especially useful when upgrading Astro versions, using newer APIs, or when unsure about current best practices.
   - **When NOT to use**: For project-specific questions (file paths, brand tokens, content structure) — those are answered by this file and the codebase itself.
 
+- **`playwright`** — Browser automation via Playwright (`@playwright/mcp`)
+  - **When to use**: Visual testing, screenshot comparisons, verifying rendered pages, checking responsive layouts, testing navigation flows.
+  - **When NOT to use**: For content or code changes — edit files directly.
+
 ### Design System
 
 - Colors: Obsidian (#0B0B0B), Parchment (#F2F0EA), Stromy Green (#1B3D33), Signal Orange (#D4632A)
