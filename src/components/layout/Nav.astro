@@ -15,13 +15,13 @@ function isActive(href: string): boolean {
 ---
 
 <nav aria-label="Main navigation">
-  <ul class="flex items-center gap-6">
+  <ul class="flex items-center gap-4 xl:gap-6">
     {items.map((item) => (
       <li>
         <a
           href={item.href}
           class:list={[
-            "relative whitespace-nowrap py-1 font-mono text-[0.74rem] uppercase tracking-[0.22em] text-background/72 transition-colors hover:text-background",
+            "relative whitespace-nowrap py-1 font-mono text-[0.74rem] uppercase tracking-[0.14em] lg:tracking-[0.14em] xl:tracking-[0.22em] text-background/72 transition-colors hover:text-background",
             "after:absolute after:inset-x-0 after:-bottom-3 after:h-[2px] after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:after:scale-x-100",
             { "text-background after:scale-x-100": isActive(item.href) },
           ]}
