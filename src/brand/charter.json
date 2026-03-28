@@ -1,4 +1,10 @@
 {
+  "meta": {
+    "tier": "producer",
+    "displayName": "Stromy",
+    "tagline": "Intelligence, Orchestrated.",
+    "industry": "AI / Technology"
+  },
   "colors": {
     "primary": "#1B3D33",
     "secondary": "#0B0B0B",
@@ -29,8 +35,8 @@
     }
   },
   "logo": {
-    "primary": "logo.svg",
-    "white": "logo_white.svg",
+    "primary": "logos/logo.svg",
+    "white": "logos/logo_white.svg",
     "maxWidth": "180pt",
     "maxHeight": "50pt",
     "sizing": "contain"
