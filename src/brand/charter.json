@@ -159,5 +159,19 @@
       "neutralColor": "#8C8B87",
       "negativeColor": "#B03030"
     }
+  },
+  "templates": {
+    "pptx": {
+      "default": "templates/pptx/default.pptx",
+      "slide-library": "templates/pptx/slide-library.pptx"
+    },
+    "docx": {
+      "default": "templates/docx/default.docx",
+      "letterhead": "templates/docx/letterhead.docx"
+    },
+    "html": {
+      "business-cards": "templates/html/business-cards.html",
+      "email-signature": "templates/html/email-signature.html"
+    }
   }
 }
