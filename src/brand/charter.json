@@ -100,6 +100,91 @@
     },
     "logoVariantOnImage": "white"
   },
+  "website": {
+    "archetype": "magician",
+    "aesthetic": "editorial-magazine",
+    "layout": {
+      "density": "airy",
+      "symmetry": "asymmetric",
+      "flowDirection": "overlap",
+      "heroStyle": "split",
+      "gridSystem": "asymmetric-2col",
+      "sectionSpacing": "dramatic",
+      "sectionDividers": "thin-line",
+      "footerStyle": "branded-band",
+      "whitespaceStrategy": "dramatic"
+    },
+    "texture": {
+      "backgroundTreatment": "solid",
+      "surfaceFinish": "matte",
+      "borderStyle": "thin-line",
+      "shadowDepth": "none",
+      "cornerRadius": "sharp",
+      "overlayStyle": "brand-tint",
+      "patternDensity": "none"
+    },
+    "typography": {
+      "headingStyle": "oversized-serif",
+      "headingScale": 1.4,
+      "bodyLineHeight": 1.7,
+      "letterSpacing": "normal",
+      "textTransform": "none",
+      "pullQuoteStyle": "oversized-italic",
+      "listStyle": "dash-minimal"
+    },
+    "motion": {
+      "intensity": "moderate",
+      "revealStyle": "clip-reveal",
+      "scrollBehavior": "smooth",
+      "hoverBehavior": "color-shift",
+      "transitionSpeed": "cinematic",
+      "loadingAnimation": "stagger-fade",
+      "cursorStyle": "default"
+    },
+    "components": {
+      "navigation": "sticky-minimal",
+      "cards": "bordered",
+      "buttons": "ghost",
+      "forms": "minimal-underline",
+      "imagePresentation": "full-bleed",
+      "testimonials": "sidebar-pull",
+      "ctaStyle": "inline",
+      "socialProof": "stat-counters",
+      "codeBlocks": "terminal-style"
+    },
+    "colorApplication": {
+      "darkSections": true,
+      "darkSectionFrequency": 3,
+      "accentUsage": "balanced",
+      "gradientDirection": "none",
+      "colorBlockSections": true,
+      "imageOverlayBehavior": "brand-tint"
+    },
+    "pages": {
+      "home": {
+        "enabled": true,
+        "sections": [
+          { "type": "hero", "variant": "split" },
+          { "type": "service", "variant": "capability-grid" },
+          { "type": "stats", "variant": "counter-band" },
+          { "type": "case-study", "variant": "featured-card" },
+          { "type": "content", "variant": "tech-teaser" },
+          { "type": "cta", "variant": "full-width-band" }
+        ]
+      },
+      "about": { "enabled": true },
+      "services": { "enabled": true },
+      "case-studies": { "enabled": true },
+      "blog": { "enabled": true },
+      "contact": { "enabled": true }
+    },
+    "deployment": {
+      "platform": "github-pages",
+      "domain": "stromy.com.au",
+      "analytics": "plausible",
+      "contactForm": "formspree"
+    }
+  },
   "document": {
     "margins": { "top": "1in", "bottom": "1in", "left": "1in", "right": "1in" },
     "header": { "content": "Stromy", "logo": true },
