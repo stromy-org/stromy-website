@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STROMY - Brand Revision Comparison V2</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
+    :root {
+      --forest-950: #0f1310;
+      --forest-900: #152019;
+      --forest-800: #1d342b;
+      --forest-700: #2d4b3e;
+      --forest-500: #47685b;
+      --oxide-500: #b96034;
+      --oxide-300: #d68a60;
+      --paper: #ece6da;
+      --paper-soft: #f3ede2;
+      --stone: #bfb4a4;
+      --ink: #171611;
+      --line: rgba(236, 230, 218, 0.12);
+      --line-light: rgba(23, 22, 17, 0.12);
+      --shadow: 0 22px 64px rgba(0, 0, 0, 0.28);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1360px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--paper);
+      background:
+        radial-gradient(circle at top left, rgba(185, 96, 52, 0.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(71, 104, 91, 0.16), transparent 30%),
+        linear-gradient(180deg, #0f1310 0%, #0c0f0d 100%);
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(12, 15, 13, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner,
+    .hero-inner,
+    .section,
+    .footer {
+      width: min(calc(100% - 48px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 14px 0;
+    }
+
+    .nav-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    .nav-chip::before {
+      content: "";
+      width: 64px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(236,230,218,0.6), rgba(185,96,52,0.95));
+      box-shadow: 10px 0 0 -1px rgba(185,96,52,0.95);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--stone);
+      font-size: 13px;
+    }
+
+    .nav-links a:hover { color: var(--paper); }
+
+    .hero {
+      padding: 72px 0 30px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+    }
+
+    .panel,
+    .hero-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.014));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel {
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      right: -52px;
+      bottom: -52px;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      border: 1px solid rgba(236,230,218,0.08);
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-weight: 500;
+      letter-spacing: -0.04em;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 80px);
+      line-height: 0.92;
+      max-width: 11ch;
+    }
+
+    .hero-copy {
+      margin: 18px 0 0;
+      max-width: 60ch;
+      color: #ddd2c3;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .meta-box,
+    .stack-box {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .meta-box strong,
+    .stack-box strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 700;
+    }
+
+    .meta-box span,
+    .stack-box span {
+      color: var(--paper);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .side-card {
+      padding: 22px;
+    }
+
+    .side-card h2 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .type-lock {
+      margin-top: 16px;
+      padding: 24px;
+      border-radius: 20px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .type-over {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(23,22,17,0.58);
+    }
+
+    .type-display {
+      margin-top: 12px;
+      font-family: "Fraunces", serif;
+      font-size: 46px;
+      line-height: 0.94;
+      max-width: 10ch;
+    }
+
+    .type-body {
+      margin-top: 12px;
+      max-width: 38ch;
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(23,22,17,0.82);
+    }
+
+    .type-mono {
+      margin-top: 16px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(23,22,17,0.62);
+    }
+
+    .section {
+      padding: 26px 0 18px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      font-size: 36px;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 64ch;
+      color: var(--stone);
+      line-height: 1.7;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .principle {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .principle h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .principle p {
+      margin: 0;
+      color: var(--stone);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .motif-grid,
+    .route-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .motif-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .route-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .motif-card,
+    .route-card {
+      padding: 22px;
+    }
+
+    .option-top {
+      display: flex;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 14px;
+    }
+
+    .num {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      background: rgba(255,255,255,0.06);
+      color: var(--paper);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .family {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--oxide-300);
+    }
+
+    .option-meta h3 {
+      font-size: 30px;
+      margin-bottom: 4px;
+    }
+
+    .option-meta p,
+    .route-copy {
+      margin: 0;
+      color: var(--stone);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .motif-demos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .demo {
+      min-height: 150px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .demo.light {
+      background: var(--paper);
+      border-color: var(--line-light);
+      color: var(--ink);
+    }
+
+    .demo-label {
+      position: absolute;
+      left: 14px;
+      bottom: 12px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(236,230,218,0.55);
+    }
+
+    .demo.light .demo-label {
+      color: rgba(23,22,17,0.5);
+    }
+
+    .micro-uses,
+    .route-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .micro-uses span,
+    .route-tags span {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: #d8ccbb;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .risk {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--stone);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .route-card h3 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .route-hero {
+      margin-top: 14px;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: var(--forest-950);
+    }
+
+    .route-dark,
+    .route-light {
+      padding: 20px;
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      min-height: 248px;
+    }
+
+    .route-light {
+      background: var(--paper);
+      color: var(--ink);
+      border-top: 1px solid var(--line-light);
+    }
+
+    .wordmark {
+      font-family: "Fraunces", serif;
+      font-size: 40px;
+      letter-spacing: 0.08em;
+      line-height: 0.95;
+    }
+
+    .tagline {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--oxide-300);
+      line-height: 1.45;
+    }
+
+    .route-light .tagline {
+      color: rgba(23,22,17,0.62);
+    }
+
+    .rule-stack {
+      position: relative;
+      height: 36px;
+      margin-top: 2px;
+    }
+
+    .hero-title {
+      font-family: "Fraunces", serif;
+      font-size: 34px;
+      line-height: 1.02;
+      max-width: 9ch;
+    }
+
+    .hero-text {
+      max-width: 34ch;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #d8ccbb;
+    }
+
+    .route-light .hero-text {
+      color: rgba(23,22,17,0.74);
+    }
+
+    .hero-note {
+      margin-top: 6px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(236,230,218,0.55);
+    }
+
+    .route-light .hero-note {
+      color: rgba(23,22,17,0.52);
+    }
+
+    .footer {
+      padding: 10px 0 56px;
+      color: var(--stone);
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-inner,
+      .principles,
+      .motif-grid,
+      .route-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner,
+      .hero-inner,
+      .section,
+      .footer {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      .hero-panel,
+      .panel {
+        padding: 18px;
+      }
+
+      .meta-grid,
+      .motif-demos {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-chip">STROMY Revision Explorer V2</div>
+      <div class="nav-links">
+        <a href="#locks">Locked Choices</a>
+        <a href="#principles">Motif Principles</a>
+        <a href="#motifs">Motif Family</a>
+        <a href="#routes">Logo Routes</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="locks">
+    <div class="hero-inner">
+      <section class="hero-panel">
+        <p class="eyebrow">Stromy / focused rerun / aligned motif family</p>
+        <h1>Same palette. Same line. Better visual discipline.</h1>
+        <p class="hero-copy">
+          This round keeps the decisions already made and narrows the visual work to a coherent four-part motif family.
+          The goal is not to collect decorations. The goal is to build a system that can later drive reports, websites,
+          decks, and UI surfaces without visual drift or weak layout behavior.
+        </p>
+        <div class="meta-grid">
+          <div class="meta-box">
+            <strong>Palette</strong>
+            <span>Deep Forest + Oxide with warm paper white</span>
+          </div>
+          <div class="meta-box">
+            <strong>Typography</strong>
+            <span>Fraunces + Plus Jakarta Sans + IBM Plex Mono</span>
+          </div>
+          <div class="meta-box">
+            <strong>Tagline</strong>
+            <span>Intelligence, Orchestrated.</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side-stack">
+        <div class="panel side-card">
+          <h2>Locked System</h2>
+          <div class="meta-box">
+            <strong>Primary Motif</strong>
+            <span>Tempo Ledger for headers, title cards, and signature chrome.</span>
+          </div>
+          <div class="meta-box" style="margin-top:12px;">
+            <strong>Supporting Motifs</strong>
+            <span>Data Rail for analytical annotation, Switch Track for process language, Echo Band for section rhythm.</span>
+          </div>
+          <div class="type-lock">
+            <div class="type-over">Website / report / deck / product UI</div>
+            <div class="type-display">Intelligence, Orchestrated.</div>
+            <div class="type-body">Fraunces gives Stromy more authorship. Plus Jakarta Sans keeps interfaces and reports sharp. IBM Plex Mono holds the technical layer. The white stays warm, not clinical.</div>
+            <div class="type-mono">STROMY / DEEP FOREST + OXIDE / APR 2026</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="principles">
+      <div class="section-head">
+        <div>
+          <h2>Motif Principles</h2>
+        </div>
+        <p>The family is designed around one visual language: thin measured strokes, controlled offsets, clean node logic, and restrained rhythm. Each motif has a different job, but they all share the same tone and structural discipline.</p>
+      </div>
+      <div class="principles">
+        <div class="principle">
+          <h3>Aligned</h3>
+          <p>Shared stroke logic, spacing cadence, and color behavior across all four motifs.</p>
+        </div>
+        <div class="principle">
+          <h3>Role-based</h3>
+          <p>One motif for headers, one for data, one for process, one for transitions and section rhythm.</p>
+        </div>
+        <div class="principle">
+          <h3>Scalable</h3>
+          <p>Every motif is expected to work in micro annotations as well as large hero and divider contexts.</p>
+        </div>
+        <div class="principle">
+          <h3>QA-first</h3>
+          <p>Layouts must be reviewed visually for wrapping, overlap, cramped spacing, and unresolved compositions before presentation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="motifs">
+      <div class="section-head">
+        <div>
+          <h2>Retained Motif Family</h2>
+        </div>
+        <p>These four motifs are kept and assigned explicit future roles in templates. They are no longer presented as unrelated options, but as one coordinated Stromy system.</p>
+      </div>
+
+      <div class="motif-grid">
+        <article class="panel motif-card">
+          <div class="option-top">
+            <div class="num">1</div>
+            <div class="option-meta">
+              <div class="family">Primary Signature</div>
+              <h3>Tempo Ledger</h3>
+              <p>Measured double rules with a controlled offset and registration block. This is the main Stromy signature and the clearest trust device for report and website headers.</p>
+            </div>
+          </div>
+          <div class="motif-demos">
+            <div class="demo">
+              <div style="position:absolute;left:18px;right:94px;top:44px;height:1px;background:#ece6da;"></div>
+              <div style="position:absolute;left:40px;right:18px;top:62px;height:1px;background:#b96034;"></div>
+              <div style="position:absolute;right:18px;top:36px;width:16px;height:32px;border:1px solid rgba(214,138,96,.9);"></div>
+              <div class="demo-label">Header divider / report opener / footer ledger</div>
+            </div>
+            <div class="demo light">
+              <div style="position:absolute;left:16px;top:18px;width:16px;height:16px;border:1px solid rgba(185,96,52,.55);"></div>
+              <div style="position:absolute;left:18px;bottom:36px;font-family:'Fraunces',serif;font-size:28px;letter-spacing:.04em;">STROMY</div>
+              <div style="position:absolute;left:44px;right:18px;top:28px;height:1px;background:#171611;"></div>
+              <div style="position:absolute;left:18px;right:46px;top:48px;height:1px;background:#b96034;"></div>
+              <div class="demo-label">Cover / title card / page index</div>
+            </div>
+          </div>
+          <div class="micro-uses">
+            <span>Footer cue</span><span>Page numbering</span><span>Section divider</span><span>Chart threshold</span>
+          </div>
+          <div class="risk">Lowest risk. Use as the primary motif in title pages, report heads, opening sections, and key website transitions.</div>
+        </article>
+
+        <article class="panel motif-card">
+          <div class="option-top">
+            <div class="num">2</div>
+            <div class="option-meta">
+              <div class="family">Data Annotation</div>
+              <h3>Data Rail</h3>
+              <p>A vertical rail with checkpoints and short stems. It should carry analytical annotation, scorecards, timeline cues, and evidence markers inside data-heavy templates.</p>
+            </div>
+          </div>
+          <div class="motif-demos">
+            <div class="demo">
+              <div style="position:absolute;left:40px;top:18px;bottom:18px;width:1px;background:#ece6da;"></div>
+              <div style="position:absolute;left:40px;top:34px;width:9px;height:9px;border-radius:50%;background:#b96034;transform:translateX(-50%);"></div>
+              <div style="position:absolute;left:40px;top:74px;width:8px;height:8px;border-radius:50%;background:#47685b;transform:translateX(-50%);"></div>
+              <div style="position:absolute;left:40px;top:110px;width:10px;height:10px;border-radius:50%;background:#ece6da;transform:translateX(-50%);"></div>
+              <div style="position:absolute;left:58px;right:20px;top:38px;height:1px;background:rgba(236,230,218,.36);"></div>
+              <div style="position:absolute;left:58px;right:50px;top:78px;height:1px;background:rgba(185,96,52,.8);"></div>
+              <div class="demo-label">Evidence rail / chart callout / timeline</div>
+            </div>
+            <div class="demo light">
+              <div style="position:absolute;left:36px;top:18px;bottom:18px;width:1px;background:#171611;"></div>
+              <div style="position:absolute;left:36px;top:34px;width:9px;height:9px;border-radius:50%;background:#1d342b;transform:translateX(-50%);"></div>
+              <div style="position:absolute;left:36px;top:70px;width:9px;height:9px;border-radius:50%;background:#b96034;transform:translateX(-50%);"></div>
+              <div style="position:absolute;left:36px;top:106px;width:9px;height:9px;border-radius:50%;background:#171611;transform:translateX(-50%);"></div>
+              <div style="position:absolute;left:58px;top:30px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(23,22,17,.52);">Signals / evidence / movement</div>
+              <div class="demo-label">Sidebar nav / scorecard / dossier note</div>
+            </div>
+          </div>
+          <div class="micro-uses">
+            <span>Sidebar nav</span><span>Chart note</span><span>Step marker</span><span>RAG annotation</span>
+          </div>
+          <div class="risk">Medium. Use as a supporting motif in analytical contexts, not as the main brand face.</div>
+        </article>
+
+        <article class="panel motif-card">
+          <div class="option-top">
+            <div class="num">3</div>
+            <div class="option-meta">
+              <div class="family">Process Language</div>
+              <h3>Switch Track</h3>
+              <p>Parallel tracks with one controlled divergence point. This is the orchestration motif for workflows, routing logic, case flows, and process storytelling.</p>
+            </div>
+          </div>
+          <div class="motif-demos">
+            <div class="demo">
+              <svg viewBox="0 0 260 150" width="100%" height="100%" aria-hidden="true">
+                <path d="M20 48 H118 C136 48 146 56 146 74 C146 92 156 100 176 100 H228" fill="none" stroke="#ECE6DA" stroke-width="1.5"/>
+                <path d="M20 72 H146" fill="none" stroke="#B96034" stroke-width="1.5"/>
+                <circle cx="146" cy="74" r="4.5" fill="#B96034"/>
+              </svg>
+              <div class="demo-label">Workflow route / process shift / decision point</div>
+            </div>
+            <div class="demo light">
+              <svg viewBox="0 0 260 150" width="100%" height="100%" aria-hidden="true">
+                <path d="M20 48 H118 C136 48 146 56 146 74 C146 92 156 100 176 100 H228" fill="none" stroke="#171611" stroke-width="1.5"/>
+                <path d="M20 72 H146" fill="none" stroke="#B96034" stroke-width="1.5"/>
+                <circle cx="146" cy="74" r="4.5" fill="#1D342B"/>
+              </svg>
+              <div class="demo-label">Case flow / CTA lead-in / journey marker</div>
+            </div>
+          </div>
+          <div class="micro-uses">
+            <span>Process flow</span><span>Decision point</span><span>Journey cue</span><span>Workflow diagram</span>
+          </div>
+          <div class="risk">Medium. Strong for website storytelling and proposals; quieter motifs should still handle static report chrome.</div>
+        </article>
+
+        <article class="panel motif-card">
+          <div class="option-top">
+            <div class="num">4</div>
+            <div class="option-meta">
+              <div class="family">Rhythm Layer</div>
+              <h3>Echo Band</h3>
+              <p>Parallel bands with controlled spacing shifts. This should act as a rhythm and transition motif for sections, appendix pages, footer bands, and atmospheric background treatment.</p>
+            </div>
+          </div>
+          <div class="motif-demos">
+            <div class="demo">
+              <div style="position:absolute;left:18px;right:18px;top:42px;height:10px;border-top:1px solid rgba(236,230,218,.4);border-bottom:1px solid rgba(236,230,218,.18);"></div>
+              <div style="position:absolute;left:34px;right:18px;top:66px;height:10px;border-top:1px solid rgba(185,96,52,.84);border-bottom:1px solid rgba(185,96,52,.18);"></div>
+              <div style="position:absolute;left:50px;right:18px;top:90px;height:10px;border-top:1px solid rgba(71,104,91,.88);border-bottom:1px solid rgba(71,104,91,.22);"></div>
+              <div class="demo-label">Transition band / chapter break / footer rhythm</div>
+            </div>
+            <div class="demo light">
+              <div style="position:absolute;left:18px;right:18px;top:40px;height:10px;border-top:1px solid rgba(23,22,17,.34);border-bottom:1px solid rgba(23,22,17,.08);"></div>
+              <div style="position:absolute;left:34px;right:18px;top:64px;height:10px;border-top:1px solid rgba(185,96,52,.72);border-bottom:1px solid rgba(185,96,52,.14);"></div>
+              <div style="position:absolute;left:50px;right:18px;top:88px;height:10px;border-top:1px solid rgba(29,52,43,.74);border-bottom:1px solid rgba(29,52,43,.14);"></div>
+              <div class="demo-label">Section break / deck divider / table separator</div>
+            </div>
+          </div>
+          <div class="micro-uses">
+            <span>Section break</span><span>Footer band</span><span>Appendix</span><span>Table separator</span>
+          </div>
+          <div class="risk">Medium. Keep it subtle. It works best as supporting atmosphere rather than a central identity mark.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="routes">
+      <div class="section-head">
+        <div>
+          <h2>Logo Routes With Safer Layouts</h2>
+        </div>
+        <p>These route cards are rebuilt with more defensive spacing so the wordmark, tagline, motif, and body text can breathe without overlaps or accidental wraps.</p>
+      </div>
+
+      <div class="route-grid">
+        <article class="panel route-card">
+          <h3>Route 1: Ledger Wordmark</h3>
+          <p class="route-copy">Fraunces wordmark with Tempo Ledger. Strongest trust signal. Best fit for reports, proposals, and an authority-led website.</p>
+          <div class="route-tags">
+            <span>Recommended</span><span>Highest trust</span><span>Report-first</span>
+          </div>
+          <div class="route-hero">
+            <div class="route-dark">
+              <div class="wordmark">STROMY</div>
+              <div class="tagline">Intelligence, Orchestrated.</div>
+              <div class="rule-stack">
+                <div style="position:absolute;left:0;right:72px;top:6px;height:1px;background:#ECE6DA;"></div>
+                <div style="position:absolute;left:22px;right:0;top:22px;height:1px;background:#B96034;"></div>
+                <div style="position:absolute;right:0;top:0;width:16px;height:30px;border:1px solid rgba(214,138,96,.9);"></div>
+              </div>
+              <div class="hero-title">Build the system behind the answer.</div>
+              <div class="hero-text">The cleanest route if Stromy should feel like a premium intelligence operator rather than a visibly creative studio.</div>
+              <div class="hero-note">Typographic pure + signature ledger</div>
+            </div>
+            <div class="route-light">
+              <div class="wordmark">STROMY</div>
+              <div class="tagline">Intelligence, Orchestrated.</div>
+              <div class="rule-stack">
+                <div style="position:absolute;left:0;right:68px;top:6px;height:1px;background:#171611;"></div>
+                <div style="position:absolute;left:22px;right:0;top:22px;height:1px;background:#B96034;"></div>
+                <div style="position:absolute;right:0;top:0;width:16px;height:30px;border:1px solid rgba(185,96,52,.78);"></div>
+              </div>
+              <div class="hero-note">Best motif pairing: Tempo Ledger + Echo Band</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel route-card">
+          <h3>Route 2: Routed Wordmark</h3>
+          <p class="route-copy">Fraunces wordmark with Switch Track. More explicit orchestration, stronger process language, and better fit for workflow narratives.</p>
+          <div class="route-tags">
+            <span>Best balance</span><span>Process-led</span><span>Website strong</span>
+          </div>
+          <div class="route-hero">
+            <div class="route-dark">
+              <div class="wordmark">STROMY</div>
+              <div class="tagline">Intelligence, Orchestrated.</div>
+              <div class="rule-stack">
+                <svg viewBox="0 0 320 36" width="100%" height="36" aria-hidden="true" style="display:block;">
+                  <path d="M0 10 H136 C154 10 164 18 164 28 C164 36 174 34 194 34 H300" fill="none" stroke="#ECE6DA" stroke-width="1.5"/>
+                  <path d="M0 26 H164" fill="none" stroke="#B96034" stroke-width="1.5"/>
+                  <circle cx="164" cy="28" r="4.5" fill="#B96034"/>
+                </svg>
+              </div>
+              <div class="hero-title">Route work into one answer.</div>
+              <div class="hero-text">This is the best blend of seriousness and orchestration. Strong for websites, workflow explainers, and high-level proposal narratives.</div>
+              <div class="hero-note">Wordmark + process signal</div>
+            </div>
+            <div class="route-light">
+              <div class="wordmark">STROMY</div>
+              <div class="tagline">Intelligence, Orchestrated.</div>
+              <div class="rule-stack">
+                <svg viewBox="0 0 320 36" width="100%" height="36" aria-hidden="true" style="display:block;">
+                  <path d="M0 10 H136 C154 10 164 18 164 28 C164 36 174 34 194 34 H300" fill="none" stroke="#171611" stroke-width="1.5"/>
+                  <path d="M0 26 H164" fill="none" stroke="#B96034" stroke-width="1.5"/>
+                  <circle cx="164" cy="28" r="4.5" fill="#1D342B"/>
+                </svg>
+              </div>
+              <div class="hero-note">Best motif pairing: Switch Track + Data Rail</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel route-card">
+          <h3>Route 3: Echo Wordmark</h3>
+          <p class="route-copy">Fraunces wordmark with Echo Band. Quieter and more editorial than Route 2, with strong section rhythm and calmer report energy.</p>
+          <div class="route-tags">
+            <span>Most editorial</span><span>Quiet signature</span><span>Section rhythm</span>
+          </div>
+          <div class="route-hero">
+            <div class="route-dark">
+              <div class="wordmark">STROMY</div>
+              <div class="tagline">Intelligence, Orchestrated.</div>
+              <div class="rule-stack">
+                <div style="position:absolute;left:0;right:22px;top:2px;height:8px;border-top:1px solid rgba(236,230,218,.38);border-bottom:1px solid rgba(236,230,218,.16);"></div>
+                <div style="position:absolute;left:18px;right:22px;top:15px;height:8px;border-top:1px solid rgba(185,96,52,.82);border-bottom:1px solid rgba(185,96,52,.16);"></div>
+                <div style="position:absolute;left:36px;right:22px;top:28px;height:8px;border-top:1px solid rgba(71,104,91,.88);border-bottom:1px solid rgba(71,104,91,.22);"></div>
+              </div>
+              <div class="hero-title">Create rhythm without extra noise.</div>
+              <div class="hero-text">This route is strongest when Stromy wants a more editorial, report-forward presence without losing the dark mineral character of the system.</div>
+              <div class="hero-note">Wordmark + rhythm system</div>
+            </div>
+            <div class="route-light">
+              <div class="wordmark">STROMY</div>
+              <div class="tagline">Intelligence, Orchestrated.</div>
+              <div class="rule-stack">
+                <div style="position:absolute;left:0;right:22px;top:2px;height:8px;border-top:1px solid rgba(23,22,17,.36);border-bottom:1px solid rgba(23,22,17,.08);"></div>
+                <div style="position:absolute;left:18px;right:22px;top:15px;height:8px;border-top:1px solid rgba(185,96,52,.72);border-bottom:1px solid rgba(185,96,52,.14);"></div>
+                <div style="position:absolute;left:36px;right:22px;top:28px;height:8px;border-top:1px solid rgba(29,52,43,.74);border-bottom:1px solid rgba(29,52,43,.14);"></div>
+              </div>
+              <div class="hero-note">Best motif pairing: Echo Band + Tempo Ledger</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Stromy motif family retained for later templates: <strong>Tempo Ledger</strong> as the primary signature, <strong>Data Rail</strong> for analytical annotation, <strong>Switch Track</strong> for process language, and <strong>Echo Band</strong> for section rhythm. Recommended route remains <strong>Route 2</strong>, with <strong>Route 1</strong> as the more institutional fallback.
+  </footer>
+</body>
+</html>

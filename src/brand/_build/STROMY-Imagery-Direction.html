@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STROMY — Imagery Direction Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --obsidian: #0F1310;
+    --deep-forest: #1D342B;
+    --black-forest: #152019;
+    --mineral: #47685B;
+    --oxidized-sage: #7F9B90;
+    --oxide: #B96034;
+    --oxide-light: #D68A60;
+    --warm-paper: #ECE6DA;
+    --warm-paper-alt: #F3EDE2;
+    --ink: #171611;
+    --stone: #6D665C;
+    --pewter: #8C857A;
+    --error: #8E3F2E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--obsidian);
+    color: var(--warm-paper);
+    line-height: 1.65;
+  }
+
+  /* ── Sticky Navigation ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    gap: 2px;
+    padding: 8px 32px;
+    background: rgba(15, 19, 16, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--deep-forest);
+    overflow-x: auto;
+  }
+  .sticky-nav a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: var(--oxidized-sage);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+  .sticky-nav a:hover { color: var(--warm-paper); background: rgba(71, 104, 91, 0.15); }
+  .sticky-nav a.active { color: var(--oxide); border-color: var(--oxide); background: rgba(185, 96, 52, 0.08); }
+
+  /* ── Section containers ── */
+  .section {
+    padding: 56px 40px;
+    border-bottom: 1px solid rgba(29, 52, 43, 0.5);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .section-dark {
+    background: var(--deep-forest);
+    max-width: 100%;
+    padding-left: calc(max(40px, (100% - 1400px) / 2 + 40px));
+    padding-right: calc(max(40px, (100% - 1400px) / 2 + 40px));
+  }
+  .section-alt {
+    background: var(--black-forest);
+    max-width: 100%;
+    padding-left: calc(max(40px, (100% - 1400px) / 2 + 40px));
+    padding-right: calc(max(40px, (100% - 1400px) / 2 + 40px));
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--oxide);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--oxide);
+    margin-bottom: 8px;
+  }
+  p { max-width: 680px; margin-bottom: 16px; color: rgba(236, 230, 218, 0.85); font-size: 15px; }
+  p.wide { max-width: 900px; }
+
+  /* ── Cover / Hero section ── */
+  .cover {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 56px 40px;
+    background:
+      linear-gradient(to top, rgba(15, 19, 16, 0.85) 0%, rgba(15, 19, 16, 0.4) 40%, rgba(15, 19, 16, 0.2) 100%),
+      url('../images/heroes/02_brutalist_geometric.hero.jpg') center/cover no-repeat;
+    border-bottom: 2px solid var(--oxide);
+  }
+  .cover h1 { font-size: 52px; max-width: 600px; }
+  .cover p { color: var(--oxidized-sage); }
+  .cover .meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--pewter);
+    margin-top: 24px;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  .divider svg { opacity: 0.7; }
+
+  /* ── Principle cards ── */
+  .principle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+  }
+  .principle-card {
+    background: rgba(29, 52, 43, 0.3);
+    border: 1px solid rgba(71, 104, 91, 0.25);
+    border-radius: 6px;
+    padding: 24px;
+  }
+  .principle-card h3 { margin-bottom: 8px; }
+  .principle-card p { font-size: 13.5px; margin-bottom: 0; }
+
+  /* ── Hero demos ── */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .hero-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    cursor: pointer;
+  }
+  .hero-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-card .text-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 32px 28px 24px;
+    background: linear-gradient(to top, rgba(15, 19, 16, 0.8) 0%, transparent 100%);
+  }
+  .hero-card .text-overlay h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--warm-paper);
+    line-height: 1.2;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    margin-bottom: 4px;
+  }
+  .hero-card .text-overlay .body-text {
+    font-size: 12px;
+    color: rgba(236, 230, 218, 0.8);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  }
+  .hero-card .hero-label {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    background: rgba(185, 96, 52, 0.85);
+    color: var(--warm-paper);
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ── Before/After ── */
+  .ba-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+    gap: 32px;
+    margin-top: 24px;
+  }
+  .ba-pair { position: relative; }
+  .ba-pair .ba-container {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .ba-pair img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s;
+  }
+  .ba-pair img.hidden { display: none; }
+  .ba-pair .ba-label {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    background: rgba(15, 19, 16, 0.8);
+    color: var(--oxide);
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  .ba-pair .ba-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--oxidized-sage);
+    margin-top: 10px;
+  }
+
+  /* ── Treatment table ── */
+  .treatment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 13.5px;
+  }
+  .treatment-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--oxide);
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 2px solid var(--deep-forest);
+    background: rgba(29, 52, 43, 0.2);
+  }
+  .treatment-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(29, 52, 43, 0.3);
+    vertical-align: top;
+  }
+  .treatment-table code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    background: rgba(29, 52, 43, 0.4);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--oxide-light);
+  }
+
+  /* ── Full library ── */
+  .library-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .lib-card {
+    background: rgba(29, 52, 43, 0.2);
+    border: 1px solid rgba(71, 104, 91, 0.15);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .lib-card:hover { border-color: var(--mineral); }
+  .lib-card .img-wrap {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+  .lib-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.25s;
+  }
+  .lib-card img.hidden { display: none; }
+  .lib-card .toggle-label {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    background: rgba(15, 19, 16, 0.75);
+    color: var(--oxide);
+    border-radius: 2px;
+    pointer-events: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .lib-card .card-meta {
+    padding: 10px 12px;
+  }
+  .lib-card .card-id {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--oxide);
+    margin-bottom: 3px;
+  }
+  .lib-card .card-desc {
+    font-size: 12.5px;
+    color: var(--warm-paper);
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .lib-card .card-roles {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .role-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid var(--mineral);
+    color: var(--oxidized-sage);
+  }
+  .role-tag.hero-tag {
+    background: rgba(185, 96, 52, 0.2);
+    border-color: var(--oxide);
+    color: var(--oxide);
+  }
+  .theme-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    background: rgba(71, 104, 91, 0.15);
+    color: var(--mineral);
+  }
+
+  /* ── Vocab clouds ── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 24px;
+  }
+  .vocab-box {
+    padding: 28px;
+    border-radius: 6px;
+  }
+  .vocab-box.do-box {
+    background: rgba(71, 104, 91, 0.15);
+    border: 1px solid var(--mineral);
+  }
+  .vocab-box.avoid-box {
+    background: rgba(142, 63, 46, 0.1);
+    border: 1px solid var(--error);
+  }
+  .vocab-box h3 { margin-bottom: 12px; }
+  .vocab-box.avoid-box h3 { color: var(--error); }
+  .vocab-words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .vocab-word {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+  .do-box .vocab-word {
+    background: rgba(71, 104, 91, 0.2);
+    color: var(--oxidized-sage);
+    border: 1px solid rgba(71, 104, 91, 0.3);
+  }
+  .avoid-box .vocab-word {
+    background: rgba(142, 63, 46, 0.15);
+    color: rgba(214, 138, 96, 0.7);
+    border: 1px solid rgba(142, 63, 46, 0.25);
+  }
+
+  /* ── SVG showcase ── */
+  .svg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .svg-card {
+    background: rgba(29, 52, 43, 0.2);
+    border: 1px solid rgba(71, 104, 91, 0.2);
+    border-radius: 6px;
+    padding: 24px;
+    text-align: center;
+  }
+  .svg-card.on-dark { background: var(--obsidian); }
+  .svg-card.on-light { background: var(--warm-paper); }
+  .svg-card svg { max-width: 100%; height: auto; }
+  .svg-card .svg-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--pewter);
+    margin-top: 12px;
+  }
+  .svg-card.on-light .svg-label { color: var(--stone); }
+
+  /* ── Sourcing ── */
+  .source-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+  }
+  .source-card {
+    background: rgba(29, 52, 43, 0.2);
+    border: 1px solid rgba(71, 104, 91, 0.15);
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .source-card h3 { font-size: 14px; margin-bottom: 8px; }
+  .source-card p { font-size: 13px; margin-bottom: 8px; }
+  .source-card .search-terms {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--oxidized-sage);
+    line-height: 1.6;
+  }
+  .source-card .search-terms span {
+    display: inline-block;
+    background: rgba(29, 52, 43, 0.4);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin: 2px 4px 2px 0;
+  }
+
+  /* ── Theme filter bar ── */
+  .filter-bar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .filter-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--mineral);
+    background: transparent;
+    color: var(--oxidized-sage);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--oxide); color: var(--warm-paper); }
+  .filter-btn.active { background: var(--oxide); border-color: var(--oxide); color: var(--warm-paper); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- COVER                                                              -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="eyebrow">Phase 4 — Imagery Direction</div>
+  <h1>STROMY<br>Imagery Direction</h1>
+  <p>Photography world, treatment profiles, hero library, and visual vocabulary for the Stromy brand identity system.</p>
+  <div class="meta">36 images · 9 heroes · 6 themes · Sage/Creator archetype</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- STICKY NAV                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<nav class="sticky-nav" id="nav">
+  <a href="#philosophy">Philosophy</a>
+  <a href="#heroes">Heroes</a>
+  <a href="#before-after">Before / After</a>
+  <a href="#treatment">Treatment</a>
+  <a href="#library">Full Library</a>
+  <a href="#vocabulary">Vocabulary</a>
+  <a href="#svg-assets">SVG Assets</a>
+  <a href="#sourcing">Sourcing</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- §1 — PHILOSOPHY & VISUAL PRINCIPLES                                -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="philosophy">
+  <div class="eyebrow">Section 01</div>
+  <h2>Philosophy & Visual Principles</h2>
+  <p class="wide">Stromy's imagery draws from the <strong>Sage/Creator</strong> archetype blend — authoritative, precise, and crafted. Our photography world is defined by architectural structure, industrial materiality, and the interplay of light and shadow on hard surfaces. We never show people, screens, or software interfaces. Instead, we use built environments and worked materials as metaphors for the intelligence systems we orchestrate.</p>
+
+  <div class="principle-grid">
+    <div class="principle-card">
+      <h3>Monumental Scale</h3>
+      <p>Low-angle architectural shots that convey authority. Concrete cantilevers, steel towers, and facade geometry at heroic proportion.</p>
+    </div>
+    <div class="principle-card">
+      <h3>Material Honesty</h3>
+      <p>Close-up surfaces of real materials — corten steel, timber grain, marble, brushed metal. The texture tells the story of craft and time.</p>
+    </div>
+    <div class="principle-card">
+      <h3>Desaturated Warmth</h3>
+      <p>Muted saturation (−45%) anchored by a Deep Forest overlay and amber shadow push. The result is editorial, not cold — warm without being bright.</p>
+    </div>
+    <div class="principle-card">
+      <h3>Rhythmic Structure</h3>
+      <p>Repeating lines, shadows, and geometric patterns that echo the motif family's rail-and-node language. The architecture contains the data.</p>
+    </div>
+    <div class="principle-card">
+      <h3>Controlled Darkness</h3>
+      <p>Deep shadows and night compositions anchor the Obsidian palette. Glass facades at night, silhouetted structures, moody interiors.</p>
+    </div>
+    <div class="principle-card">
+      <h3>Systems Metaphor</h3>
+      <p>Urban infrastructure — rail junctions, pipe networks, aerial views — that reads as "orchestration made visible." The city as a system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- §2 — HERO USAGE DEMOS                                              -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="heroes">
+  <div class="eyebrow">Section 02</div>
+  <h2>Hero Images — Text Overlay Demos</h2>
+  <p>9 hero images with dark gradient overlays, designed for slide covers, brand book sections, and website headers. Each shown with Fraunces heading + Plus Jakarta body text to verify legibility.</p>
+
+  <div class="hero-grid">
+    <div class="hero-card">
+      <img src="../images/heroes/02_brutalist_geometric.hero-16x9.jpg" alt="Hero: Brutalist geometric">
+      <div class="text-overlay">
+        <h3>Intelligence, Orchestrated.</h3>
+        <div class="body-text">AI-augmented analysis for complex decision environments</div>
+      </div>
+      <div class="hero-label">E02 · Existing</div>
+    </div>
+
+    <div class="hero-card">
+      <img src="../images/heroes/16_rusted_metal_rivets.hero-16x9.jpg" alt="Hero: Rusted metal rivets">
+      <div class="text-overlay">
+        <h3>Crafted Through Experience</h3>
+        <div class="body-text">Decades of institutional knowledge, distilled into systems</div>
+      </div>
+      <div class="hero-label">OX07 · Oxidized</div>
+    </div>
+
+    <div class="hero-card">
+      <img src="../images/heroes/18_brown_building_monumental.hero-16x9.jpg" alt="Hero: Brown building monumental">
+      <div class="text-overlay">
+        <h3>Built to Scale</h3>
+        <div class="body-text">Infrastructure that grows with organizational complexity</div>
+      </div>
+      <div class="hero-label">OX11 · Oxidized</div>
+    </div>
+
+    <div class="hero-card">
+      <img src="../images/heroes/22_concrete_curves_sky.hero-16x9.jpg" alt="Hero: Concrete curves sky">
+      <div class="text-overlay">
+        <h3>Where Structure Meets Vision</h3>
+        <div class="body-text">Analytical frameworks that reveal what others miss</div>
+      </div>
+      <div class="hero-label">BR06 · Brutalist</div>
+    </div>
+
+    <div class="hero-card">
+      <img src="../images/heroes/25_tall_building_shadow.hero-16x9.jpg" alt="Hero: Tall building shadow">
+      <div class="text-overlay">
+        <h3>Depth of Understanding</h3>
+        <div class="body-text">Every layer examined, every signal accounted for</div>
+      </div>
+      <div class="hero-label">SH03 · Shadow</div>
+    </div>
+
+    <div class="hero-card">
+      <img src="../images/heroes/35_illuminated_windows_night.hero-16x9.jpg" alt="Hero: Illuminated windows night">
+      <div class="text-overlay">
+        <h3>Illuminating Complexity</h3>
+        <div class="body-text">Clarity in the most intricate information landscapes</div>
+      </div>
+      <div class="hero-label">DG02 · Dark Geometry</div>
+    </div>
+
+    <div class="hero-card">
+      <img src="../images/heroes/37_glass_facade_reflections.hero-16x9.jpg" alt="Hero: Glass facade reflections">
+      <div class="text-overlay">
+        <h3>Seeing Through Noise</h3>
+        <div class="body-text">Multi-source intelligence filtered into actionable insight</div>
+      </div>
+      <div class="hero-label">DG07 · Dark Geometry</div>
+    </div>
+
+    <div class="hero-card">
+      <img src="../images/heroes/38_dark_building_silhouette.hero-16x9.jpg" alt="Hero: Dark building silhouette">
+      <div class="text-overlay">
+        <h3>Decisive in Uncertainty</h3>
+        <div class="body-text">When the stakes are high, precision is not optional</div>
+      </div>
+      <div class="hero-label">DG08 · Dark Geometry</div>
+    </div>
+
+    <div class="hero-card">
+      <img src="../images/heroes/41_aerial_train_yard.hero-16x9.jpg" alt="Hero: Aerial train yard">
+      <div class="text-overlay">
+        <h3>Orchestrating Complexity</h3>
+        <div class="body-text">Parallel workflows converging at the right junction</div>
+      </div>
+      <div class="hero-label">US08 · Urban Systems</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- §3 — BEFORE / AFTER PROCESSING                                     -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="before-after">
+  <div class="eyebrow">Section 03</div>
+  <h2>Before / After Processing</h2>
+  <p>Click each image to toggle between the original source photograph and the brand-treated version. Notice the desaturation, warm forest overlay, contrast boost, and subtle grain.</p>
+
+  <div class="ba-grid">
+    <div class="ba-pair" data-showing="brand">
+      <div class="ba-container" onclick="toggleBA(this)">
+        <img class="ba-original hidden" src="../images/02_brutalist_geometric.jpg" alt="Original">
+        <img class="ba-brand" src="../images/processed/02_brutalist_geometric.brand.jpg" alt="Brand treated">
+        <div class="ba-label">BRAND</div>
+      </div>
+      <div class="ba-name">02 — Brutalist Geometric (Existing · Hero)</div>
+    </div>
+
+    <div class="ba-pair" data-showing="brand">
+      <div class="ba-container" onclick="toggleBA(this)">
+        <img class="ba-original hidden" src="../images/16_rusted_metal_rivets.jpg" alt="Original">
+        <img class="ba-brand" src="../images/processed/16_rusted_metal_rivets.brand.jpg" alt="Brand treated">
+        <div class="ba-label">BRAND</div>
+      </div>
+      <div class="ba-name">16 — Rusted Metal Rivets (Oxidized · Hero)</div>
+    </div>
+
+    <div class="ba-pair" data-showing="brand">
+      <div class="ba-container" onclick="toggleBA(this)">
+        <img class="ba-original hidden" src="../images/22_concrete_curves_sky.jpg" alt="Original">
+        <img class="ba-brand" src="../images/processed/22_concrete_curves_sky.brand.jpg" alt="Brand treated">
+        <div class="ba-label">BRAND</div>
+      </div>
+      <div class="ba-name">22 — Concrete Curves Sky (Brutalist · Hero)</div>
+    </div>
+
+    <div class="ba-pair" data-showing="brand">
+      <div class="ba-container" onclick="toggleBA(this)">
+        <img class="ba-original hidden" src="../images/32_amber_wood.jpg" alt="Original">
+        <img class="ba-brand" src="../images/processed/32_amber_wood.brand.jpg" alt="Brand treated">
+        <div class="ba-label">BRAND</div>
+      </div>
+      <div class="ba-name">32 — Amber Wood (Workshop · Texture)</div>
+    </div>
+
+    <div class="ba-pair" data-showing="brand">
+      <div class="ba-container" onclick="toggleBA(this)">
+        <img class="ba-original hidden" src="../images/35_illuminated_windows_night.jpg" alt="Original">
+        <img class="ba-brand" src="../images/processed/35_illuminated_windows_night.brand.jpg" alt="Brand treated">
+        <div class="ba-label">BRAND</div>
+      </div>
+      <div class="ba-name">35 — Illuminated Windows Night (Dark Geometry · Hero)</div>
+    </div>
+
+    <div class="ba-pair" data-showing="brand">
+      <div class="ba-container" onclick="toggleBA(this)">
+        <img class="ba-original hidden" src="../images/41_aerial_train_yard.jpg" alt="Original">
+        <img class="ba-brand" src="../images/processed/41_aerial_train_yard.brand.jpg" alt="Brand treated">
+        <div class="ba-label">BRAND</div>
+      </div>
+      <div class="ba-name">41 — Aerial Train Yard (Urban Systems · Hero)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- §4 — TREATMENT PROFILES                                            -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="treatment">
+  <div class="eyebrow">Section 04</div>
+  <h2>Treatment Profiles</h2>
+  <p>Archetype-driven processing parameters for the Sage/Creator brand. These values produce the editorial, desaturated warmth that defines Stromy's visual world.</p>
+
+  <table class="treatment-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+        <th>Rationale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Saturation</td>
+        <td><code>0.55</code> (−45%)</td>
+        <td>Desaturated editorial tone — muted, not monochrome. Lets material textures speak without color distraction.</td>
+      </tr>
+      <tr>
+        <td>Contrast Gain</td>
+        <td><code>1.18</code> (+18%)</td>
+        <td>Elevated contrast for architectural definition. Brings out shadow lines and structural edges.</td>
+      </tr>
+      <tr>
+        <td>Forest Overlay</td>
+        <td><code>#1D342B</code> at 15% · <code>multiply</code></td>
+        <td>Deep Forest tint pushed into shadows, anchoring imagery in the primary brand color.</td>
+      </tr>
+      <tr>
+        <td>Warm Shift</td>
+        <td><code>rgb(255, 245, 230)</code> at 6% · <code>screen</code></td>
+        <td>Subtle amber push — prevents the desaturation from feeling cold. Creator archetype warmth.</td>
+      </tr>
+      <tr>
+        <td>Grain</td>
+        <td>5% · ±13 luminance noise</td>
+        <td>Editorial texture. Prevents processed images from looking digitally sterile.</td>
+      </tr>
+      <tr>
+        <td>Brightness</td>
+        <td><code>0.97</code> (−3%)</td>
+        <td>Slight pullback to prevent washed-out highlights after contrast boost.</td>
+      </tr>
+      <tr>
+        <td>Hero Gradient</td>
+        <td>Obsidian <code>#0F1310</code> · 0→65→80% alpha</td>
+        <td>Bottom-heavy darken for text legibility. Ramp: clear above 30%, linear 30-70%, heavy 70-100%.</td>
+      </tr>
+      <tr>
+        <td>Output Quality</td>
+        <td><code>88</code> · mozjpeg</td>
+        <td>High quality with mozjpeg optimization. Balances file size and detail preservation.</td>
+      </tr>
+      <tr>
+        <td>Target Width</td>
+        <td><code>1920px</code></td>
+        <td>Full HD baseline. Heroes also get 16:9 (1920×1080) and 2:1 (1920×960) crops.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 32px;">Processing Pipeline (sharp)</h3>
+  <p>Resize → Modulate (brightness, saturation) → Linear contrast → Composite (forest multiply + warm screen + grain) → JPEG encode</p>
+  <p>Script: <code>_build/process-images.js</code> · Run: <code>node _build/process-images.js</code></p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- §5 — FULL IMAGE LIBRARY                                            -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="library">
+  <div class="eyebrow">Section 05</div>
+  <h2>Full Image Library</h2>
+  <p>All 36 images across 6 themes. Click any image to toggle between original and brand-treated. Filter by theme below.</p>
+
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" onclick="filterTheme('all', this)">All (36)</button>
+    <button class="filter-btn" onclick="filterTheme('existing', this)">Existing (5)</button>
+    <button class="filter-btn" onclick="filterTheme('oxidized-infrastructure', this)">Oxidized (8)</button>
+    <button class="filter-btn" onclick="filterTheme('brutalist-architecture', this)">Brutalist (5)</button>
+    <button class="filter-btn" onclick="filterTheme('structural-shadow', this)">Shadow (5)</button>
+    <button class="filter-btn" onclick="filterTheme('workshop-material', this)">Workshop (5)</button>
+    <button class="filter-btn" onclick="filterTheme('dark-geometry', this)">Dark Geo (5)</button>
+    <button class="filter-btn" onclick="filterTheme('framed-urban-systems', this)">Urban Sys (3)</button>
+  </div>
+
+  <div class="library-grid" id="library-grid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- §6 — VISUAL VOCABULARY                                             -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="vocabulary">
+  <div class="eyebrow">Section 06</div>
+  <h2>Visual Vocabulary</h2>
+  <p>Keywords that define what belongs in Stromy's photography world — and what to avoid. Use these when sourcing new images or briefing photographers.</p>
+
+  <div class="vocab-grid">
+    <div class="vocab-box do-box">
+      <h3>Use — On Brand</h3>
+      <div class="vocab-words">
+        <span class="vocab-word">monumental</span>
+        <span class="vocab-word">brutalist</span>
+        <span class="vocab-word">corten steel</span>
+        <span class="vocab-word">oxidized</span>
+        <span class="vocab-word">concrete</span>
+        <span class="vocab-word">architectural</span>
+        <span class="vocab-word">geometric</span>
+        <span class="vocab-word">industrial</span>
+        <span class="vocab-word">shadow rhythm</span>
+        <span class="vocab-word">desaturated</span>
+        <span class="vocab-word">editorial</span>
+        <span class="vocab-word">structural</span>
+        <span class="vocab-word">timber grain</span>
+        <span class="vocab-word">marble</span>
+        <span class="vocab-word">materiality</span>
+        <span class="vocab-word">low-angle</span>
+        <span class="vocab-word">night facade</span>
+        <span class="vocab-word">infrastructure</span>
+        <span class="vocab-word">rail junction</span>
+        <span class="vocab-word">aerial urban</span>
+        <span class="vocab-word">warm amber</span>
+        <span class="vocab-word">glass reflections</span>
+        <span class="vocab-word">silhouette</span>
+        <span class="vocab-word">louvered</span>
+        <span class="vocab-word">weathered</span>
+      </div>
+    </div>
+    <div class="vocab-box avoid-box">
+      <h3>Avoid — Off Brand</h3>
+      <div class="vocab-words">
+        <span class="vocab-word">people</span>
+        <span class="vocab-word">faces</span>
+        <span class="vocab-word">screens</span>
+        <span class="vocab-word">software UI</span>
+        <span class="vocab-word">stock business</span>
+        <span class="vocab-word">handshake</span>
+        <span class="vocab-word">neon</span>
+        <span class="vocab-word">saturated</span>
+        <span class="vocab-word">tropical</span>
+        <span class="vocab-word">pastoral</span>
+        <span class="vocab-word">floral</span>
+        <span class="vocab-word">illustration</span>
+        <span class="vocab-word">3D render</span>
+        <span class="vocab-word">gradient mesh</span>
+        <span class="vocab-word">clean tech</span>
+        <span class="vocab-word">whitespace stock</span>
+        <span class="vocab-word">laptop flat-lay</span>
+        <span class="vocab-word">corporate meeting</span>
+        <span class="vocab-word">infographic</span>
+        <span class="vocab-word">circuit board</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- §7 — SVG ASSET SHOWCASE                                            -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section" id="svg-assets">
+  <div class="eyebrow">Section 07</div>
+  <h2>SVG Dividers, Motifs & Pattern</h2>
+  <p>The motif family bridges photography and typography. Line-and-node language drawn from infrastructure metaphors — tempo ledgers, data rails, switch tracks, echo bands.</p>
+
+  <div class="svg-grid">
+    <!-- Dividers on dark -->
+    <div class="svg-card on-dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 28" width="100%" height="28">
+        <line x1="0" y1="7" x2="692" y2="7" stroke="#1D342B" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="24" y1="21" x2="778" y2="21" stroke="#B96034" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="782" y="1" width="16" height="24" rx="2" fill="none" stroke="#B96034" stroke-width="2"/>
+      </svg>
+      <div class="svg-label">divider-full.svg — Dark backgrounds</div>
+    </div>
+
+    <div class="svg-card on-dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 28" width="100%" height="28">
+        <line x1="0" y1="7" x2="692" y2="7" stroke="#ECE6DA" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="24" y1="21" x2="778" y2="21" stroke="#B96034" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="782" y="1" width="16" height="24" rx="2" fill="none" stroke="#B96034" stroke-width="2"/>
+      </svg>
+      <div class="svg-label">divider-full-white.svg — Dark backgrounds (high contrast)</div>
+    </div>
+
+    <!-- Dividers on light -->
+    <div class="svg-card on-light">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 24" width="200" height="24">
+        <line x1="0" y1="6" x2="140" y2="6" stroke="#1D342B" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="16" y1="18" x2="180" y2="18" stroke="#B96034" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="184" y="1" width="12" height="20" rx="2" fill="none" stroke="#B96034" stroke-width="1.8"/>
+      </svg>
+      <div class="svg-label">divider-short.svg — Light backgrounds</div>
+    </div>
+
+    <div class="svg-card on-dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 24" width="200" height="24">
+        <line x1="0" y1="6" x2="140" y2="6" stroke="#ECE6DA" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="16" y1="18" x2="180" y2="18" stroke="#B96034" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="184" y="1" width="12" height="20" rx="2" fill="none" stroke="#B96034" stroke-width="1.8"/>
+      </svg>
+      <div class="svg-label">divider-short-white.svg — Dark backgrounds</div>
+    </div>
+
+    <!-- Motifs on dark -->
+    <div class="svg-card on-dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 52" width="260" height="52">
+        <line x1="0" y1="12" x2="168" y2="12" stroke="#ECE6DA" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="24" y1="34" x2="226" y2="34" stroke="#B96034" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="232" y="4" width="20" height="38" rx="2" fill="none" stroke="#B96034" stroke-width="2"/>
+        <line x1="242" y1="16" x2="242" y2="30" stroke="#B96034" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="svg-label">motif-tempo-ledger.svg — Primary section break</div>
+    </div>
+
+    <div class="svg-card on-dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 180" width="100" height="130">
+        <line x1="24" y1="8" x2="24" y2="172" stroke="#ECE6DA" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="24" cy="36" r="6.5" fill="#B96034"/>
+        <line x1="32" y1="36" x2="118" y2="36" stroke="#B96034" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="24" cy="88" r="5" fill="#47685B"/>
+        <line x1="32" y1="88" x2="92" y2="88" stroke="#47685B" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="24" cy="138" r="5.5" fill="none" stroke="#ECE6DA" stroke-width="1.8"/>
+        <line x1="32" y1="138" x2="72" y2="138" stroke="#ECE6DA" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <line x1="20" y1="172" x2="28" y2="172" stroke="#B96034" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div class="svg-label">motif-data-rail.svg — Vertical sidebar accent</div>
+    </div>
+
+    <div class="svg-card on-dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 100" width="280" height="100">
+        <path d="M4 24 H118 C140 24 154 36 154 50 C154 64 168 76 190 76 H268" fill="none" stroke="#ECE6DA" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 50 H154" fill="none" stroke="#B96034" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="154" cy="50" r="7" fill="#B96034"/>
+        <circle cx="154" cy="50" r="3" fill="#0F1310"/>
+        <line x1="270" y1="72" x2="270" y2="80" stroke="#47685B" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div class="svg-label">motif-switch-track.svg — Decision/junction marker</div>
+    </div>
+
+    <div class="svg-card on-dark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 76" width="260" height="76">
+        <line x1="0" y1="10" x2="216" y2="10" stroke="#ECE6DA" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="20" y1="30" x2="234" y2="30" stroke="#B96034" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="40" y1="50" x2="252" y2="50" stroke="#47685B" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="0" y1="17" x2="216" y2="17" stroke="#ECE6DA" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
+        <line x1="20" y1="37" x2="234" y2="37" stroke="#B96034" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
+        <line x1="40" y1="57" x2="252" y2="57" stroke="#47685B" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
+        <line x1="256" y1="6" x2="256" y2="62" stroke="#B96034" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+      </svg>
+      <div class="svg-label">motif-echo-band.svg — Layered rhythm accent</div>
+    </div>
+
+    <!-- Pattern tile -->
+    <div class="svg-card on-dark" style="grid-column: span 2;">
+      <div style="display: flex; gap: 0; justify-content: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="120" height="120">
+          <rect width="240" height="240" fill="#0F1310"/>
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="24" y1="52" x2="164" y2="52" stroke="#1D342B" stroke-width="2" opacity="0.9"/>
+            <line x1="44" y1="68" x2="188" y2="68" stroke="#B96034" stroke-width="2" opacity="0.75"/>
+            <rect x="192" y="44" width="16" height="32" rx="2" stroke="#B96034" stroke-width="1.8" opacity="0.8"/>
+            <path d="M140 110 C124 108 112 114 112 122 C112 130 148 128 148 136 C148 142 136 142 120 140" stroke="#47685B" stroke-width="2.2" opacity="0.7"/>
+            <circle cx="124" cy="114" r="3.5" fill="#B96034" opacity="0.8"/>
+            <circle cx="136" cy="138" r="2.5" fill="#47685B" opacity="0.6"/>
+            <line x1="38" y1="188" x2="126" y2="188" stroke="#ECE6DA" stroke-width="1.8" opacity="0.35"/>
+            <line x1="50" y1="202" x2="154" y2="202" stroke="#B96034" stroke-width="1.8" opacity="0.3"/>
+            <line x1="62" y1="216" x2="174" y2="216" stroke="#47685B" stroke-width="1.5" opacity="0.22"/>
+          </g>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="120" height="120">
+          <rect width="240" height="240" fill="#0F1310"/>
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="24" y1="52" x2="164" y2="52" stroke="#1D342B" stroke-width="2" opacity="0.9"/>
+            <line x1="44" y1="68" x2="188" y2="68" stroke="#B96034" stroke-width="2" opacity="0.75"/>
+            <rect x="192" y="44" width="16" height="32" rx="2" stroke="#B96034" stroke-width="1.8" opacity="0.8"/>
+            <path d="M140 110 C124 108 112 114 112 122 C112 130 148 128 148 136 C148 142 136 142 120 140" stroke="#47685B" stroke-width="2.2" opacity="0.7"/>
+            <circle cx="124" cy="114" r="3.5" fill="#B96034" opacity="0.8"/>
+            <circle cx="136" cy="138" r="2.5" fill="#47685B" opacity="0.6"/>
+            <line x1="38" y1="188" x2="126" y2="188" stroke="#ECE6DA" stroke-width="1.8" opacity="0.35"/>
+            <line x1="50" y1="202" x2="154" y2="202" stroke="#B96034" stroke-width="1.8" opacity="0.3"/>
+            <line x1="62" y1="216" x2="174" y2="216" stroke="#47685B" stroke-width="1.5" opacity="0.22"/>
+          </g>
+        </svg>
+      </div>
+      <div class="svg-label">pattern-tile.svg — Repeating background tile (shown 2×)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- §8 — SOURCING GUIDANCE                                             -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="sourcing">
+  <div class="eyebrow">Section 08</div>
+  <h2>Sourcing Guidance</h2>
+  <p>Recommended platforms and search terms for expanding the library. All current images are sourced from Unsplash (free commercial license).</p>
+
+  <div class="source-grid">
+    <div class="source-card">
+      <h3>Oxidized Infrastructure</h3>
+      <p>Corten steel, rust patina, weathered metal architecture</p>
+      <div class="search-terms">
+        <span>corten steel building</span>
+        <span>oxidized facade</span>
+        <span>rusted metal architecture</span>
+        <span>weathered steel cladding</span>
+        <span>industrial patina</span>
+      </div>
+    </div>
+    <div class="source-card">
+      <h3>Brutalist Architecture</h3>
+      <p>Bold concrete, geometric facades, monumental form</p>
+      <div class="search-terms">
+        <span>brutalist architecture</span>
+        <span>concrete building geometric</span>
+        <span>béton brut</span>
+        <span>monumental concrete</span>
+        <span>architectural minimalism concrete</span>
+      </div>
+    </div>
+    <div class="source-card">
+      <h3>Structural Shadow</h3>
+      <p>Light creating rhythmic patterns on architecture</p>
+      <div class="search-terms">
+        <span>architectural shadow pattern</span>
+        <span>building shadow lines</span>
+        <span>louvered facade shadow</span>
+        <span>light and shadow architecture</span>
+        <span>concrete rhythm</span>
+      </div>
+    </div>
+    <div class="source-card">
+      <h3>Workshop & Material</h3>
+      <p>Dark timber, marble, worked surfaces</p>
+      <div class="search-terms">
+        <span>dark wood grain texture</span>
+        <span>black marble</span>
+        <span>weathered timber</span>
+        <span>aged wood surface</span>
+        <span>natural material dark</span>
+      </div>
+    </div>
+    <div class="source-card">
+      <h3>Dark Geometry</h3>
+      <p>Night facades, deep shadows, moody glass</p>
+      <div class="search-terms">
+        <span>dark building night</span>
+        <span>building silhouette black</span>
+        <span>glass facade night reflection</span>
+        <span>geometric architecture dark</span>
+        <span>moody architecture</span>
+      </div>
+    </div>
+    <div class="source-card">
+      <h3>Framed Urban Systems</h3>
+      <p>Infrastructure that reads as "systems at work"</p>
+      <div class="search-terms">
+        <span>aerial train yard</span>
+        <span>railway junction</span>
+        <span>industrial pipes network</span>
+        <span>urban infrastructure</span>
+        <span>city systems aerial</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 32px;">Recommended Platforms</h3>
+  <p class="wide"><strong>Unsplash</strong> — primary source (free commercial license). <strong>Pexels</strong> — secondary (similar license). For commissioned photography: brief against the visual vocabulary above, specify desaturated/editorial processing in post.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- SCRIPTS                                                            -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<script>
+// ── Image catalog for library grid ──
+const catalog = [
+  { num: "01", file: "01_brutalist_concrete", desc: "Brutalist parking spiral — raw concrete layers, industrial geometry", roles: ["divider"], theme: "existing", hero: false },
+  { num: "02", file: "02_brutalist_geometric", desc: "Monumental concrete cantilever — bold, authoritative brutalist form", roles: ["cover", "divider", "closing"], theme: "existing", hero: true },
+  { num: "04", file: "04_concrete_curves", desc: "Industrial curved pipes — sculptural concrete forms in B&W", roles: ["divider"], theme: "existing", hero: false },
+  { num: "07", file: "07_geometric_bw", desc: "Geometric B&W architecture — stark light and shadow on tiled facade", roles: ["cover", "divider", "closing"], theme: "existing", hero: false },
+  { num: "08", file: "08_arch_lines_shadow", desc: "Architectural lines with rhythmic shadows — chevron geometry", roles: ["divider", "background", "closing"], theme: "existing", hero: false },
+  { num: "11", file: "11_corten_vertical_slats", desc: "Warm corten steel building with vertical slats — oxide-tone match", roles: ["divider", "background"], theme: "oxidized-infrastructure", hero: false },
+  { num: "12", file: "12_corten_pyramid", desc: "Corten pyramid — geometric oxidized form with many windows", roles: ["divider", "closing"], theme: "oxidized-infrastructure", hero: false },
+  { num: "13", file: "13_corten_tower", desc: "Corten steel tower — oxidized vertical structure, street context", roles: ["divider", "background"], theme: "oxidized-infrastructure", hero: false },
+  { num: "14", file: "14_corten_tall_orange", desc: "Tall orange corten building — bold oxide tones (reserve)", roles: [], theme: "oxidized-infrastructure", hero: false },
+  { num: "15", file: "15_brown_concrete_lowangle", desc: "Low-angle brown concrete building — warm monumental form", roles: ["cover", "closing"], theme: "oxidized-infrastructure", hero: false },
+  { num: "16", file: "16_rusted_metal_rivets", desc: "Close-up rusted metal with rivets — raw oxidized detail texture", roles: ["background"], theme: "oxidized-infrastructure", hero: true },
+  { num: "17", file: "17_industrial_staircase", desc: "Industrial staircase — corten interior, modern building", roles: ["divider", "closing"], theme: "oxidized-infrastructure", hero: false },
+  { num: "18", file: "18_brown_building_monumental", desc: "Brown concrete building — warm tones, white sky, monumental", roles: ["cover", "closing"], theme: "oxidized-infrastructure", hero: true },
+  { num: "19", file: "19_diamond_facade", desc: "Geometric diamond pattern on building facade — structured repetition", roles: ["divider", "background"], theme: "brutalist-architecture", hero: false },
+  { num: "20", file: "20_geometric_window_grid", desc: "Geometric window grid — repetitive facade pattern, systematic", roles: ["divider", "background"], theme: "brutalist-architecture", hero: false },
+  { num: "21", file: "21_brutalist_bw_curves", desc: "B&W brutalist building — stark contrast, bold curved balconies", roles: ["divider"], theme: "brutalist-architecture", hero: false },
+  { num: "22", file: "22_concrete_curves_sky", desc: "Concrete building curves against sky — sculptural brutalist form", roles: ["cover", "divider", "closing"], theme: "brutalist-architecture", hero: true },
+  { num: "23", file: "23_vertical_fins", desc: "Repeating vertical fins — modern brutalist rhythm", roles: ["cover", "closing"], theme: "brutalist-architecture", hero: false },
+  { num: "24", file: "24_shadow_lines_grayscale", desc: "Grayscale building — shadow lines creating rhythmic pattern", roles: ["divider", "background"], theme: "structural-shadow", hero: false },
+  { num: "25", file: "25_tall_building_shadow", desc: "Tall building — vertical shadow rhythm with architectural detail", roles: ["cover", "closing"], theme: "structural-shadow", hero: true },
+  { num: "26", file: "26_white_concrete_daylight", desc: "White concrete — clean daylight shadow lines, minimal", roles: ["divider", "background"], theme: "structural-shadow", hero: false },
+  { num: "27", file: "27_brown_concrete_warm", desc: "Brown concrete with warm shadows — warm-toned rhythm", roles: ["divider", "background"], theme: "structural-shadow", hero: false },
+  { num: "28", file: "28_metal_poles_parallel", desc: "Metal poles closeup — parallel lines, industrial rhythm", roles: ["cover", "closing"], theme: "structural-shadow", hero: false },
+  { num: "29", file: "29_dark_wood_floor", desc: "Dark wood floor — rich timber grain, warm texture", roles: ["background"], theme: "workshop-material", hero: false },
+  { num: "30", file: "30_weathered_barn_door", desc: "Weathered barn door — aged timber with character", roles: ["background"], theme: "workshop-material", hero: false },
+  { num: "31", file: "31_dark_wood_grain", desc: "Dark wood grain — deep tones, organic pattern", roles: ["background"], theme: "workshop-material", hero: false },
+  { num: "32", file: "32_amber_wood", desc: "Amber wood — warm golden tones, crafted surface", roles: ["background"], theme: "workshop-material", hero: false },
+  { num: "33", file: "33_black_marble", desc: "Black marble with white veins — dark premium texture", roles: ["background"], theme: "workshop-material", hero: false },
+  { num: "34", file: "34_dark_geometry_angular", desc: "B&W dark geometry — angular architecture, deep contrast", roles: ["divider", "background"], theme: "dark-geometry", hero: false },
+  { num: "35", file: "35_illuminated_windows_night", desc: "Illuminated windows at night — warm glow in dark facade", roles: ["cover", "closing"], theme: "dark-geometry", hero: true },
+  { num: "36", file: "36_stairwell_glass", desc: "Stairwell through glass — geometric depth, moody interior", roles: ["divider"], theme: "dark-geometry", hero: false },
+  { num: "37", file: "37_glass_facade_reflections", desc: "Glass facade with warm building reflections at night", roles: ["cover", "background", "closing"], theme: "dark-geometry", hero: true },
+  { num: "38", file: "38_dark_building_silhouette", desc: "B&W dark building — stark silhouette, dramatic composition", roles: ["cover", "closing"], theme: "dark-geometry", hero: true },
+  { num: "39", file: "39_industrial_pipes_bw", desc: "B&W industrial pipes — complex system, structured chaos", roles: ["divider"], theme: "framed-urban-systems", hero: false },
+  { num: "40", file: "40_urban_framing_post", desc: "Grayscale building with structural post — urban framing", roles: ["divider"], theme: "framed-urban-systems", hero: false },
+  { num: "41", file: "41_aerial_train_yard", desc: "Aerial train yard — track switching systems, orchestration literal", roles: ["cover", "background", "closing"], theme: "framed-urban-systems", hero: true }
+];
+
+const themeLabels = {
+  "existing": "Existing",
+  "oxidized-infrastructure": "Oxidized",
+  "brutalist-architecture": "Brutalist",
+  "structural-shadow": "Shadow",
+  "workshop-material": "Workshop",
+  "dark-geometry": "Dark Geo",
+  "framed-urban-systems": "Urban Sys"
+};
+
+// ── Build library grid ──
+function buildLibrary(filter) {
+  const grid = document.getElementById('library-grid');
+  grid.innerHTML = '';
+  const items = filter === 'all' ? catalog : catalog.filter(i => i.theme === filter);
+
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'lib-card';
+    card.dataset.showing = 'brand';
+    card.onclick = function() { toggleLibCard(this); };
+
+    const rolesHtml = item.roles.map(r => `<span class="role-tag">${r}</span>`).join('');
+    const heroHtml = item.hero ? '<span class="role-tag hero-tag">hero</span>' : '';
+    const themeHtml = `<span class="theme-tag">${themeLabels[item.theme]}</span>`;
+
+    card.innerHTML = `
+      <div class="img-wrap">
+        <img class="lib-original hidden" src="../images/${item.file}.jpg" alt="Original" loading="lazy">
+        <img class="lib-brand" src="../images/processed/${item.file}.brand.jpg" alt="Brand" loading="lazy">
+        <div class="toggle-label">Brand</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-id">#${item.num} ${themeHtml}</div>
+        <div class="card-desc">${item.desc}</div>
+        <div class="card-roles">${rolesHtml}${heroHtml}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ── Toggle library card original/brand ──
+function toggleLibCard(card) {
+  const original = card.querySelector('.lib-original');
+  const brand = card.querySelector('.lib-brand');
+  const label = card.querySelector('.toggle-label');
+
+  if (card.dataset.showing === 'brand') {
+    brand.classList.add('hidden');
+    original.classList.remove('hidden');
+    label.textContent = 'Original';
+    card.dataset.showing = 'original';
+  } else {
+    original.classList.add('hidden');
+    brand.classList.remove('hidden');
+    label.textContent = 'Brand';
+    card.dataset.showing = 'brand';
+  }
+}
+
+// ── Toggle before/after ──
+function toggleBA(container) {
+  const pair = container.closest('.ba-pair');
+  const original = container.querySelector('.ba-original');
+  const brand = container.querySelector('.ba-brand');
+  const label = container.querySelector('.ba-label');
+
+  if (pair.dataset.showing === 'brand') {
+    brand.classList.add('hidden');
+    original.classList.remove('hidden');
+    label.textContent = 'ORIGINAL';
+    pair.dataset.showing = 'original';
+  } else {
+    original.classList.add('hidden');
+    brand.classList.remove('hidden');
+    label.textContent = 'BRAND';
+    pair.dataset.showing = 'brand';
+  }
+}
+
+// ── Theme filter ──
+function filterTheme(theme, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildLibrary(theme);
+}
+
+// ── Sticky nav IntersectionObserver ──
+const sections = document.querySelectorAll('.section, .cover');
+const navLinks = document.querySelectorAll('.sticky-nav a');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`.sticky-nav a[href="#${id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => { if (s.id) navObserver.observe(s); });
+
+// ── Init ──
+buildLibrary('all');
+</script>
+
+</body>
+</html>

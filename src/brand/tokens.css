@@ -8,53 +8,53 @@
 
 :root {
   /* ── Primary Palette ─────────────────────────────────── */
-  --stromy-obsidian:       #0B0B0B;
-  --stromy-green:          #1B3D33;
-  --stromy-signal-orange:  #D4632A;
+  --stromy-obsidian:       #0F1310;
+  --stromy-green:          #1D342B;
+  --stromy-signal-orange:  #B96034;
 
   /* ── Green Scale ─────────────────────────────────────── */
-  --stromy-green-900:      #0E2A22;  /* Deep pine */
-  --stromy-green-700:      #1B3D33;  /* Primary */
-  --stromy-green-500:      #2A5E4C;  /* Canopy */
-  --stromy-green-300:      #3A7D65;  /* Verdant */
-  --stromy-green-100:      #B8D4C8;  /* Sage */
-  --stromy-green-50:       #E8F0EC;  /* Mist */
+  --stromy-green-900:      #152019;  /* Black forest */
+  --stromy-green-700:      #1D342B;  /* Deep forest */
+  --stromy-green-500:      #47685B;  /* Mineral green */
+  --stromy-green-300:      #7F9B90;  /* Oxidized sage */
+  --stromy-green-100:      #C9D6CF;  /* Soft mineral */
+  --stromy-green-50:       #E7EEE8;  /* Pale mist */
 
   /* ── Orange Scale ────────────────────────────────────── */
-  --stromy-orange-900:     #6B2D10;
-  --stromy-orange-700:     #A04A1E;
-  --stromy-orange-500:     #D4632A;  /* Primary signal */
-  --stromy-orange-300:     #E8915E;
-  --stromy-orange-100:     #F5C9A8;
-  --stromy-orange-50:      #FBE8D8;
+  --stromy-orange-900:     #6A341D;
+  --stromy-orange-700:     #924B29;
+  --stromy-orange-500:     #B96034;  /* Oxide signal */
+  --stromy-orange-300:     #D68A60;
+  --stromy-orange-100:     #E9C6AF;
+  --stromy-orange-50:      #F4E5D9;
 
   /* ── Neutral Scale ───────────────────────────────────── */
-  --stromy-neutral-950:    #0B0B0B;  /* Obsidian */
-  --stromy-neutral-900:    #1A1A18;
-  --stromy-neutral-800:    #2C2C2A;  /* Graphite */
-  --stromy-neutral-700:    #3D3D3A;
-  --stromy-neutral-600:    #5A5A56;  /* Stone */
-  --stromy-neutral-500:    #8C8B87;  /* Pewter */
-  --stromy-neutral-400:    #A8A7A2;
-  --stromy-neutral-300:    #C8C6BF;  /* Ash */
-  --stromy-neutral-200:    #DDDBD4;
-  --stromy-neutral-100:    #ECEAE4;
-  --stromy-neutral-50:     #F2F0EA;  /* Parchment */
-  --stromy-white:          #FAFAF7;
+  --stromy-neutral-950:    #0F1310;  /* Obsidian forest */
+  --stromy-neutral-900:    #171611;
+  --stromy-neutral-800:    #2A2924;  /* Graphite bark */
+  --stromy-neutral-700:    #464138;
+  --stromy-neutral-600:    #6D665C;  /* Stone */
+  --stromy-neutral-500:    #8C857A;  /* Pewter */
+  --stromy-neutral-400:    #AEA495;
+  --stromy-neutral-300:    #CDC2B3;  /* Ash */
+  --stromy-neutral-200:    #DDD4C7;
+  --stromy-neutral-100:    #E8E0D4;
+  --stromy-neutral-50:     #ECE6DA;  /* Warm paper */
+  --stromy-white:          #F3EDE2;
 
   /* ── Semantic Colors ─────────────────────────────────── */
-  --stromy-success:        #2A5E4C;
-  --stromy-success-light:  #E8F0EC;
-  --stromy-warning:        #D4632A;
-  --stromy-warning-light:  #FBE8D8;
-  --stromy-error:          #B03030;
-  --stromy-error-light:    #FCEAEA;
-  --stromy-info:           #2B5E8C;
-  --stromy-info-light:     #E4EFF8;
+  --stromy-success:        #47685B;
+  --stromy-success-light:  #E7EEE8;
+  --stromy-warning:        #B96034;
+  --stromy-warning-light:  #F4E5D9;
+  --stromy-error:          #8E3F2E;
+  --stromy-error-light:    #F2E2DC;
+  --stromy-info:           #2D4B3E;
+  --stromy-info-light:     #E4EBE7;
 
   /* ── Typography ──────────────────────────────────────── */
-  --font-display:          'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --font-body:             'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display:          'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:             'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono:             'IBM Plex Mono', 'SF Mono', 'Fira Code', monospace;
 
   /* Display sizes */
@@ -127,12 +127,17 @@
   --duration-normal:  200ms;
   --duration-slow:    400ms;
 
-  /* ── Score Line (brand motif) ────────────────────────── */
-  --score-line-color:       var(--stromy-green-700);
-  --score-line-color-light: var(--stromy-green-300);
-  --score-dot-color:        var(--stromy-signal-orange);
-  --score-line-weight:      1.5px;
-  --score-dot-size:         5px;
+  /* ── Motif Family ────────────────────────────────────── */
+  --motif-ink:              var(--stromy-neutral-950);
+  --motif-paper:            var(--stromy-neutral-50);
+  --motif-forest:           var(--stromy-green-700);
+  --motif-mineral:          var(--stromy-green-500);
+  --motif-oxide:            var(--stromy-orange-500);
+  --motif-line-weight:      1.5px;
+  --motif-node-size:        9px;
+  --motif-ledger-box-w:     16px;
+  --motif-ledger-box-h:     30px;
+  --motif-band-gap:         16px;
 
   /* ── Layout ──────────────────────────────────────────── */
   --content-width:    720px;
@@ -420,4 +425,74 @@
 .badge--neutral {
   background: var(--stromy-neutral-100);
   color: var(--stromy-neutral-700);
+}
+
+/* ── Motif Utilities ─────────────────────────────────────── */
+.stromy-tempo-ledger {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.stromy-tempo-ledger__rule {
+  position: relative;
+  height: 34px;
+}
+
+.stromy-tempo-ledger__rule::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 4.5rem;
+  top: 7px;
+  border-top: var(--motif-line-weight) solid var(--motif-ink);
+}
+
+.stromy-tempo-ledger__rule::after {
+  content: "";
+  position: absolute;
+  left: 1.375rem;
+  right: 0;
+  top: 23px;
+  border-top: var(--motif-line-weight) solid var(--motif-oxide);
+}
+
+.stromy-tempo-ledger__box {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: var(--motif-ledger-box-w);
+  height: var(--motif-ledger-box-h);
+  border: var(--motif-line-weight) solid var(--motif-oxide);
+}
+
+.stromy-data-rail {
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.stromy-data-rail::before {
+  content: "";
+  position: absolute;
+  left: var(--space-3);
+  top: 0;
+  bottom: 0;
+  width: var(--motif-line-weight);
+  background: var(--motif-ink);
+}
+
+.stromy-switch-track {
+  display: block;
+  width: 100%;
+  height: 36px;
+}
+
+.stromy-echo-band {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.stromy-echo-band__line {
+  height: 8px;
+  border-top: var(--motif-line-weight) solid currentColor;
+  border-bottom: var(--motif-line-weight) solid color-mix(in srgb, currentColor 18%, transparent);
 }
