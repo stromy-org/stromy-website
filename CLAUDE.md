@@ -10,10 +10,10 @@ stromy-website is the **Stromy corporate website** — a static site built with 
 
 ```
 stromy-website/
+├── client-data/                   ← Brand data submodule (charter.json, logos, images)
 ├── src/
-│   ├── brand/                    ← Synced from brand-tokens (charter.json + logos + images)
 │   ├── styles/
-│   │   ├── brand-tokens.css      ← Generated from charter.json (do not edit)
+│   │   ├── client-data.css      ← Generated from charter.json (do not edit)
 │   │   └── global.css            ← Base styles, score lines, utilities
 │   ├── lib/
 │   │   ├── tokens.ts             ← Generated TS module (do not edit)
@@ -32,7 +32,7 @@ stromy-website/
 │   ├── layouts/                  ← BaseLayout, PageLayout, ArticleLayout
 │   └── data/                     ← site.ts, stats.ts, team.ts
 ├── scripts/
-│   └── generate-tokens.ts        ← charter.json → brand-tokens.css + tokens.ts
+│   └── generate-tokens.ts        ← charter.json → client-data.css + tokens.ts
 ├── public/                       ← Static assets (favicon, fonts)
 └── dist/                         ← Build output (gitignored)
 ```
@@ -59,9 +59,9 @@ npm test              # Vitest
 
 ### Brand Token Pipeline
 
-1. Brand assets live in `src/brand/` (charter.json, logos, images)
-2. `npm run tokens` reads `src/brand/charter.json` → generates `brand-tokens.css` + `tokens.ts`
-3. **Never edit** `brand-tokens.css` or `tokens.ts` directly — they are generated files
+1. Brand assets live in `client-data/clients/stromy/` (charter.json, logos, images) via git submodule
+2. `npm run tokens` reads `client-data/clients/stromy/charter.json` → generates `client-data.css` + `tokens.ts`
+3. **Never edit** `client-data.css` or `tokens.ts` directly — they are generated files
 
 ### Region System
 

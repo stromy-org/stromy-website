@@ -30,7 +30,7 @@ stromy-website/
 │   ├── content.config.ts     ← Collection schemas (Zod validation)
 │   ├── data/                 ← Site config, stats, team (TypeScript)
 │   ├── brand/                ← Charter.json + logos + images (synced, don't edit charter)
-│   ├── styles/               ← global.css + brand-tokens.css (generated)
+│   ├── styles/               ← global.css + client-data.css (generated)
 │   ├── lib/                  ← tokens.ts (generated), region.ts
 │   ├── components/           ← layout/, ui/, sections/, content/
 │   ├── layouts/              ← BaseLayout, PageLayout, ArticleLayout
@@ -40,7 +40,7 @@ stromy-website/
 ```
 
 **Generated files (never edit directly):**
-- `src/styles/brand-tokens.css` — regenerate with `npm run tokens`
+- `src/styles/client-data.css` — regenerate with `npm run tokens`
 - `src/lib/tokens.ts` — regenerate with `npm run tokens`
 
 **Build command:** `npm run build` (runs token generation + Astro build)
@@ -95,7 +95,7 @@ Match the user's request to the appropriate workflow below.
 | "add a capability", "update [capability name]" | [Update Capability](#update-capability) |
 | "update the team", "add a team member", "change bio" | [Update Team](#update-team) |
 | "update stats", "change the metrics" | [Update Stats](#update-stats) |
-| "refresh brand", "sync brand tokens", "colors changed" | [Refresh Brand Tokens](#refresh-brand-tokens) |
+| "refresh brand", "sync brand tokens", "colors changed" | [Refresh Brand Tokens](#refresh-client-data) |
 | "add a region", "add Belgium", "new country" | [Add Region](#add-region) |
 | "update navigation", "add a nav link" | [Update Navigation](#update-navigation) |
 | "update SEO", "meta tags", "OG image" | [Update SEO](#update-seo) |
@@ -127,7 +127,7 @@ You need these fields (ask the user for anything missing):
 
 ### 2. Choose an image
 
-Available brand images (in `src/brand/images/`):
+Available brand images (in `client-data/clients/stromy/images/`):
 
 | File | Description | Best for |
 |------|-------------|----------|
@@ -368,16 +368,16 @@ Keep to 3-5 stats for visual balance.
 
 ## Refresh Brand Tokens
 
-When brand data changes upstream (colors, fonts, logos, images in `brand-tokens` repo):
+When brand data changes upstream (colors, fonts, logos, images in `client-data` repo):
 
 ### 1. Sync brand assets
 
 From the stromy-org root:
 ```bash
-bash scripts/sync-brand-data.sh
+bash scripts/bump-client-data.sh
 ```
 
-This copies `charter.json`, logos, and images into `stromy-website/src/brand/`.
+This copies `charter.json`, logos, and images into `stromy-website/client-data/clients/stromy/`.
 
 ### 2. Regenerate tokens
 
@@ -386,8 +386,8 @@ From the stromy-website directory:
 npm run tokens
 ```
 
-This reads `src/brand/charter.json` and regenerates:
-- `src/styles/brand-tokens.css` — CSS custom properties
+This reads `client-data/clients/stromy/charter.json` and regenerates:
+- `src/styles/client-data.css` — CSS custom properties
 - `src/lib/tokens.ts` — TypeScript module
 
 ### 3. Rebuild and verify
@@ -403,7 +403,7 @@ inspect with `npm run dev`.
 
 - Color changes → CSS custom properties → all components
 - Font changes → font family variables → all text
-- New images → available in `src/brand/images/` for content frontmatter
+- New images → available in `client-data/clients/stromy/images/` for content frontmatter
 
 ### What requires manual updates
 
@@ -656,7 +656,7 @@ Review at least:
 - mobile layout, tap-target spacing, and menu behavior
 - repeated template fatigue across adjacent pages
 - whether filters, toggles, and active states rely on color alone
-- whether the implementation still matches `src/brand/charter.json`
+- whether the implementation still matches `client-data/clients/stromy/charter.json`
 
 ### 6. Verify likely visual failures directly
 

@@ -1,0 +1,3 @@
+[submodule "client-data"]
+	path = client-data
+	url = https://github.com/stromy-org/client-data.git

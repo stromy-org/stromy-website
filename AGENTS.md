@@ -38,8 +38,8 @@ Render MDX content: `const { Content } = await render(entry)`
 
 ### Brand Tokens
 
-Brand data comes from `src/brand/charter.json` (synced from brand-tokens repo).
-Running `npm run tokens` generates `src/styles/brand-tokens.css` and `src/lib/tokens.ts`.
+Brand data comes from `client-data/clients/stromy/charter.json` (via git submodule).
+Running `npm run tokens` generates `src/styles/client-data.css` and `src/lib/tokens.ts`.
 Never edit these generated files directly.
 
 ### MCP Servers
@@ -75,7 +75,7 @@ date: 2026-03-25
 author: "Author Name"
 region: "au"  # au, nl, or global
 tags: ["tag1", "tag2"]
-image: ../../brand/images/07_geometric_bw.jpg
+image: ../../../client-data/clients/stromy/images/07_geometric_bw.jpg
 featured: false
 ---
 ```
@@ -91,6 +91,6 @@ client: "Client Name"
 metrics:
   - label: "Metric"
     value: "42"
-image: ../../brand/images/01_brutalist_concrete.jpg
+image: ../../../client-data/clients/stromy/images/01_brutalist_concrete.jpg
 ---
 ```

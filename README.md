@@ -56,7 +56,7 @@ stromy-website/
 │   ├── brand/                ← charter.json + logos + images
 │   ├── styles/
 │   │   ├── global.css        ← Base styles, utilities
-│   │   └── brand-tokens.css  ← Generated (do not edit)
+│   │   └── client-data.css  ← Generated (do not edit)
 │   └── lib/
 │       ├── region.ts         ← Region store (AU/NL)
 │       └── tokens.ts         ← Generated (do not edit)
@@ -126,8 +126,8 @@ Your content here...
 
 ## Brand Tokens
 
-Brand data comes from `src/brand/charter.json`. Running `npm run tokens` generates:
-- `src/styles/brand-tokens.css` — CSS custom properties
+Brand data comes from `client-data/clients/stromy/charter.json`. Running `npm run tokens` generates:
+- `src/styles/client-data.css` — CSS custom properties
 - `src/lib/tokens.ts` — TypeScript constants
 
 **Never edit these generated files directly.**
