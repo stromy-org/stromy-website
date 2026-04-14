@@ -5,4 +5,4 @@ dist/
 *.log
 
 # Brand sync stamp (synced from brand-tokens, noisy on every run)
-.brand-sync-version.json
+.brand-sync-version.jsonclient-data/
