@@ -10,7 +10,7 @@ stromy-website is the **Stromy corporate website** — a static site built with 
 
 ```
 stromy-website/
-├── client-data/                   ← Brand data submodule (charter.json, logos, images)
+├── client-data/                   ← Brand data slice (charter.json, logos, images), committed
 ├── src/
 │   ├── styles/
 │   │   ├── client-data.css      ← Generated from charter.json (do not edit)
@@ -59,7 +59,7 @@ npm test              # Vitest
 
 ### Brand Token Pipeline
 
-1. Brand assets live in `client-data/clients/stromy/` (charter.json, logos, images) via git submodule
+1. Brand assets live in `client-data/clients/stromy/` (charter.json, logos, images) — committed slice, updated via `dispatch-client-data.sh`
 2. `npm run tokens` reads `client-data/clients/stromy/charter.json` → generates `client-data.css` + `tokens.ts`
 3. **Never edit** `client-data.css` or `tokens.ts` directly — they are generated files
 
