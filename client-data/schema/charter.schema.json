@@ -1,0 +1,405 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/stromy-org/brand-tokens/schema/charter.schema.json",
+  "title": "Brand Charter",
+  "description": "Canonical brand charter schema for stromy-org client branding",
+  "type": "object",
+  "required": ["colors", "fonts"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Brand metadata — tier, display name, tagline, industry",
+      "properties": {
+        "tier": {
+          "type": "string",
+          "enum": ["producer", "output"],
+          "description": "Brand tier: producer (full brand build) or output (charter + logos only)"
+        },
+        "displayName": { "type": "string", "description": "Human-readable brand name" },
+        "tagline": { "type": "string", "description": "Brand tagline or strapline" },
+        "industry": { "type": "string", "description": "Primary industry or sector" }
+      }
+    },
+    "colors": {
+      "type": "object",
+      "required": ["primary", "secondary", "accent", "background", "backgroundAlt", "text", "textLight", "success", "warning", "error"],
+      "properties": {
+        "primary": { "$ref": "#/$defs/hexColor" },
+        "secondary": { "$ref": "#/$defs/hexColor" },
+        "accent": { "$ref": "#/$defs/hexColor" },
+        "background": { "$ref": "#/$defs/hexColor" },
+        "backgroundAlt": { "$ref": "#/$defs/hexColor" },
+        "text": { "$ref": "#/$defs/hexColor" },
+        "textLight": { "$ref": "#/$defs/hexColor" },
+        "success": { "$ref": "#/$defs/hexColor" },
+        "warning": { "$ref": "#/$defs/hexColor" },
+        "error": { "$ref": "#/$defs/hexColor" }
+      },
+      "additionalProperties": false
+    },
+    "fonts": {
+      "type": "object",
+      "required": ["heading", "body", "mono"],
+      "properties": {
+        "heading": { "$ref": "#/$defs/fontSpec" },
+        "body": { "$ref": "#/$defs/fontSpec" },
+        "mono": { "$ref": "#/$defs/fontSpec" }
+      },
+      "additionalProperties": false
+    },
+    "logo": {
+      "type": "object",
+      "properties": {
+        "primary": { "type": "string" },
+        "white": { "type": "string" },
+        "maxWidth": { "type": "string" },
+        "maxHeight": { "type": "string" },
+        "sizing": { "type": "string", "enum": ["contain", "cover", "fill"] }
+      }
+    },
+    "images": {
+      "type": "object",
+      "properties": {
+        "catalog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["file", "description", "roles"],
+            "properties": {
+              "file": { "type": "string" },
+              "description": { "type": "string" },
+              "roles": { "type": "array", "items": { "type": "string" } },
+              "mood": { "type": "string", "description": "Mood tag for contextual image selection (e.g., bold, calm, sophisticated)" },
+              "orientation": { "type": "string", "enum": ["landscape", "portrait", "square"], "description": "Image orientation for layout decisions" }
+            }
+          }
+        },
+        "overlay": {
+          "type": "object",
+          "properties": {
+            "color": { "type": "string" },
+            "opacity": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "logoVariantOnImage": { "type": "string" }
+      }
+    },
+    "document": {
+      "type": "object",
+      "properties": {
+        "margins": {
+          "type": "object",
+          "properties": {
+            "top": { "type": "string" },
+            "bottom": { "type": "string" },
+            "left": { "type": "string" },
+            "right": { "type": "string" }
+          }
+        },
+        "header": {
+          "type": "object",
+          "properties": {
+            "content": { "type": "string" },
+            "logo": { "type": "boolean" }
+          }
+        },
+        "footer": {
+          "type": "object",
+          "properties": {
+            "content": { "type": "string" },
+            "pageNumbers": { "type": "boolean" }
+          }
+        },
+        "headingColor": { "type": "string" },
+        "tableHeaderColor": { "type": "string" }
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "slideMargin": { "type": "string" },
+        "titleMargin": { "type": "string" },
+        "contentMargin": { "type": "string" },
+        "aspectRatio": { "type": "string" }
+      }
+    },
+    "video": {
+      "type": "object",
+      "properties": {
+        "resolution": { "type": "string" },
+        "fps": { "type": "integer" }
+      }
+    },
+    "formatting": {
+      "type": "object",
+      "properties": {
+        "headingThreshold": { "type": "integer" },
+        "accentCycleColors": { "type": "array", "items": { "type": "string" } },
+        "autoContrastText": { "type": "boolean" }
+      }
+    },
+    "plotly": {
+      "type": "object",
+      "properties": {
+        "categoricalPalette": { "type": "array", "items": { "$ref": "#/$defs/hexColor" } },
+        "defaultHeight": { "type": "integer" },
+        "titleFontSize": { "type": "integer" },
+        "axisFontSize": { "type": "integer" },
+        "legendFontSize": { "type": "integer" },
+        "margins": {
+          "type": "object",
+          "properties": {
+            "top": { "type": "integer" },
+            "bottom": { "type": "integer" },
+            "left": { "type": "integer" },
+            "right": { "type": "integer" }
+          }
+        },
+        "baseTemplate": { "type": "string" },
+        "gridColor": { "$ref": "#/$defs/hexColor" },
+        "secondaryTextColor": { "$ref": "#/$defs/hexColor" },
+        "bar": {
+          "type": "object",
+          "properties": {
+            "markerColor": { "$ref": "#/$defs/hexColor" },
+            "markerLineColor": { "$ref": "#/$defs/hexColor" },
+            "markerLineWidth": { "type": "number" }
+          }
+        },
+        "line": {
+          "type": "object",
+          "properties": {
+            "color": { "$ref": "#/$defs/hexColor" },
+            "width": { "type": "number" },
+            "markerColor": { "$ref": "#/$defs/hexColor" },
+            "markerSize": { "type": "number" }
+          }
+        },
+        "scatter": {
+          "type": "object",
+          "properties": {
+            "markerColor": { "$ref": "#/$defs/hexColor" },
+            "markerSize": { "type": "number" },
+            "markerLineWidth": { "type": "number" }
+          }
+        },
+        "pie": {
+          "type": "object",
+          "properties": {
+            "hole": { "type": "number" },
+            "textfontSize": { "type": "integer" },
+            "markerLineColor": { "type": "string" },
+            "markerLineWidth": { "type": "number" }
+          }
+        },
+        "sentiment": {
+          "type": "object",
+          "properties": {
+            "positiveColor": { "$ref": "#/$defs/hexColor" },
+            "neutralColor": { "$ref": "#/$defs/hexColor" },
+            "negativeColor": { "$ref": "#/$defs/hexColor" }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "website": {
+      "type": "object",
+      "description": "Website builder configuration — archetype, aesthetic, layout, texture, typography, motion, components, color application, pages, deployment",
+      "properties": {
+        "archetype": {
+          "type": "string",
+          "enum": ["ruler", "hero", "explorer", "creator", "sage", "innocent", "jester", "magician", "lover", "caregiver", "everyman", "outlaw"],
+          "description": "Jungian archetype driving all design defaults"
+        },
+        "aesthetic": {
+          "type": "string",
+          "enum": ["brutalist", "minimalist", "maximalist", "retro-futuristic", "organic", "luxury", "editorial-magazine", "art-deco", "industrial", "playful", "neo-classical", "swiss-international", "deconstructivist", "memphis", "dark-mode-native"]
+        },
+        "layout": {
+          "type": "object",
+          "properties": {
+            "density": { "type": "string", "enum": ["airy", "balanced", "dense"] },
+            "symmetry": { "type": "string", "enum": ["symmetric", "asymmetric", "broken-grid"] },
+            "flowDirection": { "type": "string", "enum": ["linear", "diagonal", "overlap", "staggered"] },
+            "heroStyle": { "type": "string", "enum": ["full-bleed", "split", "minimal-text", "video", "collage", "typographic", "none"] },
+            "gridSystem": { "type": "string", "enum": ["12col-centered", "asymmetric-2col", "masonry", "single-column", "alternating-wide-narrow"] },
+            "maxWidth": { "type": "string" },
+            "sectionSpacing": { "type": "string", "enum": ["tight", "balanced", "generous", "dramatic"] },
+            "sectionDividers": { "type": "string", "enum": ["none", "thin-line", "thick-bar", "brand-motif", "gradient-fade", "geometric"] },
+            "footerStyle": { "type": "string", "enum": ["minimal", "mega-footer", "split", "branded-band"] },
+            "whitespaceStrategy": { "type": "string", "enum": ["compact", "balanced", "breathing", "dramatic"] }
+          }
+        },
+        "texture": {
+          "type": "object",
+          "properties": {
+            "backgroundTreatment": { "type": "string", "enum": ["solid", "gradient-mesh", "noise-grain", "geometric-pattern", "photo-bleed", "duotone", "halftone"] },
+            "surfaceFinish": { "type": "string", "enum": ["matte", "glossy", "textured", "frosted-glass"] },
+            "borderStyle": { "type": "string", "enum": ["none", "thin-line", "heavy", "decorative", "dashed", "double"] },
+            "shadowDepth": { "type": "string", "enum": ["none", "subtle", "medium", "dramatic", "colored"] },
+            "cornerRadius": { "type": "string", "enum": ["sharp", "slight", "moderate", "rounded", "pill"] },
+            "overlayStyle": { "type": "string", "enum": ["none", "brand-tint", "gradient", "grain", "mesh"] },
+            "patternDensity": { "type": "string", "enum": ["none", "sparse", "moderate", "dense"] }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "properties": {
+            "headingStyle": { "type": "string", "enum": ["standard", "oversized-serif", "mono-caps", "tight-sans", "display-script", "stacked", "mixed-weight"] },
+            "headingScale": { "type": "number" },
+            "bodyLineHeight": { "type": "number" },
+            "letterSpacing": { "type": "string", "enum": ["tight", "normal", "wide", "very-wide"] },
+            "textTransform": { "type": "string", "enum": ["none", "uppercase-headings", "uppercase-labels", "all-caps-hero"] },
+            "pullQuoteStyle": { "type": "string", "enum": ["bordered-left", "oversized-italic", "centered-display", "background-block"] },
+            "listStyle": { "type": "string", "enum": ["standard", "branded-bullets", "numbered-accent", "icon-list", "dash-minimal"] }
+          }
+        },
+        "motion": {
+          "type": "object",
+          "properties": {
+            "intensity": { "type": "string", "enum": ["none", "subtle", "moderate", "dramatic", "cinematic"] },
+            "revealStyle": { "type": "string", "enum": ["none", "fade", "stagger-up", "slide-in", "scale", "clip-reveal", "parallax"] },
+            "scrollBehavior": { "type": "string", "enum": ["instant", "smooth", "parallax-layers"] },
+            "hoverBehavior": { "type": "string", "enum": ["none", "lift", "glow", "scale", "color-shift", "underline-slide", "image-zoom"] },
+            "transitionSpeed": { "type": "string", "enum": ["instant", "snappy", "relaxed", "cinematic"] },
+            "loadingAnimation": { "type": "string", "enum": ["none", "skeleton", "pulse", "stagger-fade"] },
+            "cursorStyle": { "type": "string", "enum": ["default", "custom-branded", "dot-follower"] },
+            "interactionMode": { "type": "string", "enum": ["none", "scroll-linked", "pointer-local", "hover-focus", "mixed"] },
+            "ambientScope": { "type": "string", "enum": ["none", "hero-only", "accent-surfaces", "section-bands", "site-wide"] },
+            "reducedMotionPolicy": { "type": "string", "enum": ["auto-disable-decorative", "simplify", "static-fallback"] }
+          }
+        },
+        "components": {
+          "type": "object",
+          "properties": {
+            "navigation": { "type": "string", "enum": ["sticky-minimal", "hamburger-full", "sidebar", "top-bar-expanded", "transparent-hero", "mega-menu"] },
+            "cards": { "type": "string", "enum": ["shadow", "bordered", "flat", "glass", "elevated", "outlined", "gradient-border"] },
+            "buttons": { "type": "string", "enum": ["square", "rounded", "pill-filled", "ghost", "underline", "icon-only", "split"] },
+            "forms": { "type": "string", "enum": ["standard", "minimal-underline", "floating-label", "bordered-accent"] },
+            "imagePresentation": { "type": "string", "enum": ["rectangular", "rounded", "masked", "full-bleed", "polaroid", "circular", "parallax"] },
+            "testimonials": { "type": "string", "enum": ["simple-quote", "card-with-photo", "carousel", "sidebar-pull", "video"] },
+            "ctaStyle": { "type": "string", "enum": ["inline", "full-width-band", "floating", "corner-sticky", "modal"] },
+            "socialProof": { "type": "string", "enum": ["logo-strip", "stat-counters", "trust-badges", "press-mentions", "none"] },
+            "codeBlocks": { "type": "string", "enum": ["default", "dark-branded", "terminal-style", "line-numbered", "copy-enabled"] }
+          }
+        },
+        "colorApplication": {
+          "type": "object",
+          "properties": {
+            "darkSections": { "type": "boolean" },
+            "darkSectionFrequency": { "type": "integer" },
+            "accentUsage": { "type": "string", "enum": ["liberal", "balanced", "sparring"] },
+            "gradientDirection": { "type": "string", "enum": ["none", "horizontal", "vertical", "diagonal", "radial"] },
+            "colorBlockSections": { "type": "boolean" },
+            "imageOverlayBehavior": { "type": "string", "enum": ["none", "brand-tint", "gradient-fade", "brand-duotone", "dark-vignette"] }
+          }
+        },
+        "pages": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "layout": { "type": "string" },
+              "sections": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["type", "variant"],
+                  "properties": {
+                    "type": { "type": "string" },
+                    "variant": { "type": "string" }
+                  }
+                }
+              }
+            },
+            "required": ["enabled"]
+          }
+        },
+        "deployment": {
+          "type": "object",
+          "properties": {
+            "platform": { "type": "string", "enum": ["github-pages", "vercel", "netlify", "cloudflare-pages"] },
+            "domain": { "type": "string" },
+            "analytics": { "type": "string", "enum": ["none", "plausible", "umami", "google-analytics"] },
+            "contactForm": { "type": "string", "enum": ["mailto", "none", "formspree", "netlify-forms", "custom-api"] }
+          }
+        }
+      },
+      "required": ["archetype"]
+    },
+    "pptxAssets": {
+      "type": "object",
+      "description": "Pre-rendered presentation assets for the pptx skill — gradients, photo overlays, and motif tiles. Eliminates runtime Sharp compositing.",
+      "properties": {
+        "gradients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["file", "description"],
+            "properties": {
+              "file": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "overlays": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["file"],
+            "properties": {
+              "file": { "type": "string" },
+              "description": { "type": "string" },
+              "sourceImage": { "type": "string", "description": "Original image this overlay was generated from" },
+              "role": { "type": "string", "description": "Slide role this overlay suits (cover, divider, closing)" }
+            }
+          }
+        },
+        "motifs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["file", "description"],
+            "properties": {
+              "file": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "templates": {
+      "type": "object",
+      "description": "Available template files by format. Paths relative to brand directory.",
+      "properties": {
+        "pptx": { "$ref": "#/$defs/templateGroup" },
+        "docx": { "$ref": "#/$defs/templateGroup" },
+        "xlsx": { "$ref": "#/$defs/templateGroup" },
+        "html": { "$ref": "#/$defs/templateGroup" }
+      },
+      "additionalProperties": { "$ref": "#/$defs/templateGroup" }
+    }
+  },
+  "$defs": {
+    "hexColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$"
+    },
+    "templateGroup": {
+      "type": "object",
+      "description": "Named template variants for a format. Keys are variant names (default, letterhead, etc). Values are paths relative to the brand directory.",
+      "additionalProperties": { "type": "string" }
+    },
+    "fontSpec": {
+      "type": "object",
+      "required": ["family"],
+      "properties": {
+        "family": { "type": "string" },
+        "fallback": { "type": "string" },
+        "weight": { "type": "string" }
+      }
+    }
+  }
+}
