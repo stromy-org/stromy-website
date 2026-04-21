@@ -29,7 +29,7 @@ _No items currently in progress._
 -->
 
 ### [SW-001] Add tangible case studies
-- **priority**: high
+- **priority**: medium
 - **workstream**: _unclassified_
 - **labels**: content, case-studies
 - **created**: 2026-03-28
@@ -46,7 +46,7 @@ Create concrete case studies demonstrating Stromy's capabilities in action. Each
 ---
 
 ### [SW-002] Improve technology and value proposition descriptions
-- **priority**: high
+- **priority**: medium
 - **workstream**: _unclassified_
 - **labels**: content, capabilities, copy
 - **created**: 2026-03-28
@@ -64,7 +64,7 @@ Enhance the website content to better describe: (1) the technologies used (LangG
 
 ### [SW-003] Build LangGraph-to-website content pipeline
 - **priority**: medium
-- **workstream**: _unclassified_
+- **workstream**: `data-platform`
 - **labels**: integration, automation, langgraph
 - **created**: 2026-03-28
 
